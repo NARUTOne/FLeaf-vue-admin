@@ -1,24 +1,28 @@
 <template>
   <div id="app">
     <div class="wrapper">
-      <Header v-show="isHeader"/>
-      <Body><router-view></router-view></Body>
-      <Footer />
+      <Layout>
+        <FLHeader v-show="isHeader"/>
+        <Body><router-view></router-view></Body>
+        <FLFooter />
+      </Layout>    
     </div>    
-  </div>  
+  </div>
 </template>
 <script>
-  import Header from './header/';
+  import {Layout} from 'iview';
+  import FLHeader from './header/';
   import Body from './body/';
-  import Footer from './footer/';
+  import FLFooter from './footer/';
   import auth from 'utils/auth';
   
   export default {
     name: 'App',
     components: {
-      Header,
+      Layout,
+      FLHeader,
       Body,
-      Footer
+      FLFooter
     },
     data: function() {
       return {

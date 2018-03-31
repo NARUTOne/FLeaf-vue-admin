@@ -93,3 +93,7 @@ $ npm run build
 ## Log
 
 [LOG](./md/log.md)
+
+## 兼容性
+
+- flex: 采用flex布局，注意浏览器兼容性

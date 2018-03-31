@@ -1,12 +1,19 @@
 <template>
-  <div class="body">
+  <Content class="body">
     <slot />
-  </div>
+  </Content>
 </template>
 
 <script>
+  import {Layout} from 'iview';
+
+  const Content = Layout.Content;
+
   export default {
-    name: 'Body'
+    name: 'Body',
+    components: {
+      Content
+    }
   };
 </script>
 

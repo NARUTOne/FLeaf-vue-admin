@@ -6,14 +6,14 @@ const {param2Obj} = tools;
 const userMap = Mock.mock({
   admin: {
     id: '@id',
-    username: 'admin',
+    userName: 'admin',
     cname: '@cname',
     age: '@integer(10, 30)',
     address: '@county(true)'
   },
   NARUTOne: {
     id: '@id',
-    username: 'NARUTOne',
+    userName: 'NARUTOne',
     cname: '路鸣',
     age: '@integer(10, 20)',
     address: '东海红大陆木叶村'

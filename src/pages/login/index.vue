@@ -24,8 +24,8 @@
             </Form>
           </div>
           <p class='login-example'>
-            <span>Username：admin</span>
-            <span class='right'>Password：admin123</span>
+            <span>Username：NARUTOne</span>
+            <span class='right'>Password：1234567890</span>
           </p>
         </div>
       </Col>

@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <Header class="header">
     <Row :gutter="16">
       <Col :xs="12" :sm="12" :md="6" :lg="6" >
         <router-link to='/' class='header-logo'>
@@ -11,27 +11,30 @@
       </Col>
       <Col :xs="12" :sm="12" :md="6" :lg="6">
         <div class="t-right header-user">
-          <Avatar class="default-bg" icon="person" />&nbsp; {{user ? user.username : ''}} &nbsp;&nbsp;
+          <Avatar class="default-bg" icon="person" />&nbsp; {{user ? user.userName : ''}} &nbsp;&nbsp;
           <Icon type='log-out' v-if="isLogin" class='header-log-icon' title='登出' @click.native="handleLoginOut()"/>
           <Icon type='log-in' v-else class='header-log-icon' title='登录' @click.native="handleLogin()"/>
         </div>        
       </Col>
     </Row>
-  </header>
+  </Header>
 </template>
 
 <script>
   import { mapGetters, mapActions } from 'vuex';
-  import {Row, Col, Avatar, Icon } from 'iview';
+  import {Layout, Row, Col, Avatar, Icon } from 'iview';
+
+  const Header = Layout.Header;
 
   export default {
-    name: 'Header',
+    name: 'FLHeader',
     data() {
       return {
        
       };
     },
     components: {
+      Header,
       Row,
       Col,
       Avatar,
