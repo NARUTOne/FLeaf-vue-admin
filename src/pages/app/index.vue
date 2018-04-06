@@ -2,15 +2,19 @@
   <div id="app">
     <div class="wrapper">
       <Layout>
-        <FLHeader v-show="isHeader"/>
-        <Body><router-view></router-view></Body>
-        <FLFooter />
-      </Layout>    
+        <FLSider />
+        <Layout>
+          <FLHeader v-show="isHeader"/>
+          <Body><router-view></router-view></Body>
+          <FLFooter />
+        </Layout>    
+      </Layout>      
     </div>    
   </div>
 </template>
 <script>
   import {Layout} from 'iview';
+  import FLSider from './sider/';
   import FLHeader from './header/';
   import Body from './body/';
   import FLFooter from './footer/';
@@ -22,7 +26,8 @@
       Layout,
       FLHeader,
       Body,
-      FLFooter
+      FLFooter,
+      FLSider
     },
     data: function() {
       return {
@@ -64,15 +69,11 @@
 <style lang="less" >
   @import '~utils/style/common.less';
   .wrapper {
-    animation: wrapper--fade .25s cubic-bezier(.455,.03,.515,.955);
+    position: relative;
     min-height: 100vh;
-    width: 100%;
-    display:-webkit-flex;
-    display:flex;
-    -webkit-flex-direction:column;
-    flex-direction:column;
-    display: flex;
-    flex: 1;
+    width: 100%;    
+    overflow: hidden;
+    animation: wrapper--fade .25s cubic-bezier(.455,.03,.515,.955);
   }
   @keyframes wrapper--fade {
     0% {
