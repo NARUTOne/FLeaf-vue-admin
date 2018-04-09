@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div class="wrapper">
-      <Layout>
-        <FLSider />
+      <Layout class="app-layout">
+        <Sider hide-trigger collapsible :collapsed-width="78">
+          <NavMenu />
+        </Sider>
         <Layout>
           <FLHeader v-show="isHeader"/>
           <Body><router-view></router-view></Body>
@@ -14,20 +16,23 @@
 </template>
 <script>
   import {Layout} from 'iview';
-  import FLSider from './sider/';
+  import NavMenu from './nav/';
   import FLHeader from './header/';
   import Body from './body/';
   import FLFooter from './footer/';
   import auth from 'utils/auth';
+
+  const Sider = Layout.Sider;
   
   export default {
     name: 'App',
     components: {
       Layout,
+      Sider,
       FLHeader,
       Body,
       FLFooter,
-      FLSider
+      NavMenu
     },
     data: function() {
       return {
@@ -70,10 +75,14 @@
   @import '~utils/style/common.less';
   .wrapper {
     position: relative;
+    display: flex;
     min-height: 100vh;
     width: 100%;    
     overflow: hidden;
     animation: wrapper--fade .25s cubic-bezier(.455,.03,.515,.955);
+    .app-layout {
+      flex: 1;
+    }
   }
   @keyframes wrapper--fade {
     0% {

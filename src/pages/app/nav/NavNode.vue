@@ -1,18 +1,18 @@
 <template>
-  <Submenu name="data.key" v-if="isChildren">
+  <Submenu :name="data.url" v-if="isChildren">
     <template slot="title">
-      <FLIcon type="data.icon" v-if="data.isFLIcon"></FLIcon>
-      <Icon type="data.icon" v-else></Icon>
-      <router-link to="data.url">{{data.name}}</router-link>
-      <SiderNode 
-        v-for="(item, i) in children"
-        :key="i"
-        :data="item"
-        :children-key="childrenKey" />
+      <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
+      <Icon :type="data.icon" v-else></Icon>
+      <router-link :to="data.url">{{data.name}}</router-link>
     </template>
+    <NavNode 
+      v-for="(item, i) in data.children"
+      :key="i"
+      :data="item"
+      :children-key="childrenKey" />
   </Submenu>
-  <MenuItem name="data.key" v-else>
-    <router-link to="data.url">{{data.name}}</router-link>
+  <MenuItem :name="data.url" v-else>
+    <router-link :to="data.url">{{data.name}}</router-link>
   </MenuItem>  
 </template>
 
@@ -23,7 +23,7 @@ const MenuItem = Menu.Item;
 const Submenu = Menu.Sub;
 
 export default {
-  name: 'SiderNode',
+  name: 'NavNode',
   components: {
     MenuItem,
     Submenu,
