@@ -2,6 +2,7 @@ import auth from 'utils/auth';
 import {toLogin, toLogout} from '@/api/login';
 
 const loginModule = {
+  namespaced: true,
   state: {
     user: null
   },

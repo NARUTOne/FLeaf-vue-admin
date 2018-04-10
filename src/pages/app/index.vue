@@ -2,7 +2,7 @@
   <div id="app">
     <div class="wrapper">
       <Layout class="app-layout">
-        <Sider hide-trigger collapsible :collapsed-width="78">
+        <Sider hide-trigger collapsible :collapsed-width="78" ref='sider' v-show='isShowSider'>
           <NavMenu />
         </Sider>
         <Layout>
@@ -15,6 +15,7 @@
   </div>
 </template>
 <script>
+  import {mapGetters} from 'vuex';
   import {Layout} from 'iview';
   import NavMenu from './nav/';
   import FLHeader from './header/';
@@ -46,15 +47,25 @@
       // console.log(this.$store.state.login.state);
       if(auth.user && auth.isLoginIn()) {
         const data = auth.user;
-        this.$store.commit('LOGIN_SUCCESS', data);
+        this.$store.commit('login/LOGIN_SUCCESS', data);
       }
       else {
         this.$router.push('/login');
       }
     },
+    computed: {
+      ...mapGetters({
+        isCollapsed: 'isCollapsed',
+        layout: 'layout'
+      }),
+      isShowSider() {
+        return this.layout == 'left';
+      }
+    },
     watch: {
       // 如果路由有变化，会再次执行该方法
-      '$route': 'checkRouter'
+      '$route': 'checkRouter',
+      isCollapsed: 'collapsedSider'
     },
     methods: {
       checkRouter() {
@@ -66,6 +77,9 @@
         else {
           this.isHeader = true;
         }
+      },
+      collapsedSider () {
+        this.$refs.sider.toggleCollapse();
       }
     }
   };

@@ -1,17 +1,21 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import * as getters from './getters';
-import * as actions from './actions';
-import * as mutations from './mutations';
+import getters from './getters';
+import actions from './actions';
+import mutations from './mutations';
 import modules from './modules/';
 
 Vue.use(Vuex);
 
+const initState = {
+  theme: 'dark',
+  layout: 'left',
+  isCollapsed: false
+};
+
 const store = new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
-  state: {
-    
-  },
+  state: initState,
   getters,
   mutations,
   actions, 

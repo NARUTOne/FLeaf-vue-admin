@@ -100,7 +100,7 @@ export default {
         }
       });
     },
-    ...mapActions([
+    ...mapActions('login', [
       'toLogin'
     ])
   },
