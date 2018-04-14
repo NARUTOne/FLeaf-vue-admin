@@ -1,9 +1,11 @@
 <template>
   <Submenu :name="data.url" v-if="isChildren">
     <template slot="title">
-      <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
-      <Icon :type="data.icon" v-else></Icon>
-      <router-link :to="data.url">{{data.name}}</router-link>
+      <template>
+        <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
+        <Icon :type="data.icon" v-else></Icon>
+      </template>      
+      {{data.name}}
     </template>
     <NavNode 
       v-for="(item, i) in data.children"
@@ -12,7 +14,12 @@
       :children-key="childrenKey" />
   </Submenu>
   <MenuItem :name="data.url" v-else>
-    <router-link :to="data.url">{{data.name}}</router-link>
+    <template>
+      <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
+      <Icon :type="data.icon" v-else></Icon>
+    </template>   
+    <!-- <router-link :to="data.url">{{data.name}}</router-link> -->
+    {{data.name}}
   </MenuItem>  
 </template>
 

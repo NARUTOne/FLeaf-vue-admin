@@ -12,11 +12,14 @@
           size="24"></Icon>
       </Col>
       <Col :xs="0" :sm="0" :md="12" :lg="12">
-        <!-- <div class="t-center default-color header-title">FireLeaf-Vue-Scaffold</div> -->
+        <div class="t-center default-color header-title">FireLeaf-Vue-Scaffold</div>
       </Col>
-      <Col :xs="12" :sm="12" :md="6" :lg="6">
-        <div class="t-right clear-float">
-          <div class="left header-config">
+      <Col :xs="12" :sm="12" :md="6" :lg="6" class='t-center'>
+        <Row type="flex" justify="end" class="header-config">
+          <Col span='3'>
+            <Icon type="arrow-resize" class='pointer' title='全屏' @click.native="handleScreenFull"></Icon>
+          </Col>
+          <Col span='6'>
             <Dropdown :class='dropdownClass'>
               <div><Icon type="gear-a"></Icon>&nbsp;设置</div>
               <DropdownMenu slot="list">
@@ -55,21 +58,25 @@
                 <DropdownItem divided>系统配置</DropdownItem>                  
               </DropdownMenu>
             </Dropdown>
-          </div>
-          <div class="left header-user ">
-            <Dropdown :class='dropdownClass'>
-              <div><Avatar class="default-bg" icon="person" />&nbsp; {{user ? user.userName : ''}} &nbsp;&nbsp;</div>
-              <DropdownMenu slot="list">
-                <DropdownItem>
-                  <template>
-                    <Icon type='log-out' v-if="isLogin" class='header-log-icon' title='登出' @click.native="handleLoginOut()"/>
-                    <Icon type='log-in' v-else class='header-log-icon' title='登录' @click.native="handleLogin()"/>
-                  </template>
-                </DropdownItem>                
-              </DropdownMenu>
-            </Dropdown>
-          </div>          
-        </div>
+          </Col>
+          <Col span='12'>
+            <div class=" header-user ">
+              <Dropdown :class='dropdownClass'>
+                <div><Avatar class="default-bg" icon="person" />&nbsp; {{user ? user.userName : ''}}</div>
+                <DropdownMenu slot="list">
+                  <DropdownItem>
+                    <template  v-if="isLogin">
+                      <Icon type='log-out' class='header-log-icon' title='登出' @click.native="handleLoginOut()"/>&nbsp;登出
+                    </template>
+                    <template v-else>
+                      <Icon type='log-in'  class='header-log-icon' title='登录' @click.native="handleLogin()"/>&nbsp;登录
+                    </template>
+                  </DropdownItem>                
+                </DropdownMenu>
+              </Dropdown>
+            </div>          
+          </Col>
+        </Row>            
       </Col>
     </Row>
   </Header>
@@ -80,6 +87,7 @@
   import {Layout, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio } from 'iview';
   import Logo from '../logo/';
   import NavMenu from '../nav/';
+  import screenfull from 'screenfull';
 
   const Header = Layout.Header;
 
@@ -166,6 +174,11 @@
         this.$store.commit('handleCollapsedSider', {
           isCollapsed: !this.isCollapsed
         });
+      },
+      handleScreenFull() {
+        if (screenfull.enabled) {
+          screenfull.request();
+        }
       }
     }
   };
@@ -176,8 +189,9 @@
 
   .header {
     height: 60px;
-    padding: 8px 16px;
-    line-height: 42px;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 60px;
     box-shadow: 0 2px 8px @flv-shadow-color;
     transition: all 0.3s;
     .header-title {
@@ -186,16 +200,16 @@
     }
     .header-user {
       margin-left: 16px;
-      font-size: 16px;
+      font-size: 14px;
       .header-log-icon {
         cursor: pointer;
       }
     }
     .menu-icon{
-        transition: all .3s;
+      transition: all .3s;
     }
     .rotate-icon{
-        transform: rotate(-90deg);
+      transform: rotate(-90deg);
     }
   }
   .header-theme-dark {

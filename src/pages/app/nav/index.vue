@@ -1,5 +1,5 @@
 <template>
-  <Menu theme="dark" width="auto">
+  <Menu theme="dark" width="auto" @on-select="handleMenuClick">
     <NavNode
       v-for="(item, i) in navsData"
       :key="i"
@@ -24,6 +24,11 @@ export default {
   components: {
     Menu,
     NavNode
+  },
+  methods: {
+    handleMenuClick(url) {
+      this.$router.push(url);
+    }
   }
 };
 </script>
