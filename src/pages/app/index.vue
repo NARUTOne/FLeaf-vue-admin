@@ -6,7 +6,7 @@
           <NavMenu />
         </Sider>
         <Layout>
-          <FLHeader v-show="isHeader"/>
+          <FLHeader v-show="isLogin"/>
           <Body><router-view></router-view></Body>
           <FLFooter />
         </Layout>    
@@ -37,7 +37,7 @@
     },
     data: function() {
       return {
-        isHeader: true
+        isLogin: true
       };
     },
     created: function() {
@@ -59,7 +59,7 @@
         layout: 'layout'
       }),
       isShowSider() {
-        return this.layout == 'left';
+        return this.layout == 'left' && this.isLogin;
       }
     },
     watch: {
@@ -72,10 +72,10 @@
         const path = this.$route.path;
         // console.log(path);
         if (path === '/login' || path === '/*') {
-          this.isHeader = false;
+          this.isLogin = false;
         }
         else {
-          this.isHeader = true;
+          this.isLogin = true;
         }
       },
       collapsedSider () {
