@@ -17,7 +17,11 @@ export default {
   },
   computed: {
     classes() {
-      return `${iconCls} ${prefixCls}-${this.type} ${this.htmlClass}`;
+      return [
+        iconCls,
+        prefixCls + `-${this.type}`,
+        this.htmlClass? this.htmlClass: ''
+      ];
     }
   }
 };
@@ -39,9 +43,15 @@ export default {
 }
 
 .iconfont {
+  display: inline-block;
+  line-height: 1;
+  speak: none;
   font-family:"iconfont" !important;
-  font-size:16px;
   font-style:normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -53,6 +63,10 @@ export default {
 .icon-homebig:before { content: "\e6c8"; }
 
 .icon-travel:before { content: "\e839"; }
+
+.icon-layout:before { content: "\e6fd"; }
+
+.icon-piaofang:before { content: "\e600"; }
 
 .icon-accessory:before { content: "\e6dd"; }
 

@@ -2,15 +2,18 @@
   <div id="app">
     <div class="wrapper">
       <Layout class="app-layout">
-        <Sider hide-trigger collapsible :collapsed-width="78" ref='sider' v-show='isShowSider'>
-          <NavMenu />
+        <Sider hide-trigger collapsible :collapsed-width="COLLAPSED_SIDER_W" ref='sider' v-model="isCollapsedSider" v-show='isShowSider'>
+          <div class="sider-logo" :style="{height: HEADER_H + 'px'}">
+            <Logo :isCollapsed="isCollapsed"/>
+          </div>
+          <NavMenu :isCollapsed="isCollapsed" :layout="layout"/>
         </Sider>
         <Layout>
           <FLHeader v-show="isLogin"/>
           <Body><router-view></router-view></Body>
           <FLFooter />
         </Layout>    
-      </Layout>      
+      </Layout>
     </div>    
   </div>
 </template>
@@ -21,9 +24,12 @@
   import FLHeader from './header/';
   import Body from './body/';
   import FLFooter from './footer/';
+  import Logo from './logo/';
   import auth from 'utils/auth';
+  import {LAYOUT_VAR} from '@/mock/CONST';
 
   const Sider = Layout.Sider;
+  const {COLLAPSED_SIDER_W, HEADER_H} = LAYOUT_VAR;
   
   export default {
     name: 'App',
@@ -33,11 +39,15 @@
       FLHeader,
       Body,
       FLFooter,
-      NavMenu
+      NavMenu,
+      Logo
     },
     data: function() {
       return {
-        isLogin: true
+        COLLAPSED_SIDER_W,
+        HEADER_H,
+        isLogin: true,
+        isCollapsedSider: false
       };
     },
     created: function() {
@@ -78,7 +88,7 @@
           this.isLogin = true;
         }
       },
-      collapsedSider () {
+      collapsedSider () {        
         this.$refs.sider.toggleCollapse();
       }
     }
@@ -105,5 +115,8 @@
     100% {
       opacity: 1;
     }
+  }
+  .sider-logo {
+    overflow: hidden;
   }
 </style>

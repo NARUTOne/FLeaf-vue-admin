@@ -8,6 +8,7 @@ const NotFound = () => import('@/pages/notFound/');
 const Home = () => import('@/pages/home/');
 const Layout = () => import('@/pages/layout/');
 const LayoutFlex = () => import('@/pages/layout/flex/');
+const LayoutRem= () => import('@/pages/layout/rem/');
 
 export default [
   { // 路由从根app开始，注意@/index.js 注册
@@ -31,6 +32,9 @@ export default [
         children: [{
           path: 'flex',
           component: LayoutFlex
+        }, {
+          path: 'rem',
+          component: LayoutRem
         }]
       },
       { 
