@@ -58,14 +58,19 @@
         this.$Message.error('hello world');
       },
       handleSearch1 (value) {
-        setTimeout(() => {
-          this.data1 = !value ? [] : [
-            value,
-            value + value,
-            value + value + value
-          ];
-        }, 500);
-       
+        if(!value) {
+          this.data1 = [];
+        }
+        else {
+          this.data1 = [''];
+          setTimeout(() => {
+            this.data1 = !value ? [] : [
+              value,
+              value + value,
+              value + value + value
+            ];
+          }, 500);
+        }
       }
     }
   };
