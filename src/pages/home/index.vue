@@ -17,11 +17,17 @@
         <DropdownItem divided>北京烤鸭</DropdownItem>
       </DropdownMenu>
     </Dropdown>
+    <AutoComplete
+      v-model="value1"
+      :data="data1"
+      @on-search="handleSearch1"
+      placeholder="input here"
+      style="width:200px"></AutoComplete>
   </div>
 </template>
 
 <script>
-  import { Icon, Spin, Button, Dropdown, DropdownMenu, DropdownItem } from 'iview';
+  import { Icon, Spin, Button, Dropdown, DropdownMenu, DropdownItem, AutoComplete } from 'iview';
   import { FLIcon } from 'components';
 
   export default {
@@ -33,7 +39,14 @@
       Button,
       Dropdown,
       DropdownMenu,
-      DropdownItem
+      DropdownItem,
+      AutoComplete
+    },
+    data () {
+      return {
+        value1: '',
+        data1: []
+      };
     },
     mounted() {
       this.$Message.info('flv');
@@ -43,6 +56,16 @@
         console.log(1);
         this.$Message.success('$Message:');
         this.$Message.error('hello world');
+      },
+      handleSearch1 (value) {
+        setTimeout(() => {
+          this.data1 = !value ? [] : [
+            value,
+            value + value,
+            value + value + value
+          ];
+        }, 500);
+       
       }
     }
   };
