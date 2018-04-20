@@ -21,6 +21,7 @@
       v-model="value1"
       :data="data1"
       @on-search="handleSearch1"
+      clearable
       placeholder="input here"
       style="width:200px"></AutoComplete>
   </div>
@@ -65,7 +66,7 @@
           this.data1 = [''];
           setTimeout(() => {
             this.data1 = !value ? [] : [
-              value,
+              value+ '32',
               value + value,
               value + value + value
             ];
