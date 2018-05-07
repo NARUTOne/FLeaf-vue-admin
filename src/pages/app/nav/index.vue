@@ -12,7 +12,7 @@
 <script>
 import {Menu} from 'iview';
 import {NAV_LIST} from '@/mock/CONST';
-import NavNode from "./NavNode";
+import NavNode from "./components/NavNode";
 
 export default {
   name: 'NavMenu',
