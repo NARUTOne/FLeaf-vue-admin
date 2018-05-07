@@ -19,7 +19,10 @@
 		"sourceType": "module"
 	},
 	"rules": {
-		"indent": [0],
+		"indent": [
+			"error",
+			"tab"
+		],
 		"quotes": [0],
 		"semi": [
 			"error",

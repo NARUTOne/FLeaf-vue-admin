@@ -8,18 +8,18 @@ import modules from './modules/';
 Vue.use(Vuex);
 
 const initState = {
-  theme: 'dark',
-  layout: 'left',
-  isCollapsed: false
+	theme: 'dark',
+	layout: 'left',
+	isCollapsed: false
 };
 
 const store = new Vuex.Store({
-  strict: process.env.NODE_ENV !== 'production',
-  state: initState,
-  getters,
-  mutations,
-  actions, 
-  modules
+	strict: process.env.NODE_ENV !== 'production',
+	state: initState,
+	getters,
+	mutations,
+	actions, 
+	modules
 });
 
 export default store;

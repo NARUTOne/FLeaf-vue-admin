@@ -29,56 +29,56 @@
 
 <script>
 import {
-  Icon,
-  Spin,
-  Button,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  AutoComplete
+	Icon,
+	Spin,
+	Button,
+	Dropdown,
+	DropdownMenu,
+	DropdownItem,
+	AutoComplete
 } from "iview";
 import { FLIcon } from "components";
 
 export default {
-  name: "Home",
-  components: {
-    Icon,
-    Spin,
-    FLIcon,
-    Button,
-    Dropdown,
-    DropdownMenu,
-    DropdownItem,
-    AutoComplete
-  },
-  data() {
-    return {
-      value1: "",
-      data1: []
-    };
-  },
-  mounted() {
-    this.$Message.info("flv");
-  },
-  methods: {
-    showMessage() {
-      console.log(1);
-      this.$Message.success("$Message:");
-      this.$Message.error("hello world");
-    },
-    handleSearch1(value) {
-      if (!value) {
-        this.data1 = [];
-      } else {
-        this.data1 = [""];
-        setTimeout(() => {
-          this.data1 = !value
-            ? []
-            : [value + "32", value + value, value + value + value];
-        }, 500);
-      }
-    }
-  }
+	name: "Home",
+	components: {
+		Icon,
+		Spin,
+		FLIcon,
+		Button,
+		Dropdown,
+		DropdownMenu,
+		DropdownItem,
+		AutoComplete
+	},
+	data() {
+		return {
+			value1: "",
+			data1: []
+		};
+	},
+	mounted() {
+		this.$Message.info("flv");
+	},
+	methods: {
+		showMessage() {
+			console.log(1);
+			this.$Message.success("$Message:");
+			this.$Message.error("hello world");
+		},
+		handleSearch1(value) {
+			if (!value) {
+				this.data1 = [];
+			} else {
+				this.data1 = [""];
+				setTimeout(() => {
+					this.data1 = !value
+						? []
+						: [value + "32", value + value, value + value + value];
+				}, 500);
+			}
+		}
+	}
 };
 </script>
 

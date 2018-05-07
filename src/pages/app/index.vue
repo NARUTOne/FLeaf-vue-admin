@@ -32,66 +32,66 @@
   const {COLLAPSED_SIDER_W, HEADER_H} = LAYOUT_VAR;
   
   export default {
-    name: 'App',
-    components: {
-      Layout,
-      Sider,
-      FLHeader,
-      Body,
-      FLFooter,
-      NavMenu,
-      Logo
-    },
-    data: function() {
-      return {
-        COLLAPSED_SIDER_W,
-        HEADER_H,
-        isLogin: true,
-        isCollapsedSider: false
-      };
-    },
-    created: function() {
-      this.checkRouter();
-    },
-    mounted: function() {
-      // console.log(this.$store.state.login.state);
-      if(auth.user && auth.isLoginIn()) {
-        const data = auth.user;
-        this.$store.commit('login/LOGIN_SUCCESS', data);
-      }
-      else {
-        this.$router.push('/login');
-      }
-    },
-    computed: {
-      ...mapGetters({
-        isCollapsed: 'isCollapsed',
-        layout: 'layout'
-      }),
-      isShowSider() {
-        return this.layout == 'left' && this.isLogin;
-      }
-    },
-    watch: {
-      // 如果路由有变化，会再次执行该方法
-      '$route': 'checkRouter',
-      isCollapsed: 'collapsedSider'
-    },
-    methods: {
-      checkRouter() {
-        const path = this.$route.path;
-        // console.log(path);
-        if (path === '/login' || path === '/*') {
-          this.isLogin = false;
-        }
-        else {
-          this.isLogin = true;
-        }
-      },
-      collapsedSider () {        
-        this.$refs.sider.toggleCollapse();
-      }
-    }
+  	name: 'App',
+  	components: {
+  		Layout,
+  		Sider,
+  		FLHeader,
+  		Body,
+  		FLFooter,
+  		NavMenu,
+  		Logo
+  	},
+  	data: function() {
+  		return {
+  			COLLAPSED_SIDER_W,
+  			HEADER_H,
+  			isLogin: true,
+  			isCollapsedSider: false
+  		};
+  	},
+  	created: function() {
+  		this.checkRouter();
+  	},
+  	mounted: function() {
+  		// console.log(this.$store.state.login.state);
+  		if(auth.user && auth.isLoginIn()) {
+  			const data = auth.user;
+  			this.$store.commit('login/LOGIN_SUCCESS', data);
+  		}
+  		else {
+  			this.$router.push('/login');
+  		}
+  	},
+  	computed: {
+  		...mapGetters({
+  			isCollapsed: 'isCollapsed',
+  			layout: 'layout'
+  		}),
+  		isShowSider() {
+  			return this.layout == 'left' && this.isLogin;
+  		}
+  	},
+  	watch: {
+  		// 如果路由有变化，会再次执行该方法
+  		'$route': 'checkRouter',
+  		isCollapsed: 'collapsedSider'
+  	},
+  	methods: {
+  		checkRouter() {
+  			const path = this.$route.path;
+  			// console.log(path);
+  			if (path === '/login' || path === '/*') {
+  				this.isLogin = false;
+  			}
+  			else {
+  				this.isLogin = true;
+  			}
+  		},
+  		collapsedSider () {        
+  			this.$refs.sider.toggleCollapse();
+  		}
+  	}
   };
 </script>
 

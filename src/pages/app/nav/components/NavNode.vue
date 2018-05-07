@@ -70,55 +70,55 @@ const Submenu = Menu.Sub;
 const {COLLAPSED_SIDER_W} = LAYOUT_VAR;
 
 export default {
-  name: 'NavNode',
-  components: {
-    MenuItem,
-    Submenu,
-    Icon,
-    FLIcon,
-    Dropdown,
-    DropdownMenu,
-    DropdownItem
-  },
-  data() {
-    return {
-      COLLAPSED_SIDER_W
-    };
-  },
-  props: {
-    data: {
-      type: Object,
-      default () {
-        return {};
-      }
-    },
-    childrenKey: {
-      type: String,
-      default: 'children'
-    },
-    isCollapsed: {
-      type: Boolean,
-      default: false
-    },
-    theme: {
-      type: String,
-      default: 'dark'
-    }
-  },
-  computed: {
-    isChildren() {
-      return  this.data[this.childrenKey] &&  this.data[this.childrenKey].length ;
-    },
-    children() {
-      return this.data[this.childrenKey];
-    },
-    dropdownClass() {
-      return `dropdown-theme-${this.theme}`;
-    },
-    dropdownRelW() {
-      return this.COLLAPSED_SIDER_W - 24;
-    }
-  }
+	name: 'NavNode',
+	components: {
+		MenuItem,
+		Submenu,
+		Icon,
+		FLIcon,
+		Dropdown,
+		DropdownMenu,
+		DropdownItem
+	},
+	data() {
+		return {
+			COLLAPSED_SIDER_W
+		};
+	},
+	props: {
+		data: {
+			type: Object,
+			default () {
+				return {};
+			}
+		},
+		childrenKey: {
+			type: String,
+			default: 'children'
+		},
+		isCollapsed: {
+			type: Boolean,
+			default: false
+		},
+		theme: {
+			type: String,
+			default: 'dark'
+		}
+	},
+	computed: {
+		isChildren() {
+			return  this.data[this.childrenKey] &&  this.data[this.childrenKey].length ;
+		},
+		children() {
+			return this.data[this.childrenKey];
+		},
+		dropdownClass() {
+			return `dropdown-theme-${this.theme}`;
+		},
+		dropdownRelW() {
+			return this.COLLAPSED_SIDER_W - 24;
+		}
+	}
 };
 </script>
 

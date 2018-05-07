@@ -15,43 +15,43 @@ import {NAV_LIST} from '@/mock/CONST';
 import NavNode from "./components/NavNode";
 
 export default {
-  name: 'NavMenu',
-  data: function() {
-    return {
-      navsData: NAV_LIST,
-      childrenKey: 'children'
-    };
-  },
-  components: {
-    Menu,
-    NavNode
-  },
-  props: {
-    isCollapsed: {
-      type: Boolean,
-      default: false
-    },
-    layout: {
-      type: String,
-      default: 'left'
-    }
-  },
-  computed: {
-    menuitemClasses () {
-      return [
-        'menu-item',
-        this.isCollapsed ? 'collapsed-menu' : ''
-      ];
-    },
-    menuMode() {
-      return this.layout == 'left'? 'vertical' : 'horizontal';
-    }
-  },
-  methods: {
-    handleMenuClick(url) {
-      this.$router.push(url);
-    }
-  }
+	name: 'NavMenu',
+	data: function() {
+		return {
+			navsData: NAV_LIST,
+			childrenKey: 'children'
+		};
+	},
+	components: {
+		Menu,
+		NavNode
+	},
+	props: {
+		isCollapsed: {
+			type: Boolean,
+			default: false
+		},
+		layout: {
+			type: String,
+			default: 'left'
+		}
+	},
+	computed: {
+		menuitemClasses () {
+			return [
+				'menu-item',
+				this.isCollapsed ? 'collapsed-menu' : ''
+			];
+		},
+		menuMode() {
+			return this.layout == 'left'? 'vertical' : 'horizontal';
+		}
+	},
+	methods: {
+		handleMenuClick(url) {
+			this.$router.push(url);
+		}
+	}
 };
 </script>
 
