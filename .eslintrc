@@ -28,7 +28,7 @@
 		"prefer-const": [2],
 		"spaced-comment": [2],
 		"key-spacing": [2],
-		"camelcase": [0],
+		"camelcase": [2],
 		"comma-spacing": [2],
 		"global-require": [1],
 		"no-console": "off",
