@@ -1,20 +1,35 @@
 <template>
-  <div :class="navThemeClass">
-    <Menu v-show="!isCollapsed" :mode='menuMode' theme="dark" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
-      <ExpandMenu 
-        v-for="(item, i) in navsData"
-        :key="'expand' + i"
-        :data="item"
-        :children-key="childrenKey" />
-    </Menu>
-    <ShrinkMenu 
-      v-show="isCollapsed"
-      v-for="(item, i) in navsData"
-      :data="item"
-      :key="'shrink' + i"
-      :children-key="childrenKey"
-      @on-select="handleMenuClick"/>  
-  </div>
+  <div class="nav-box">
+    <template v-if="layout == 'left'">
+      <div :class="navThemeClass" >
+        <Menu v-show="!isCollapsed" mode='vertical' theme="dark" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
+          <ExpandMenu 
+            v-for="(item, i) in navsData"
+            :key="'expand' + i"
+            :data="item"
+            :children-key="childrenKey" />
+        </Menu>
+        <ShrinkMenu 
+          v-show="isCollapsed"
+          v-for="(item, i) in navsData"
+          :data="item"
+          :key="'shrink' + i"
+          :children-key="childrenKey"
+          @on-select="handleMenuClick"/>  
+      </div>
+    </template> 
+    <template v-else>
+      <div :class="navThemeClass" id="sd" >
+        <Menu mode="horizontal" theme="dark" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
+          <LevelMenu 
+            v-for="(item, i) in navsData"
+            :key="'level' + i"
+            :data="item"
+            :children-key="childrenKey" />
+        </Menu>
+      </div>
+    </template>   
+  </div>  
 </template>
 
 <script>
@@ -23,6 +38,7 @@ import {NAV_LIST} from '@/mock/CONST';
 // import NavNode from "./components/NavNode";
 import ExpandMenu from './components/ExpandMenu';
 import ShrinkMenu from './components/ShrinkMenu';
+import LevelMenu from './components/LevelMenu';
 
 export default {
   name: 'NavMenu',
@@ -36,7 +52,8 @@ export default {
     Menu,
     // NavNode,
     ExpandMenu,
-    ShrinkMenu
+    ShrinkMenu,
+    LevelMenu
   },
   props: {
     isCollapsed: {
@@ -52,10 +69,12 @@ export default {
       default: 'dark'
     }
   },
+  watch: {
+
+  },
   computed: {
     navThemeClass () {
       return [
-        'nav-box',
         'nav-theme-' + this.theme
       ];
     },
@@ -64,9 +83,6 @@ export default {
         'nav-expand-menu',
         this.isCollapsed ? 'collapsed-menu' : ''
       ];
-    },
-    menuMode() {
-      return this.layout == 'left'? 'vertical' : 'horizontal';
     }
   },
   methods: {

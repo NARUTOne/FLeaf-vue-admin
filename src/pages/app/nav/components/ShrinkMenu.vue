@@ -2,20 +2,19 @@
   <div v-if="isChildren" :class="pdClass">
     <PDropdownMenu  
       :data="data.children"
-      :children-key="childrenKey">
-      <div slot="dropContent" class="pd-content">
+      :children-key="childrenKey"
+      @on-select="handleMenuClick">
+      <div slot="dropContent" class="pd-content" @click="handleClick(data.name)">
         <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
         <Icon :type="data.icon" v-else></Icon>          
       </div>
-    </PDropdownMenu>         
+    </PDropdownMenu>
   </div>
   <div v-else :class="pdClass">
     <Dropdown placement="right-start" @on-click="handleMenuClick" :class='dropdownClass'>
-      <div class="pd-content">
-        <Button type='text' >
-          <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
-          <Icon :type="data.icon" v-else></Icon>
-        </Button>  
+      <div class="pd-content" @click="handleClick(data.name)">
+        <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
+        <Icon :type="data.icon" v-else></Icon>  
       </div>
       <DropdownMenu slot="list">
         <DropdownItem :name="data.name">{{data.title}}</DropdownItem>
@@ -68,6 +67,9 @@ export default {
     }
   },
   methods: {
+    handleClick (name) {
+      this.$emit('on-select', name);
+    },
     handleMenuClick (name) {
       this.$emit('on-select', name);
     }
@@ -78,14 +80,20 @@ export default {
 <style lang="less" scoped>
   @import '~utils/style/variables.less';
   .shrink-menu {
-    padding: 16px 0;
+    padding: 8px 0;
     .ivu-dropdown {
       display: block;
     }
     .pd-content {
+      padding: 12px 8px;
       text-align: center;
+      cursor: pointer;
+      transition: all .3s ease-in-out;
       i {
-        font-size: 20px;
+        font-size: 20px;        
+      }
+      &:hover {
+        background-color: @flv-dark-hover;
       }
     }
   }

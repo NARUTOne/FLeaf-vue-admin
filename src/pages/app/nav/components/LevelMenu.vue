@@ -5,7 +5,7 @@
         <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
         <Icon :type="data.icon" v-else></Icon>
       </template>      
-      <span>{{data.name}}</span>
+      <span>{{data.name}}</span> 
     </template>
     <LevelMenu 
       v-for="(item, i) in data.children"
@@ -67,31 +67,6 @@ export default {
 
 <style lang="less" scoped>
   
-</style>
-<style lang="less">
-.dropdown-submenu-theme-dark {
-  .ivu-select-dropdown {
-    color: #fff;
-    >div:last-child, li {
-      color: #fff;
-      background-color: @flv-dark;
-    }
-    li::before {
-      background-color: @flv-dark;
-    }
-    .ivu-dropdown-item-divided{
-      border-top-color: #fff;
-    }
-    .ivu-dropdown-item{
-      &:hover {
-        background-color: @flv-dark-hover;
-      }
-      .ivu-menu-item {
-        padding: 8px 0;
-      }
-    }
-  }
-}
 </style>
 
 

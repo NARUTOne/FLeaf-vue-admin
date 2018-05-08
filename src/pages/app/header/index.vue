@@ -12,7 +12,8 @@
           size="24"></Icon>
       </Col>
       <Col :xs="0" :sm="0" :md="12" :lg="12">
-        <div class="t-center default-color header-title">FireLeaf-Vue-Scaffold</div>
+        <div class="t-center default-color header-title" v-show="layout == 'left'">FireLeaf-Vue-Scaffold</div>
+        <NavMenu v-show="layout == 'top'" :layout="layout"></NavMenu>
       </Col>
       <Col :xs="12" :sm="12" :md="6" :lg="6" class='t-center'>
         <Row type="flex" justify="end" class="header-config">
@@ -98,19 +99,8 @@
       
       };
     },
-    components: {
-      Header,
-      Row,
-      Col,
-      Avatar,
-      Icon,
-      Dropdown,
-      DropdownMenu,
-      DropdownItem,
-      RadioGroup,
-      Radio,
-      Logo,
-      NavMenu
+    components: { 
+      Header, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Logo, NavMenu
     },
     computed: {
       ...mapGetters('login', {
@@ -184,7 +174,7 @@
   };
 </script>
 
-<style lang='less'>
+<style lang='less' scoped>
   @import '~utils/style/variables.less';
   .header {
     height: 60px;
@@ -216,20 +206,6 @@
   }
   .header-theme-light {
     background-color: #fff;
-  }
-  .dropdown-theme-dark {
-    color: #fff;
-    background-color: @flv-dark;
-    >div, li {
-      color: #fff;
-      background-color: @flv-dark;
-    }
-    li::before {
-      background-color: @flv-dark;
-    }
-    .ivu-dropdown-item-divided{
-      border-top-color: #fff;
-    }
   }
 </style>
 

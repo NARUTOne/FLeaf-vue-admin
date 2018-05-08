@@ -1,5 +1,5 @@
 <template>
-  <Dropdown placement="right-start" @on-click="handmeMenuClick"  :class='dropdownClass'>
+  <Dropdown placement="right-start" @on-click="handleMenuClick"  :class='dropdownClass'>
     <slot name='dropContent'></slot>
     <DropdownMenu slot="list">
       <template v-for="(item, index) in data">
@@ -13,7 +13,8 @@
         <PDropdownMenu v-else 
           :key="'dpchildren' + index"
           :data="item.children"
-          :children-key="childrenKey">
+          :children-key="childrenKey"
+          @on-select="handleMenuClick">
           <template slot="dropContent">
             <template>
               <FLIcon :type="item.icon" v-if="item.isFLIcon"></FLIcon>
@@ -57,7 +58,7 @@ export default {
     }
   },
   methods: {
-    handmeMenuClick (name) {
+    handleMenuClick (name) {
       this.$emit('on-select', name);
     }
   }
