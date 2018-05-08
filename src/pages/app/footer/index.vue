@@ -10,10 +10,10 @@
   const Footer = Layout.Footer;
 
   export default {
-    name: 'FLFooter',
-    components: {
-      Footer
-    }
+  	name: 'FLFooter',
+  	components: {
+  		Footer
+  	}
   };
 </script>
 

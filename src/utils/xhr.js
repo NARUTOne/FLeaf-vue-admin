@@ -8,49 +8,49 @@
  *
  */
 
- import axios from 'axios';
+import axios from 'axios';
 
 const isObject = obj => Object.prototype.toString.call(obj) === '[object Object]';
 const isArray = arr => Array.isArray(arr);
 
- function setData(params) {
-  let sendData = params;
-  if (isObject(sendData)) {
-    sendData = Object.assign({}, sendData);
-    sendData = Object.keys(sendData).map(key => {
-      let value = sendData[key];
-      if (isArray(value) || isObject(value)) {
-        value = JSON.stringify(value);
-      }
-      return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-    }).join('&');
-  }else {
-    return new Error ('options.data is object type');
-  }
+function setData(params) {
+	let sendData = params;
+	if (isObject(sendData)) {
+		sendData = Object.assign({}, sendData);
+		sendData = Object.keys(sendData).map(key => {
+			let value = sendData[key];
+			if (isArray(value) || isObject(value)) {
+				value = JSON.stringify(value);
+			}
+			return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+		}).join('&');
+	}else {
+		return new Error ('options.data is object type');
+	}
 
-  return sendData;
+	return sendData;
 }
 
 
 const server = axios.create({
-  timeout: 3000
+	timeout: 3000
 });
 
 // request interceptors
 server.interceptors.request.use(function(config){
-  // Do something before request is sent
-  return config;
+	// Do something before request is sent
+	return config;
 }, function(error){
-  // Do something with request error
-  console.log(error);
-  return Promise.reject(error);
+	// Do something with request error
+	console.log(error);
+	return Promise.reject(error);
 });
 
 // respone interceptors
 
 server.interceptors.response.use(function(response){
-  // 对响应数据做些事
-  /**
+	// 对响应数据做些事
+	/**
    * @public
    * @name xhr.success
    * @param {object} response 当前response
@@ -60,23 +60,23 @@ server.interceptors.response.use(function(response){
    * ```
    * @return {boolean}
    */
-  const isSuccess = xhr.success ? xhr.success(response) : true;
+	const isSuccess = xhr.success ? xhr.success(response) : true;
   
-  if(isSuccess) {
-    return response;
-  }
-  else {
-    return Promise.reject(response.msg || 'unknown error');
-  }
+	if(isSuccess) {
+		return response;
+	}
+	else {
+		return Promise.reject(response.msg || 'unknown error');
+	}
   
 }, function(error){
-  // 请求错误时做些事
-  console.log('err: ' + error);
-  return Promise.reject(error);
+	// 请求错误时做些事
+	console.log('err: ' + error);
+	return Promise.reject(error);
 });
 
 
- /**
+/**
  * Requests a URL, returning a promise.
  * @public
  * @name xhr
@@ -93,21 +93,21 @@ server.interceptors.response.use(function(response){
  */
 
 export default function xhr(options) {
-  if(!options) return new Error ('The options field is required, and the type is object, for XHR !');
+	if(!options) return new Error ('The options field is required, and the type is object, for XHR !');
 
-  const config = {
-    method: (options.type || "GET").toUpperCase(),
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-    }
-  };
+	const config = {
+		method: (options.type || "GET").toUpperCase(),
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+		}
+	};
 
-  // data
-  if(config.method === 'POST' || config.method === 'PUT') {
-    config.data = setData(options.data) || {};
-  }
+	// data
+	if(config.method === 'POST' || config.method === 'PUT') {
+		config.data = setData(options.data) || {};
+	}
 
-  /**
+	/**
    * @public
    * @name xhr.getUrl
    * @param {object} options 当前请求配置
@@ -117,13 +117,13 @@ export default function xhr(options) {
    * ```
    * @return {object} 返回实际请求 {baseUrl, url}
    */
-  if (xhr.getUrl) { 
-    const {baseUrl, url} = xhr.getUrl(options);
+	if (xhr.getUrl) { 
+		const {baseUrl, url} = xhr.getUrl(options);
 
-    config.baseURL = baseUrl;
-    config.url = url;
-  } else {
-    /**
+		config.baseURL = baseUrl;
+		config.url = url;
+	} else {
+		/**
      * @public
      * @name xhr.baseUrl
      * @type {string}
@@ -131,9 +131,9 @@ export default function xhr(options) {
      * 配置 xhr_config.js
      */
     
-     config.baseURL = xhr.baseUrl;
-     config.url = options.url;
-  }
+		config.baseURL = xhr.baseUrl;
+		config.url = options.url;
+	}
 
-  return server(config);
+	return server(config);
 }

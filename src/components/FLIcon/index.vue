@@ -7,23 +7,23 @@ const prefixCls = 'icon';
 const iconCls = 'iconfont';
 
 export default {
-  name: 'FLIcon',
-  props: {
-    type: {
-      type: String,
-      required: true
-    },
-    htmlClass: String
-  },
-  computed: {
-    classes() {
-      return [
-        iconCls,
-        prefixCls + `-${this.type}`,
-        this.htmlClass? this.htmlClass: ''
-      ];
-    }
-  }
+	name: 'FLIcon',
+	props: {
+		type: {
+			type: String,
+			required: true
+		},
+		htmlClass: String
+	},
+	computed: {
+		classes() {
+			return [
+				iconCls,
+				prefixCls + `-${this.type}`,
+				this.htmlClass? this.htmlClass: ''
+			];
+		}
+	}
 };
 </script>
 

@@ -5,7 +5,7 @@
         <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
         <Icon :type="data.icon" v-else></Icon>
       </template>      
-      <span>{{data.name}}</span>
+      <span>{{data.title}}</span>
     </template>
     <ExpandMenu
       v-for="(item, i) in data.children"
@@ -19,7 +19,7 @@
       <Icon :type="data.icon" v-else></Icon>
     </template>   
     <!-- <router-link :to="data.url">{{data.name}}</router-link> -->
-    <span>{{data.name}}</span>
+    <span>{{data.title}}</span>
   </MenuItem>  
 </template>
 
@@ -40,10 +40,7 @@ export default {
 	},
 	props: {
 		data: {
-			type: Object,
-			default () {
-				return {};
-			}
+			type: [Object, Array]
 		},
 		theme: {
 			type: String,

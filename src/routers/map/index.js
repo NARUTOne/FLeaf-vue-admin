@@ -11,45 +11,52 @@ const LayoutFlex = () => import('@/pages/layout/flex/');
 const LayoutRem= () => import('@/pages/layout/rem/');
 
 export default [
-  { // 路由从根app开始，注意@/index.js 注册
-    path: '/',
-    redirect: '/home',
-    component: App,
-    children: [
-      // 地址为空时跳转home页面
-       {
-        path: '',
-        redirect: '/home'
-      },
-      { 
-        path: 'home', 
-        component: Home
-      },
-      { // layout
-        path: 'layout',
-        redirect: '/layout/flex',
-        component: Layout,
-        children: [{
-          path: 'flex',
-          component: LayoutFlex
-        }, {
-          path: 'rem',
-          component: LayoutRem
-        }]
-      },
-      { 
-        path: 'login', 
-        component: Login
-      },
-      { // 404 置后
-        path: '404',
-        component: NotFound
-      },
-      {
-        path: '*',
-        redirect: '/404'
-      },
-    ]
-  }
+	{ // 路由从根app开始，注意@/index.js 注册
+		path: '/',
+		redirect: '/home',
+		component: App,
+		children: [
+			// 地址为空时跳转home页面
+			{
+				path: '',
+				name: 'home',
+				redirect: '/home'
+			},
+			{ 
+				path: 'home',
+				name: 'home',
+				component: Home
+			},
+			{ // layout
+				path: 'layout',
+				name: 'layout',
+				redirect: '/layout/flex',
+				component: Layout,
+				children: [{
+					path: 'flex',
+					name: 'flex',
+					component: LayoutFlex
+				}, {
+					path: 'rem',
+					name: 'rem',
+					component: LayoutRem
+				}]
+			},
+			{ 
+				path: 'login',
+				name: 'login',
+				component: Login
+			},
+			{ // 404 置后
+				path: '404',
+				name: '404',
+				component: NotFound
+			},
+			{
+				path: '*',
+				redirect: '/404'
+			},
+		]
+	}
   
 ];

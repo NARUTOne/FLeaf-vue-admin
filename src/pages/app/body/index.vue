@@ -10,10 +10,10 @@
   const Content = Layout.Content;
 
   export default {
-    name: 'Body',
-    components: {
-      Content
-    }
+  	name: 'Body',
+  	components: {
+  		Content
+  	}
   };
 </script>
 

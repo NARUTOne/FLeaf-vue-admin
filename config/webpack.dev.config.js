@@ -18,10 +18,10 @@ module.exports = merge.smart(baseConfig, {
 	cache: true,
 	output: {
 		filename: pnamePath +'static/js/[name].[hash:8].js'
-  },
-  module: {
-    rules: utils.styleLoaders({ sourceMap: PATHS.dev.cssSourceMap, usePostCSS: true })
-  },
+	},
+	module: {
+		rules: utils.styleLoaders({ sourceMap: PATHS.dev.cssSourceMap, usePostCSS: true })
+	},
 	devtool: PATHS.dev.devtool,
 	performance: {
 		hints: false

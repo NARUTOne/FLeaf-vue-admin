@@ -4,7 +4,7 @@
 import loginModule from './login';
 
 const modules = {
-  login: loginModule
+	login: loginModule
 };
 
 export default modules;

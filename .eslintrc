@@ -25,7 +25,7 @@
 		],
 		"quotes": [0],
 		"semi": [
-			"error",
+			"error", 
 			"always"
 		],
 		"prefer-const": [2],

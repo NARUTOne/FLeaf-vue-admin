@@ -21,8 +21,8 @@ Vue.config.productionTip = false;
 Vue.prototype.$Message = Message;
 
 new Vue({
-  el: '#app',
-  router,
-  store
+	el: '#app',
+	router,
+	store
 });
 

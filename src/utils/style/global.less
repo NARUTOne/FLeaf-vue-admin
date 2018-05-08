@@ -1,0 +1,46 @@
+// iview 全局样式覆盖
+.dropdown-theme-dark {
+  color: #fff;
+  background-color: @flv-dark;
+  >div, li {
+    color: #fff;
+    background-color: @flv-dark;
+  }
+  li:hover {
+    background-color: @flv-dark-hover;
+  }
+  li::before {
+    background-color: @flv-dark;
+  }
+  .ivu-dropdown-item-divided{
+    border-top-color: #fff;
+  }
+}
+
+.dropdown-submenu-theme-dark {
+  .ivu-select-dropdown {
+    color: #fff;
+    background-color: @flv-dark;
+    li {
+      color: #fff !important;
+      background-color: @flv-dark;
+    }
+    li:hover {
+      background-color: @flv-dark-hover;
+    }
+    li::before {
+      background-color: @flv-dark;
+    }
+    .ivu-dropdown-item-divided{
+      border-top-color: #fff;
+    }
+    .ivu-dropdown-item{
+      &:hover {
+        background-color: @flv-dark-hover;
+      }
+      .ivu-menu-item {
+        padding: 8px 0;
+      }
+    }
+  }
+}

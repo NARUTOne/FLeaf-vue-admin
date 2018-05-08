@@ -1,18 +1,44 @@
 <template>
-  <Menu :mode='menuMode' theme="dark" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
-    <NavNode
-      v-for="(item, i) in navsData"
-      :key="i"
-      :data="item"
-      :isCollapsed="isCollapsed"
-      :children-key="childrenKey" />
-  </Menu>
+  <div class="nav-box">
+    <template v-if="layout == 'left'">
+      <div :class="navThemeClass" >
+        <Menu v-show="!isCollapsed" mode='vertical' theme="dark" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
+          <ExpandMenu 
+            v-for="(item, i) in navsData"
+            :key="'expand' + i"
+            :data="item"
+            :children-key="childrenKey" />
+        </Menu>
+        <ShrinkMenu 
+          v-show="isCollapsed"
+          v-for="(item, i) in navsData"
+          :data="item"
+          :key="'shrink' + i"
+          :children-key="childrenKey"
+          @on-select="handleMenuClick"/>  
+      </div>
+    </template> 
+    <template v-else>
+      <div :class="navThemeClass" id="sd" >
+        <Menu mode="horizontal" theme="dark" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
+          <LevelMenu 
+            v-for="(item, i) in navsData"
+            :key="'level' + i"
+            :data="item"
+            :children-key="childrenKey" />
+        </Menu>
+      </div>
+    </template>   
+  </div>  
 </template>
 
 <script>
 import {Menu} from 'iview';
 import {NAV_LIST} from '@/mock/CONST';
-import NavNode from "./components/NavNode";
+// import NavNode from "./components/NavNode";
+import ExpandMenu from './components/ExpandMenu';
+import ShrinkMenu from './components/ShrinkMenu';
+import LevelMenu from './components/LevelMenu';
 
 export default {
 	name: 'NavMenu',
@@ -24,7 +50,10 @@ export default {
 	},
 	components: {
 		Menu,
-		NavNode
+		// NavNode,
+		ExpandMenu,
+		ShrinkMenu,
+		LevelMenu
 	},
 	props: {
 		isCollapsed: {
@@ -34,30 +63,51 @@ export default {
 		layout: {
 			type: String,
 			default: 'left'
+		},
+		theme: {
+			type: String,
+			default: 'dark'
 		}
 	},
+	watch: {
+
+	},
 	computed: {
-		menuitemClasses () {
+		navThemeClass () {
 			return [
-				'menu-item',
-				this.isCollapsed ? 'collapsed-menu' : ''
+				'nav-theme-' + this.theme
 			];
 		},
-		menuMode() {
-			return this.layout == 'left'? 'vertical' : 'horizontal';
+		menuitemClasses () {
+			return [
+				'nav-expand-menu',
+				this.isCollapsed ? 'collapsed-menu' : ''
+			];
 		}
 	},
 	methods: {
-		handleMenuClick(url) {
-			this.$router.push(url);
+		handleMenuClick(name) {
+			if(name.indexOf('/') < 0) {
+				this.$router.push({name});
+			} else {
+				this.$router.push(name);
+			}
 		}
 	}
 };
 </script>
 
 <style lang="less" scoped>
-  .menu-item {
-    // overflow: hidden;
+  @import '~utils/style/variables.less';
+  .nav-box {
+
+  }
+  .nav-theme-dark {
+    color: #fff;
+    background-color: @flv-dark;
+  }
+  .nav-theme-light {
+    background-color: #fff;
   }
 </style>
 
