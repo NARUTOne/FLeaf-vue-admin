@@ -1,17 +1,17 @@
 <template>
-  <Dropdown placement="right-start">
+  <Dropdown placement="right-start" @on-click="handmeMenuClick"  :class='dropdownClass'>
     <slot name='dropContent'></slot>
     <DropdownMenu slot="list">
       <template v-for="(item, index) in data">
-        <DropdownItem v-if='!item.children || !item.children.length' :key="'child' + index">
+        <DropdownItem v-if='!item.children || !item.children.length' :key="'dpchild' + index" :name="item.name">
           <template>
             <FLIcon :type="item.icon" v-if="item.isFLIcon"></FLIcon>
             <Icon :type="item.icon" v-else></Icon>
           </template>      
-          <span class="dropdown-menu-title">{{item.name}}</span>
+          <span class="dropdown-menu-title">{{item.title}}</span>
         </DropdownItem>
         <PDropdownMenu v-else 
-          :key="'children' + index"
+          :key="'dpchildren' + index"
           :data="item.children"
           :children-key="childrenKey">
           <template slot="dropContent">
@@ -19,7 +19,7 @@
               <FLIcon :type="item.icon" v-if="item.isFLIcon"></FLIcon>
               <Icon :type="item.icon" v-else></Icon>
             </template>      
-            <span class="dropdown-menu-title">{{item.name}}</span>
+            <span class="dropdown-menu-title">{{item.title}}</span>
             <Icon type="ios-arrow-right" class='right'></Icon>
           </template>  
         </PDropdownMenu>
@@ -40,10 +40,7 @@ export default {
   },
   props: {
     data: {
-      type: Object,
-      default () {
-        return {};
-      }
+      type: [Object, Array]
     },
     theme: {
       type: String,
@@ -54,6 +51,16 @@ export default {
       default: 'children'
     },
   },
+  computed: {
+    dropdownClass () {
+      return `dropdown-theme-${this.theme}`;
+    }
+  },
+  methods: {
+    handmeMenuClick (name) {
+      this.$emit('on-select', name);
+    }
+  }
 };
 </script>
 

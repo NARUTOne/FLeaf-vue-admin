@@ -186,7 +186,6 @@
 
 <style lang='less'>
   @import '~utils/style/variables.less';
-
   .header {
     height: 60px;
     padding: 0 16px;
@@ -214,23 +213,23 @@
   }
   .header-theme-dark {
     color: #fff;
-    .dropdown-theme-dark {
-      color: #fff;
-      background-color: @flv-dark;
-      >div, li {
-        color: #fff;
-        background-color: @flv-dark;
-      }
-      li::before {
-        background-color: @flv-dark;
-      }
-      .ivu-dropdown-item-divided{
-        border-top-color: #fff;
-      }
-    }
   }
   .header-theme-light {
     background-color: #fff;
+  }
+  .dropdown-theme-dark {
+    color: #fff;
+    background-color: @flv-dark;
+    >div, li {
+      color: #fff;
+      background-color: @flv-dark;
+    }
+    li::before {
+      background-color: @flv-dark;
+    }
+    .ivu-dropdown-item-divided{
+      border-top-color: #fff;
+    }
   }
 </style>
 

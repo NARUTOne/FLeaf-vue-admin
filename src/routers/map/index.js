@@ -19,30 +19,37 @@ export default [
       // 地址为空时跳转home页面
        {
         path: '',
+        name: 'home',
         redirect: '/home'
       },
       { 
-        path: 'home', 
+        path: 'home',
+        name: 'home',
         component: Home
       },
       { // layout
         path: 'layout',
+        name: 'layout',
         redirect: '/layout/flex',
         component: Layout,
         children: [{
           path: 'flex',
+          name: 'flex',
           component: LayoutFlex
         }, {
           path: 'rem',
+          name: 'rem',
           component: LayoutRem
         }]
       },
       { 
-        path: 'login', 
+        path: 'login',
+        name: 'login',
         component: Login
       },
       { // 404 置后
         path: '404',
+        name: '404',
         component: NotFound
       },
       {

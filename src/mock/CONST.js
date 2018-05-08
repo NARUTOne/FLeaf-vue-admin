@@ -3,22 +3,26 @@
 */
 
 const NAV_LIST = [{
-  name: '概览',
+  title: '概览',
+  name: 'home',
   url: '/home',
   icon: 'home',
   isFLIcon: false
 }, {
-  name: '布局',
+  title: '布局',
+  name: 'layout',
   url: '/layout',
   icon: 'layout',
   isFLIcon: true,
   children: [{
-    name: 'Flex',
+    title: 'Flex',
+    name: 'flex',
     url: '/layout/flex',
     icon: 'leaf',
     isFLIcon: false
   }, {
-    name: 'Rem',
+    title: 'Rem',
+    name: 'rem',
     url: '/layout/Rem',
     icon: 'leaf',
     isFLIcon: false
