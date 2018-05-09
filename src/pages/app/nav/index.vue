@@ -2,7 +2,7 @@
   <div class="nav-box">
     <template v-if="layout == 'left'">
       <div :class="navThemeClass" >
-        <Menu v-show="!isCollapsed" mode='vertical' theme="dark" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
+        <Menu v-show="!isCollapsed" mode='vertical' :theme="theme" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
           <ExpandMenu 
             v-for="(item, i) in navsData"
             :key="'expand' + i"
@@ -14,17 +14,19 @@
           v-for="(item, i) in navsData"
           :data="item"
           :key="'shrink' + i"
+					:theme="theme"
           :children-key="childrenKey"
           @on-select="handleMenuClick"/>  
       </div>
     </template> 
     <template v-else>
       <div :class="navThemeClass" id="sd" >
-        <Menu mode="horizontal" theme="dark" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
+        <Menu mode="horizontal" :theme="theme" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
           <LevelMenu 
             v-for="(item, i) in navsData"
             :key="'level' + i"
             :data="item"
+						:theme="theme"
             :children-key="childrenKey" />
         </Menu>
       </div>

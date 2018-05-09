@@ -26,10 +26,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '~utils/style/variables.less';
   .layout-logo {
     display: block;
     width: 100%;
-    height: 100%;
+    height: @flv-header-height;
     padding: 8px 0 8px 66px;
     line-height: 42px;
     font-size: 22px;

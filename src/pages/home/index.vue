@@ -24,6 +24,11 @@
       clearable
       placeholder="input here"
       style="width:200px"></AutoComplete>
+			<Select v-model="selectVal" :style="{width: '300px'}">
+				<Option value="null">全部</Option>
+				<Option value="1">1</Option>
+				<Option value="2">2</Option>
+			</Select>
   </div>
 </template>
 
@@ -35,7 +40,9 @@ import {
 	Dropdown,
 	DropdownMenu,
 	DropdownItem,
-	AutoComplete
+	AutoComplete,
+	Select,
+	Option
 } from "iview";
 import { FLIcon } from "components";
 
@@ -49,12 +56,15 @@ export default {
 		Dropdown,
 		DropdownMenu,
 		DropdownItem,
-		AutoComplete
+		AutoComplete,
+		Select,
+		Option
 	},
 	data() {
 		return {
 			value1: "",
-			data1: []
+			data1: [],
+			selectVal: 'null'
 		};
 	},
 	mounted() {

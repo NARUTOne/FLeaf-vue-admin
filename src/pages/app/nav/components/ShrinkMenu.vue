@@ -3,6 +3,7 @@
     <PDropdownMenu  
       :data="data.children"
       :children-key="childrenKey"
+      :theme="theme"
       @on-select="handleMenuClick">
       <div slot="dropContent" class="pd-content" @click="handleClick(data.name)">
         <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
@@ -93,7 +94,8 @@ export default {
         font-size: 20px;        
       }
       &:hover {
-        background-color: @flv-dark-hover;
+        background-color: @flv-default-color;
+        color: #fff;
       }
     }
   }
@@ -102,6 +104,12 @@ export default {
     background-color: @flv-dark;
     * {
       color: #fff
+    }
+    .pd-content {
+      &:hover {
+        background-color: @flv-dark-hover;
+        color: #fff;
+      }
     }
   }
   .shrink-menu-light {

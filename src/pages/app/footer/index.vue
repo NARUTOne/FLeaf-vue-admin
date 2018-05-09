@@ -1,6 +1,10 @@
 <template>
   <Footer class="footer">
-    <footer>©&nbsp;2018 <span class='default-color'>迷路的缘</span>，<span class='error-color'>火舞的叶</span> Follow Your Heart</footer>
+    <footer>©&nbsp;2018&nbsp;
+      <span class="error-color">Follow Your Heart 💖</span>
+      <span class='warn-color'>迷路的缘 🐌</span>
+      <span class='default-color'>火舞的叶 🍂</span>
+    </footer>
   </Footer>
 </template>
 
@@ -26,6 +30,9 @@
     text-align: center;
     color: @flv-footer-text-color;
     background-color: @flv-footer-bg;
+    span {
+      margin: 0 12px;
+    }
   }
 </style>
 

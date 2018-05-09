@@ -1,7 +1,7 @@
 <template>
   <Header :class="headerClass">
     <Row :gutter="16">
-      <Col :xs="12" :sm="12" :md="6" :lg="6" >
+      <Col :xs="12" :sm="12" :md="4" :lg="4" >
         <Logo v-if="isLogo"></Logo>
         <Icon
           v-else
@@ -11,9 +11,9 @@
           type="navicon-round" 
           size="24"></Icon>
       </Col>
-      <Col :xs="0" :sm="0" :md="12" :lg="12">
+      <Col :xs="0" :sm="0" :md="14" :lg="14">
         <div class="t-center default-color header-title" v-show="layout == 'left'">FireLeaf-Vue-Scaffold</div>
-        <NavMenu v-show="layout == 'top'" :layout="layout"></NavMenu>
+        <NavMenu v-show="layout == 'top'" :layout="layout" :theme="theme"></NavMenu>
       </Col>
       <Col :xs="12" :sm="12" :md="6" :lg="6" class='t-center'>
         <Row type="flex" justify="end" class="header-config">
@@ -84,100 +84,103 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex';
-  import {Layout, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio } from 'iview';
-  import Logo from '../logo/';
-  import NavMenu from '../nav/';
-  import screenfull from 'screenfull';
+import { mapGetters, mapActions } from 'vuex';
+import {Layout, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio } from 'iview';
+import Logo from '../logo/';
+import NavMenu from '../nav/';
+import screenfull from 'screenfull';
 
-  const Header = Layout.Header;
+const Header = Layout.Header;
 
-  export default {
-  	name: 'FLHeader',
-  	data() {
-  		return {
-      
-  		};
-  	},
-  	components: { 
-  		Header, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Logo, NavMenu
-  	},
-  	computed: {
-  		...mapGetters('login', {
-  			user: 'getUser',
-  		}),
-  		...mapGetters({
-  			theme: 'theme',
-  			layout: 'layout',
-  			isCollapsed: 'isCollapsed'
-  		}),
-  		headerClass() {
-  			return `header header-theme-${this.theme}`;
-  		},
-  		dropdownClass() {
-  			return `dropdown-theme-${this.theme}`;
-  		},
-  		isLogin () {
-  			return this.user && this.user.userName;
-  		},
-  		isLogo() {
-  			return this.layout == 'top';
-  		},
-  		rotateIcon () {
-  			return [
-  				'menu-icon',
-  				this.isCollapsed ? 'rotate-icon' : ''
-  			];
-  		},
-  	},
-  	methods: {
-  		...mapActions('login', [
-  			'toLogout'
-  		]),
-  		...mapActions(['handleThemeChange', 'handleLayoutChange']),
-  		setLayoutChange(value) {
-  			const obj = {
-  				layout: value
-  			};
+export default {
+	name: 'FLHeader',
+	data() {
+		return {
+		
+		};
+	},
+	components: { 
+		Header, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Logo, NavMenu
+	},
+	computed: {
+		...mapGetters('login', {
+			user: 'getUser',
+		}),
+		...mapGetters({
+			theme: 'theme',
+			layout: 'layout',
+			isCollapsed: 'isCollapsed'
+		}),
+		headerClass() {
+			return `header header-theme-${this.theme}`;
+		},
+		dropdownClass() {
+			return `dropdown-theme-${this.theme}`;
+		},
+		isLogin () {
+			return this.user && this.user.userName;
+		},
+		isLogo() {
+			return this.layout == 'top';
+		},
+		rotateIcon () {
+			return [
+				'menu-icon',
+				this.isCollapsed ? 'rotate-icon' : ''
+			];
+		},
+	},
+	methods: {
+		...mapActions('login', [
+			'toLogout'
+		]),
+		...mapActions([
+			'handleThemeChange',
+			'handleLayoutChange'
+		]),
+		setLayoutChange(value) {
+			const obj = {
+				layout: value
+			};
 
-  			this.handleLayoutChange(obj);
-  		},
-  		setThemeChange(value) {
-  			const obj = {
-  				theme: value
-  			};
+			this.handleLayoutChange(obj);
+		},
+		setThemeChange(value) {
+			const obj = {
+				theme: value
+			};
 
-  			this.handleThemeChange(obj);
-  		},
-  		handleLogin() {
-  			this.handleLoginOut();
-  		},
-  		handleLoginOut() {
-  			this.toLogout().then((msg) => {
-  				this.$Message.success(msg || 'success!');
-  				this.$router.push('/login');
-  			}).catch(() => {
-  				this.$Message.error('error!');
-  			});
-  		},
-  		collapsedSider() {
-  			this.$store.commit('handleCollapsedSider', {
-  				isCollapsed: !this.isCollapsed
-  			});
-  		},
-  		handleScreenFull() {
-  			if (screenfull.enabled) {
-  				screenfull.request();
-  			}
-  		}
-  	}
-  };
+			this.handleThemeChange(obj);
+		},
+		handleLogin() {
+			this.handleLoginOut();
+		},
+		handleLoginOut() {
+			this.toLogout().then((msg) => {
+				this.$Message.success(msg || 'success!');
+				this.$router.push('/login');
+			}).catch(() => {
+				this.$Message.error('error!');
+			});
+		},
+		collapsedSider() {
+			this.$store.commit('handleCollapsedSider', {
+				isCollapsed: !this.isCollapsed
+			});
+		},
+		handleScreenFull() {
+			if (screenfull.enabled) {
+				screenfull.request();
+			}
+		}
+	}
+};
 </script>
 
 <style lang='less' scoped>
   @import '~utils/style/variables.less';
   .header {
-    height: 60px;
+    height: @flv-header-height;
     padding: 0 16px;
     font-size: 14px;
     line-height: 60px;
@@ -195,7 +198,8 @@
       }
     }
     .menu-icon{
-      transition: all .3s;
+			transition: all .3s;
+			cursor: pointer;
     }
     .rotate-icon{
       transform: rotate(-90deg);
