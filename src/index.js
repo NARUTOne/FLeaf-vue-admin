@@ -7,7 +7,7 @@ import router from './routers/';
 import store from './store/';
 
 // import iView from 'iview';
-import {Message} from 'iview';
+import {Message, LoadingBar} from 'iview';
 import 'iview/dist/styles/iview.css';
 import 'utils/style/theme.less';
 
@@ -19,6 +19,7 @@ Vue.config.productionTip = false;
 // Vue.use(iView);
 
 Vue.prototype.$Message = Message;
+Vue.prototype.$Loading = LoadingBar;
 
 new Vue({
 	el: '#app',

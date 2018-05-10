@@ -1,4 +1,4 @@
-# fl-vue-demo
+# FLeaf-vue-admin
 > :fallen_leaf: 基于[FireLeaf-Vue-Scaffold](https://github.com/NARUTOne/FireLeaf-Vue-Scaffold)开发的demo
 
 独立的前端代码包，接通数据源后（`src/utils/config.js`）即可本地运行，放置服务器后端环境下即可部署

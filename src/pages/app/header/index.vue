@@ -12,7 +12,7 @@
           size="24"></Icon>
       </Col>
       <Col :xs="0" :sm="0" :md="14" :lg="14">
-        <div class="t-center default-color header-title" v-show="layout == 'left'">FireLeaf-Vue-Scaffold</div>
+        <div class="t-center default-color header-title" v-show="layout == 'left'">FireLeaf-Vue-Admin</div>
         <NavMenu v-show="layout == 'top'" :layout="layout" :theme="theme"></NavMenu>
       </Col>
       <Col :xs="12" :sm="12" :md="6" :lg="6" class='t-center'>
@@ -142,15 +142,21 @@ export default {
 			const obj = {
 				layout: value
 			};
-
-			this.handleLayoutChange(obj);
+      
+			this.$Loading.start();
+			this.handleLayoutChange(obj).then(() => {
+				this.$Loading.finish();
+			});
 		},
 		setThemeChange(value) {
 			const obj = {
 				theme: value
 			};
 
-			this.handleThemeChange(obj);
+			this.$Loading.start();
+			this.handleThemeChange(obj).then(() => {
+				this.$Loading.finish();
+			});
 		},
 		handleLogin() {
 			this.handleLoginOut();
