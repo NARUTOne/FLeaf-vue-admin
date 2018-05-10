@@ -169,7 +169,6 @@ function rangeDate(min, max) {
 }
 
 // xhr  data 解析
-
 function xhrSetData(data) {
 	const isObject = obj => Object.prototype.toString.call(obj) === '[object Object]';
 	const isArray = arr => Array.isArray(arr);
@@ -192,9 +191,14 @@ function xhrSetData(data) {
 	}
 }
 
-
 // Tree data callback of one node
 
+/** 
+ * @param {any} treeNodes 
+ * @param {any} Fn 
+ * @param {any} options 
+ * @returns 
+ */
 function arrayTreeCallBack(treeNodes, Fn, options) {
 	if (!treeNodes || !treeNodes.length) return;
 	options = options || {};
@@ -216,6 +220,10 @@ function arrayTreeCallBack(treeNodes, Fn, options) {
 	return treeMap(treeNodes);
 }
 
+/** 
+ * @param {any} paramsString 
+ * @returns 
+ */
 function param2Obj(paramsString) {
 	const search = paramsString;
 	if (!search) {
@@ -223,6 +231,7 @@ function param2Obj(paramsString) {
 	}
 	return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
 }
+
 
 
 const util = function () {

@@ -15,11 +15,12 @@ export default [
 		path: '/',
 		redirect: '/home',
 		component: App,
+		name: '/',
 		children: [
 			// 地址为空时跳转home页面
 			{
 				path: '',
-				name: 'home',
+				name: '',
 				redirect: '/home'
 			},
 			{ 

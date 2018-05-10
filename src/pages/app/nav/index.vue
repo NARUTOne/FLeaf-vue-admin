@@ -2,7 +2,16 @@
   <div class="nav-box">
     <template v-if="layout == 'left'">
       <div :class="navThemeClass" >
-        <Menu v-show="!isCollapsed" mode='vertical' :theme="theme" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
+        <Menu 
+					v-show="!isCollapsed" 
+					mode='vertical' 
+					width="auto"
+					:class="menuitemClasses"
+					:theme="theme"
+					:active-name="activeName"
+					:open-names="openNames"
+					@on-select="handleMenuClick" 
+					>
           <ExpandMenu 
             v-for="(item, i) in navsData"
             :key="'expand' + i"
@@ -21,7 +30,15 @@
     </template> 
     <template v-else>
       <div :class="navThemeClass" id="sd" >
-        <Menu mode="horizontal" :theme="theme" width="auto" @on-select="handleMenuClick" :class="menuitemClasses">
+        <Menu 
+					mode="horizontal" 
+					width="auto"
+					:class="menuitemClasses"
+					:theme="theme" 					
+					:active-name="activeName"
+					:open-names="openNames"
+					@on-select="handleMenuClick" 
+					>
           <LevelMenu 
             v-for="(item, i) in navsData"
             :key="'level' + i"
@@ -47,7 +64,9 @@ export default {
 	data: function() {
 		return {
 			navsData: NAV_LIST,
-			childrenKey: 'children'
+			childrenKey: 'children',
+			activeName: '',
+			openNames: []
 		};
 	},
 	components: {
@@ -72,7 +91,12 @@ export default {
 		}
 	},
 	watch: {
-
+		$route () {
+			this.setMenuName();
+		}
+	},
+	created () {
+		this.setMenuName();
 	},
 	computed: {
 		navThemeClass () {
@@ -88,6 +112,14 @@ export default {
 		}
 	},
 	methods: {
+		setMenuName () {
+			const {name, matched} = this.$route;
+			// console.log(this.$route.matched);
+			const openName = matched[1].name;
+			
+			this.activeName = name;
+			this.openNames = [openName];
+		},
 		handleMenuClick(name) {
 			if(name.indexOf('/') < 0) {
 				this.$router.push({name});
@@ -101,9 +133,6 @@ export default {
 
 <style lang="less" scoped>
   @import '~utils/style/variables.less';
-  .nav-box {
-
-  }
   .nav-theme-dark {
     color: #fff;
     background-color: @flv-dark;

@@ -1,5 +1,5 @@
 <template>
-  <Submenu :name="data.url" v-if="isChildren" :class='dropdownSubmenuClass'>
+  <Submenu :name="data.name" v-if="isChildren" :class='dropdownSubmenuClass'>
     <template slot="title">
       <template>
         <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
@@ -13,7 +13,7 @@
       :data="item"
       :children-key="childrenKey" />
   </Submenu>
-  <MenuItem :name="data.url" v-else>
+  <MenuItem :name="data.name" v-else>
     <template>
       <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
       <Icon :type="data.icon" v-else></Icon>
