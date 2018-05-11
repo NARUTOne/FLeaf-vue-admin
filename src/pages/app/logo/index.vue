@@ -1,6 +1,6 @@
 <template>
   <router-link to='/' :class='logoClasses'>
-    <span class='layout-logo-title'>flv-admin</span>
+    <span class='layout-logo-title'>FLV-admin</span>
   </router-link>
 </template>
 

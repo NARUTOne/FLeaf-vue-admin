@@ -27,6 +27,25 @@ const NAV_LIST = [{
 		icon: 'leaf',
 		isFLIcon: false
 	}]
+}, {
+	title: 'iview',
+	name: 'iview',
+	url: '/iview',
+	icon: 'ios-play-outline',
+	isFLIcon: false,
+	children: [{
+		title: '填坑',
+		name: 'pits',
+		url: '/iview/pits',
+		icon: 'ios-paw',
+		isFLIcon: false
+	}]
+}, {
+	title: 'flicon',
+	name: 'flicon',
+	url: '/flicon',
+	icon: 'travel',
+	isFLIcon: true
 }];
 
 const LAYOUT_VAR = {

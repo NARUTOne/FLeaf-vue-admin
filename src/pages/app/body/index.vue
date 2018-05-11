@@ -23,7 +23,6 @@
     flex-direction: column;
     -webkit-flex-grow:1;
 		flex-grow:1;
-    padding: 8px;
   }
 </style>
 

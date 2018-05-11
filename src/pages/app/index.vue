@@ -16,7 +16,10 @@
         </Sider>
         <Layout>
           <FLHeader v-show="isLogin"/>
-          <Body><router-view></router-view></Body>
+          <Body>
+						<PBreadcrump></PBreadcrump>
+						<div class="body-content"><router-view></router-view></div>	
+					</Body>
           <FLFooter />
         </Layout>    
       </Layout>
@@ -33,6 +36,7 @@ import FLFooter from './footer/';
 import Logo from './logo/';
 import auth from 'utils/auth';
 import {LAYOUT_VAR} from '@/mock/CONST';
+import PBreadcrump from 'components/Breadcrump/';
 
 const Sider = Layout.Sider;
 const {COLLAPSED_SIDER_W, HEADER_H} = LAYOUT_VAR;
@@ -46,7 +50,8 @@ export default {
 		Body,
 		FLFooter,
 		NavMenu,
-		Logo
+		Logo,
+		PBreadcrump
 	},
 	data: function() {
 		return {
@@ -145,6 +150,15 @@ export default {
 			top: @flv-header-height;
 			right: 0;
 			background: #dddee1;
+		}
+	}
+	.body-content {
+		padding: 8px;
+		>div {
+			padding: 8px;
+			border-radius: 6px;
+			border: 1px solid #efefef;
+			background-color: #fff;			
 		}
 	}
 </style>
