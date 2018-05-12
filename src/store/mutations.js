@@ -11,6 +11,9 @@ export default {
 	[APP_TYPES.APP_SET_LAYOUT](state,  payload) {
 		state.layout = payload.layout || 'left'; 
 	},
+	[APP_TYPES.APP_SET_LAYOUT_FIX](state, payload) {
+		state.isFix = payload.isFix || false;
+	},
 	handleCollapsedSider(state, payload) {
 		state.isCollapsed = payload.isCollapsed || false;
 	}

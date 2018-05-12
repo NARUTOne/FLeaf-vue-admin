@@ -85,8 +85,8 @@ export default [
 				}]
 			},
 			{
-				path: 'flicon',
-				name: 'flicon',
+				path: 'flicons',
+				name: 'flicons',
 				component: FLIcon,
 				meta: {
 					title: 'FLIcons'

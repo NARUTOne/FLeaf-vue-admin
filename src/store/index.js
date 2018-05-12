@@ -10,7 +10,8 @@ Vue.use(Vuex);
 const initState = {
 	theme: 'dark',
 	layout: 'left',
-	isCollapsed: false
+	isCollapsed: false,
+	isFix: false
 };
 
 const store = new Vuex.Store({

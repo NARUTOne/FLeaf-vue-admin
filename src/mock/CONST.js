@@ -41,9 +41,9 @@ const NAV_LIST = [{
 		isFLIcon: false
 	}]
 }, {
-	title: 'flicon',
-	name: 'flicon',
-	url: '/flicon',
+	title: 'FLicons',
+	name: 'flicons',
+	url: '/flicons',
 	icon: 'travel',
 	isFLIcon: true
 }];

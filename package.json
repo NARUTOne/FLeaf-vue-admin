@@ -74,10 +74,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "countup.js": "^1.9.3",
     "iview": "^2.13.0",
     "mockjs": "^1.0.1-beta3",
     "screenfull": "^3.3.2",
     "vue": "^2.5.16",
+    "vue-countup-v2": "^1.0.3",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   }

@@ -56,6 +56,17 @@
                     </dd>
                   </dl>
                 </DropdownItem>
+                <DropdownItem>
+                  <dl>
+                    <dt>布局固定</dt>
+                    <dd>
+                      <Switch :value="isFix" @on-change="handleFixChange">
+                        <span slot="open">是</span>
+                        <span slot="close">否</span>
+                      </Switch>
+                    </dd>
+                  </dl>
+                </DropdownItem>
                 <DropdownItem divided>系统配置</DropdownItem>                  
               </DropdownMenu>
             </Dropdown>
@@ -63,7 +74,7 @@
           <Col span='12'>
             <div class=" header-user ">
               <Dropdown :class='dropdownClass'>
-                <div><Avatar class="default-bg" icon="person" />&nbsp; {{user ? user.userName : ''}}</div>
+                <div><Avatar class="default-bg" src='https://i.loli.net/2018/05/12/5af662c33a177.jpg' />&nbsp; {{user ? user.userName : ''}}</div>
                 <DropdownMenu slot="list">
                   <DropdownItem>
                     <template  v-if="isLogin">
@@ -85,7 +96,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import {Layout, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio } from 'iview';
+import {Layout, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Switch } from 'iview';
 import Logo from '../logo/';
 import NavMenu from '../nav/';
 import screenfull from 'screenfull';
@@ -100,13 +111,14 @@ export default {
 		};
 	},
 	components: { 
-		Header, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Logo, NavMenu
+		Header, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Logo, NavMenu, Switch 
 	},
 	computed: {
 		...mapGetters('login', {
 			user: 'getUser',
 		}),
 		...mapGetters({
+			isFix: 'isFix',
 			theme: 'theme',
 			layout: 'layout',
 			isCollapsed: 'isCollapsed'
@@ -136,7 +148,8 @@ export default {
 		]),
 		...mapActions([
 			'handleThemeChange',
-			'handleLayoutChange'
+			'handleLayoutChange',
+			'handleLayoutFixChange'
 		]),
 		setLayoutChange(value) {
 			const obj = {
@@ -155,6 +168,16 @@ export default {
 
 			this.$Loading.start();
 			this.handleThemeChange(obj).then(() => {
+				this.$Loading.finish();
+			});
+		},
+		handleFixChange (bol) {
+			const obj = {
+				isFix: bol
+			};
+
+			this.$Loading.start();
+			this.handleLayoutFixChange(obj).then(() => {
 				this.$Loading.finish();
 			});
 		},

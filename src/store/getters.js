@@ -7,5 +7,6 @@ export default {
 		return state.theme;
 	},
 	layout: state => state.layout,
-	isCollapsed: state => state.isCollapsed
+	isCollapsed: state => state.isCollapsed,
+	isFix: state => state.isFix
 };

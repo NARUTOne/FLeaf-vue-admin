@@ -60,6 +60,10 @@ a {
   }
 }
 
+img {
+  border-style: none;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -133,16 +137,23 @@ ul, li {
 .left {
   float: left;
 }
-
 .right {
   float: right;
 }
-
 .clear-float {
   &:after {
     content:'';
     display:table;
     clear:both;
+  }
+}
+
+.display-table-middle {
+  display: table;
+  height: 100%;
+  > div {
+    display: table-cell;
+    vertical-align: middle;
   }
 }
 
@@ -192,6 +203,22 @@ ul, li {
 // 距离， 大小
 .chart-box {
   height: @flv-base-size * 3;
+}
+
+.margin-t-1 {
+  margin-top: @flv-base-margin;
+}
+
+.margin-t-2 {
+  margin-top: @flv-base-margin * 2;
+}
+
+.margin-b-1 {
+  margin-bottom: @flv-base-margin;
+}
+
+.margin-b-2 {
+  margin-bottom: @flv-base-margin * 2;
 }
 
 // 个性化

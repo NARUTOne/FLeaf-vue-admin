@@ -32,5 +32,19 @@ export default {
 				reject();
 			}
 		});
+	},
+	handleLayoutFixChange({commit, state}, payload) {
+		return new Promise((resolve, reject) => {
+			if('layout' in payload) {
+				setTimeout(() => {
+					commit(APP_TYPES.APP_SET_LAYOUT_FIX, payload);
+					resolve();
+				}, 500);        
+			}
+			else {
+				commit(APP_TYPES.APP_SET_LAYOUT_FIX, state.isFix);
+				reject();
+			}
+		});
 	}
 };
