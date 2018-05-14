@@ -35,7 +35,7 @@ class Chart {
   resize() {
     this.myChart.resize();
   }
-  
+
   renderChart() {    
     var _this = this;
 

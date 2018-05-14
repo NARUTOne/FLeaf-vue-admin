@@ -5,6 +5,7 @@
         <Sider 
 					hide-trigger 
 					collapsible
+          :width="200"
 					:class="siderClass"
 					:collapsed-width="COLLAPSED_SIDER_W" 
 					ref='sider' v-model="isCollapsedSider" 
@@ -16,7 +17,7 @@
         </Sider>
         <Layout>
           <FLHeader v-show="isLogin"/>
-          <Body>
+          <Body :style="{width: bodyWidth + 'px'}">
 						<PBreadcrump></PBreadcrump>
 						<div class="body-content"><router-view></router-view></div>	
 					</Body>
@@ -85,6 +86,17 @@ export default {
     },
     siderClass () {
       return `sider-${this.theme}`;
+    },
+    bodyWidth () {
+      const W = window.innerWidth;
+      if(this.isShowSider) {
+        if(this.isCollapsedSider) {
+          return W - COLLAPSED_SIDER_W;
+        }
+        return W - 200;
+      }
+      
+      return W;
     }
   },
   watch: {
