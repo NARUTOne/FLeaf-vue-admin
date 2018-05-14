@@ -39,71 +39,71 @@ import {Row, Col, Form, FormItem, Input, Icon, Button} from 'iview';
 import {systemName} from 'utils/config';
 
 export default {
-	name: 'Login',
-	data () {
-		return {
-			systemName,
-			loading: false,
-			formData: {
-				userName: '',
-				password: ''
-			},
-			formRule: {
-				userName: [
-					{ required: true, message: '请填写用户名', trigger: 'blur' }
-				],
-				password: [
-					{ required: true, message: '请填写密码', trigger: 'blur' },
-					{ type: 'string', min: 6, message: '密码不少于6位', trigger: 'blur' }
-				]
-			}
-		};
-	},
-	components: {
-		Row,
-		Col,
-		Form, FormItem, Input, Icon, Button
-	},
-	methods: {
-		handleSubmit(name) {
+  name: 'Login',
+  data () {
+    return {
+      systemName,
+      loading: false,
+      formData: {
+        userName: '',
+        password: ''
+      },
+      formRule: {
+        userName: [
+          { required: true, message: '请填写用户名', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请填写密码', trigger: 'blur' },
+          { type: 'string', min: 6, message: '密码不少于6位', trigger: 'blur' }
+        ]
+      }
+    };
+  },
+  components: {
+    Row,
+    Col,
+    Form, FormItem, Input, Icon, Button
+  },
+  methods: {
+    handleSubmit(name) {
       
-			this.$refs[name].validate((valid) => {
-				if (valid) {
-					const {userName} = this.formData;
-					new Promise((resolve, reject) => {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          const {userName} = this.formData;
+          new Promise((resolve, reject) => {
             
-						if(userName == 'admin' || userName == 'NARUTOne') {
-							resolve(this.formData);
-						}
-						else {
-							const err = '用户名或密码错误！';
-							reject(err);
-						}
-					}).then((data) => {
-						this.loading = true;
+            if(userName == 'admin' || userName == 'NARUTOne') {
+              resolve(this.formData);
+            }
+            else {
+              const err = '用户名或密码错误！';
+              reject(err);
+            }
+          }).then((data) => {
+            this.loading = true;
             
-						this.toLogin(data).then((msg) => {
-							this.loading = false;
+            this.toLogin(data).then((msg) => {
+              this.loading = false;
               
-							this.$Message.success(msg || 'Success, welcome!');
-							this.$router.push('/home');
-						}).catch(() => {
-							this.loading = false;
-						});
+              this.$Message.success(msg || 'Success, welcome!');
+              this.$router.push('/home');
+            }).catch(() => {
+              this.loading = false;
+            });
             
-					}).catch((err) => {
-						this.$Message.error(err || 'Fail!');
-					});
+          }).catch((err) => {
+            this.$Message.error(err || 'Fail!');
+          });
           
-				} else {
-					this.$Message.error('Fail!');
-				}
-			});
-		},
-		...mapActions('login', [
-			'toLogin'
-		])
-	},
+        } else {
+          this.$Message.error('Fail!');
+        }
+      });
+    },
+    ...mapActions('login', [
+      'toLogin'
+    ])
+  },
 
 };
 </script>

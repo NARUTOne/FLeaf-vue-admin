@@ -31,31 +31,31 @@ const MenuItem = Menu.Item;
 const Submenu = Menu.Sub;
 
 export default {
-	name: 'ExpandMenu',
-	components: {
-		MenuItem, Submenu, Icon, FLIcon
-	},
-	data() {
-		return {};
-	},
-	props: {
-		data: {
-			type: [Object, Array]
-		},
-		theme: {
-			type: String,
-			default: 'dark'
-		},
-		childrenKey: {
-			type: String,
-			default: 'children'
-		},
-	},
-	computed: {
-		isChildren() {
-			return  this.data[this.childrenKey] &&  this.data[this.childrenKey].length ;
-		}
-	}
+  name: 'ExpandMenu',
+  components: {
+    MenuItem, Submenu, Icon, FLIcon
+  },
+  data() {
+    return {};
+  },
+  props: {
+    data: {
+      type: [Object, Array]
+    },
+    theme: {
+      type: String,
+      default: 'dark'
+    },
+    childrenKey: {
+      type: String,
+      default: 'children'
+    },
+  },
+  computed: {
+    isChildren() {
+      return  this.data[this.childrenKey] &&  this.data[this.childrenKey].length ;
+    }
+  }
 };
 </script>
 

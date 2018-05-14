@@ -60,10 +60,10 @@
                   <dl>
                     <dt>布局固定</dt>
                     <dd>
-                      <Switch :value="isFix" @on-change="handleFixChange">
+                      <iSwitch :value="isFix" @on-change="handleFixChange">
                         <span slot="open">是</span>
                         <span slot="close">否</span>
-                      </Switch>
+                      </iSwitch>
                     </dd>
                   </dl>
                 </DropdownItem>
@@ -104,105 +104,108 @@ import screenfull from 'screenfull';
 const Header = Layout.Header;
 
 export default {
-	name: 'FLHeader',
-	data() {
-		return {
+  name: 'FLHeader',
+  data() {
+    return {
 		
-		};
-	},
-	components: { 
-		Header, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Logo, NavMenu, Switch 
-	},
-	computed: {
-		...mapGetters('login', {
-			user: 'getUser',
-		}),
-		...mapGetters({
-			isFix: 'isFix',
-			theme: 'theme',
-			layout: 'layout',
-			isCollapsed: 'isCollapsed'
-		}),
-		headerClass() {
-			return `header header-theme-${this.theme}`;
-		},
-		dropdownClass() {
-			return `dropdown-theme-${this.theme}`;
-		},
-		isLogin () {
-			return this.user && this.user.userName;
-		},
-		isLogo() {
-			return this.layout == 'top';
-		},
-		rotateIcon () {
-			return [
-				'menu-icon',
-				this.isCollapsed ? 'rotate-icon' : ''
-			];
-		},
-	},
-	methods: {
-		...mapActions('login', [
-			'toLogout'
-		]),
-		...mapActions([
-			'handleThemeChange',
-			'handleLayoutChange',
-			'handleLayoutFixChange'
-		]),
-		setLayoutChange(value) {
-			const obj = {
-				layout: value
-			};
+    };
+  },
+  components: { 
+    Header, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Logo, NavMenu, 
+    'iSwitch': Switch 
+  },
+  computed: {
+    ...mapGetters('login', {
+      user: 'getUser',
+    }),
+    ...mapGetters({
+      isFix: 'isFix',
+      theme: 'theme',
+      layout: 'layout',
+      isCollapsed: 'isCollapsed'
+    }),
+    headerClass() {
+      return `header header-theme-${this.theme}`;
+    },
+    dropdownClass() {
+      return `dropdown-theme-${this.theme}`;
+    },
+    isLogin () {
+      return this.user && this.user.userName;
+    },
+    isLogo() {
+      return this.layout == 'top';
+    },
+    rotateIcon () {
+      return [
+        'menu-icon',
+        this.isCollapsed ? 'rotate-icon' : ''
+      ];
+    },
+  },
+  methods: {
+    ...mapActions('login', [
+      'toLogout'
+    ]),
+    ...mapActions([
+      'handleThemeChange',
+      'handleLayoutChange',
+      'handleLayoutFixChange'
+    ]),
+    setLayoutChange(value) {
+      const obj = {
+        layout: value
+      };
       
-			this.$Loading.start();
-			this.handleLayoutChange(obj).then(() => {
-				this.$Loading.finish();
-			});
-		},
-		setThemeChange(value) {
-			const obj = {
-				theme: value
-			};
+      this.$Loading.start();
+      this.handleLayoutChange(obj).then(() => {
+        this.$Loading.finish();
+      }).catch(err => {
+        this.$Message.error(err);
+      });
+    },
+    setThemeChange(value) {
+      const obj = {
+        theme: value
+      };
 
-			this.$Loading.start();
-			this.handleThemeChange(obj).then(() => {
-				this.$Loading.finish();
-			});
-		},
-		handleFixChange (bol) {
-			const obj = {
-				isFix: bol
-			};
+      this.$Loading.start();
+      this.handleThemeChange(obj).then(() => {
+        this.$Loading.finish();
+      });
+    },
+    handleFixChange (bol) {
+      const obj = {
+        isFix: bol
+      };
 
-			this.$Loading.start();
-			this.handleLayoutFixChange(obj).then(() => {
-				this.$Loading.finish();
-			});
-		},
-		handleLogin() {
-			this.handleLoginOut();
-		},
-		handleLoginOut() {
-			this.toLogout().then((msg) => {
-				this.$Message.success(msg || 'success!');
-				this.$router.push('/login');
-			}).catch(() => {
-				this.$Message.error('error!');
-			});
-		},
-		collapsedSider() {
-			this.$store.commit('handleCollapsedSider', {
-				isCollapsed: !this.isCollapsed
-			});
-		},
-		handleScreenFull() {
-			if (screenfull.enabled) {
-				screenfull.request();
-			}
-		}
-	}
+      this.$Loading.start();
+      this.handleLayoutFixChange(obj).then(() => {
+        this.$Loading.finish();
+      });
+    },
+    handleLogin() {
+      this.handleLoginOut();
+    },
+    handleLoginOut() {
+      this.toLogout().then((msg) => {
+        this.$Message.success(msg || 'success!');
+        this.$router.push('/login');
+      }).catch(() => {
+        this.$Message.error('error!');
+      });
+    },
+    collapsedSider() {
+      this.$store.commit('handleCollapsedSider', {
+        isCollapsed: !this.isCollapsed
+      });
+    },
+    handleScreenFull() {
+      if (screenfull.enabled) {
+        screenfull.request();
+      }
+    }
+  }
 };
 </script>
 

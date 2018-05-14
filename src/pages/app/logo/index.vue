@@ -7,21 +7,21 @@
 <script>
 
 export default {
-	name: 'Logo',
-	props: {
-		isCollapsed: {
-			type: Boolean,
-			default: false
-		}
-	},
-	computed: {
-		logoClasses () {
-			return [
-				'layout-logo',
-				this.isCollapsed ? 'layout-logo-collapsed' : ''
-			];
-		}
-	}
+  name: 'Logo',
+  props: {
+    isCollapsed: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    logoClasses () {
+      return [
+        'layout-logo',
+        this.isCollapsed ? 'layout-logo-collapsed' : ''
+      ];
+    }
+  }
 };
 </script>
 

@@ -13,33 +13,33 @@
 import {Icon} from 'iview';
 
 export default {
-	name: "SortArrow",
-	components: {Icon},
-	props: {
-		activeIndex: {
-			type: Number,
-			default: 1
-		}
-	},
-	data () {
-		return {
-			currentActiveIndex: this.activeIndex
-		};
-	},
-	computed: {
-		class0 () {
-			return !this.currentActiveIndex ? 'active' : '';
-		},
-		class1 () {
-			return !this.currentActiveIndex ? '' : 'active';
-		}
-	},
-	methods: {
-		handleChange () {
-			this.currentActiveIndex = !this.currentActiveIndex ? 1 : 0;
-			this.$emit('on-change', this.currentActiveIndex);
-		}
-	}
+  name: "SortArrow",
+  components: {Icon},
+  props: {
+    activeIndex: {
+      type: Number,
+      default: 1
+    }
+  },
+  data () {
+    return {
+      currentActiveIndex: this.activeIndex
+    };
+  },
+  computed: {
+    class0 () {
+      return !this.currentActiveIndex ? 'active' : '';
+    },
+    class1 () {
+      return !this.currentActiveIndex ? '' : 'active';
+    }
+  },
+  methods: {
+    handleChange () {
+      this.currentActiveIndex = !this.currentActiveIndex ? 1 : 0;
+      this.$emit('on-change', this.currentActiveIndex);
+    }
+  }
 };
 </script>
 

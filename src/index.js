@@ -22,8 +22,8 @@ Vue.prototype.$Message = Message;
 Vue.prototype.$Loading = LoadingBar;
 
 new Vue({
-	el: '#app',
-	router,
-	store
+  el: '#app',
+  router,
+  store
 });
 

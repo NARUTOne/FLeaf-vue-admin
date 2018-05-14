@@ -15,7 +15,7 @@
 
 <script>
 export default {
-	name: 'PageDemo'
+  name: 'PageDemo'
 };
 </script>
 

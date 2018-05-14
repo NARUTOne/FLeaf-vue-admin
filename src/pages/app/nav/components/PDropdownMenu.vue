@@ -34,34 +34,34 @@ import {Dropdown, DropdownMenu, DropdownItem, Icon} from 'iview';
 import {FLIcon} from "@/components/";
 
 export default {
-	name: 'PDropdownMenu',
-	components: {Dropdown, DropdownMenu, DropdownItem, Icon, FLIcon},
-	data() {
-		return {};
-	},
-	props: {
-		data: {
-			type: [Object, Array]
-		},
-		theme: {
-			type: String,
-			default: 'dark'
-		},
-		childrenKey: {
-			type: String,
-			default: 'children'
-		},
-	},
-	computed: {
-		dropdownClass () {
-			return `dropdown-theme-${this.theme}`;
-		}
-	},
-	methods: {
-		handleMenuClick (name) {
-			this.$emit('on-select', name);
-		}
-	}
+  name: 'PDropdownMenu',
+  components: {Dropdown, DropdownMenu, DropdownItem, Icon, FLIcon},
+  data() {
+    return {};
+  },
+  props: {
+    data: {
+      type: [Object, Array]
+    },
+    theme: {
+      type: String,
+      default: 'dark'
+    },
+    childrenKey: {
+      type: String,
+      default: 'children'
+    },
+  },
+  computed: {
+    dropdownClass () {
+      return `dropdown-theme-${this.theme}`;
+    }
+  },
+  methods: {
+    handleMenuClick (name) {
+      this.$emit('on-select', name);
+    }
+  }
 };
 </script>
 

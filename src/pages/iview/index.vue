@@ -4,7 +4,7 @@
 
 <script>
 export default {
-	name: 'Iview'
+  name: 'Iview'
 };
 </script>
 

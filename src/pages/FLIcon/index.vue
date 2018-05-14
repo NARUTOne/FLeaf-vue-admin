@@ -36,21 +36,21 @@ import PageDemo from '@/pages/main-components/page-demo';
 import ICONS_LIST from './icons';
 
 export default {
-	name: 'FLIconList',
-	components: {
-		PageDemo, Row, Col, FLIcon, Input
-	},
-	data () {
-		return {
-			icons: ICONS_LIST,
-			search: ''
-		};
-	},
-	computed: {
-		filterIcons () {
-			return this.icons.filter(icon => icon.name.indexOf(this.search) > -1);
-		}
-	}
+  name: 'FLIconList',
+  components: {
+    PageDemo, Row, Col, FLIcon, Input
+  },
+  data () {
+    return {
+      icons: ICONS_LIST,
+      search: ''
+    };
+  },
+  computed: {
+    filterIcons () {
+      return this.icons.filter(icon => icon.name.indexOf(this.search) > -1);
+    }
+  }
 };
 </script>
 

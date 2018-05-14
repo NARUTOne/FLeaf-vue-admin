@@ -60,74 +60,74 @@ import ShrinkMenu from './components/ShrinkMenu';
 import LevelMenu from './components/LevelMenu';
 
 export default {
-	name: 'NavMenu',
-	data: function() {
-		return {
-			navsData: NAV_LIST,
-			childrenKey: 'children',
-			activeName: '',
-			openNames: []
-		};
-	},
-	components: {
-		Menu,
-		// NavNode,
-		ExpandMenu,
-		ShrinkMenu,
-		LevelMenu
-	},
-	props: {
-		isCollapsed: {
-			type: Boolean,
-			default: false
-		},
-		layout: {
-			type: String,
-			default: 'left'
-		},
-		theme: {
-			type: String,
-			default: 'dark'
-		}
-	},
-	watch: {
-		$route () {
-			this.setMenuName();
-		}
-	},
-	created () {
-		this.setMenuName();
-	},
-	computed: {
-		navThemeClass () {
-			return [
-				'nav-theme-' + this.theme
-			];
-		},
-		menuitemClasses () {
-			return [
-				'nav-expand-menu',
-				this.isCollapsed ? 'collapsed-menu' : ''
-			];
-		}
-	},
-	methods: {
-		setMenuName () {
-			const {name, matched} = this.$route;
-			// console.log(this.$route.matched);
-			const openName = matched[1].name;
+  name: 'NavMenu',
+  data: function() {
+    return {
+      navsData: NAV_LIST,
+      childrenKey: 'children',
+      activeName: '',
+      openNames: []
+    };
+  },
+  components: {
+    Menu,
+    // NavNode,
+    ExpandMenu,
+    ShrinkMenu,
+    LevelMenu
+  },
+  props: {
+    isCollapsed: {
+      type: Boolean,
+      default: false
+    },
+    layout: {
+      type: String,
+      default: 'left'
+    },
+    theme: {
+      type: String,
+      default: 'dark'
+    }
+  },
+  watch: {
+    $route () {
+      this.setMenuName();
+    }
+  },
+  created () {
+    this.setMenuName();
+  },
+  computed: {
+    navThemeClass () {
+      return [
+        'nav-theme-' + this.theme
+      ];
+    },
+    menuitemClasses () {
+      return [
+        'nav-expand-menu',
+        this.isCollapsed ? 'collapsed-menu' : ''
+      ];
+    }
+  },
+  methods: {
+    setMenuName () {
+      const {name, matched} = this.$route;
+      // console.log(this.$route.matched);
+      const openName = matched[1].name;
 			
-			this.activeName = name;
-			this.openNames = [openName];
-		},
-		handleMenuClick(name) {
-			if(name.indexOf('/') < 0) {
-				this.$router.push({name});
-			} else {
-				this.$router.push(name);
-			}
-		}
-	}
+      this.activeName = name;
+      this.openNames = [openName];
+    },
+    handleMenuClick(name) {
+      if(name.indexOf('/') < 0) {
+        this.$router.push({name});
+      } else {
+        this.$router.push(name);
+      }
+    }
+  }
 };
 </script>
 

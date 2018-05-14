@@ -75,30 +75,47 @@
 				</Row>
 			</Col>
 		</Row>
+    <div>
+      <Card>
+        <p slot="title">
+          🔥&nbsp;海贼篇章燃力值
+        </p>
+        <div class="chart-box">
+          <VRecharts :options="chaptesOption"></VRecharts>
+        </div>        
+      </Card>
+    </div>
   </div>
 </template>
 
 <script>
 import {Row, Col, Card, Icon, Avatar, Poptip } from "iview";
+import {VRecharts} from 'components';
 import NumCountup from '@/pages/main-components/num-countup/';
-import {FROM_INFO, REWARDS} from '@/mock/home';
+import {FROM_INFO, REWARDS, ONEPIECE_CHAPTERS} from '@/mock/home';
+import {chaptesChart} from './chart';
 
 export default {
-	name: "Home",
-	components: {
-		Row, Col, Card, Icon, Avatar, NumCountup, Poptip
-	},
-	data() {
-		return {
-			fromInfoList: FROM_INFO,
-			rewards: REWARDS
-		};
-	},
-	mounted() {
-		
-	},
-	methods: {
-	}
+  name: "Home",
+  components: {
+    Row, Col, Card, Icon, Avatar, NumCountup, Poptip, VRecharts
+  },
+  data() {
+    return {
+      fromInfoList: FROM_INFO,
+      rewards: REWARDS,
+      chaptesOption: {}
+    };
+  },
+  mounted() {
+    this.renderChaptes();
+  },
+  methods: {
+    renderChaptes () {
+      const chaptesOption = chaptesChart(ONEPIECE_CHAPTERS);
+      this.chaptesOption = {...chaptesOption};
+    }
+  }
 };
 </script>
 

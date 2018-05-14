@@ -33,48 +33,48 @@ const MenuItem = Menu.Item;
 const Submenu = Menu.Sub;
 
 export default {
-	name: 'ShrinkMenu',
-	components: {
-		MenuItem, Submenu, Icon, FLIcon, PDropdownMenu, Dropdown, DropdownMenu, DropdownItem, Button
-	},
-	data() {
-		return {};
-	},
-	props: {
-		data: {
-			type: [Object, Array]
-		},
-		theme: {
-			type: String,
-			default: 'dark'
-		},
-		childrenKey: {
-			type: String,
-			default: 'children'
-		},
-	},
-	computed: {
-		pdClass () {
-			return [
-				'shrink-menu',
-				'shrink-menu-' + this.theme
-			];
-		},
-		dropdownClass () {
-			return `dropdown-theme-${this.theme}`;
-		},
-		isChildren() {
-			return  this.data[this.childrenKey] &&  this.data[this.childrenKey].length;
-		}
-	},
-	methods: {
-		handleClick (name) {
-			this.$emit('on-select', name);
-		},
-		handleMenuClick (name) {
-			this.$emit('on-select', name);
-		}
-	}
+  name: 'ShrinkMenu',
+  components: {
+    MenuItem, Submenu, Icon, FLIcon, PDropdownMenu, Dropdown, DropdownMenu, DropdownItem, Button
+  },
+  data() {
+    return {};
+  },
+  props: {
+    data: {
+      type: [Object, Array]
+    },
+    theme: {
+      type: String,
+      default: 'dark'
+    },
+    childrenKey: {
+      type: String,
+      default: 'children'
+    },
+  },
+  computed: {
+    pdClass () {
+      return [
+        'shrink-menu',
+        'shrink-menu-' + this.theme
+      ];
+    },
+    dropdownClass () {
+      return `dropdown-theme-${this.theme}`;
+    },
+    isChildren() {
+      return  this.data[this.childrenKey] &&  this.data[this.childrenKey].length;
+    }
+  },
+  methods: {
+    handleClick (name) {
+      this.$emit('on-select', name);
+    },
+    handleMenuClick (name) {
+      this.$emit('on-select', name);
+    }
+  }
 };
 </script>
 

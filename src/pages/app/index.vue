@@ -36,77 +36,77 @@ import FLFooter from './footer/';
 import Logo from './logo/';
 import auth from 'utils/auth';
 import {LAYOUT_VAR} from '@/mock/CONST';
-import PBreadcrump from 'components/Breadcrump/';
+import {PBreadcrump} from 'components';
 
 const Sider = Layout.Sider;
 const {COLLAPSED_SIDER_W, HEADER_H} = LAYOUT_VAR;
 
 export default {
-	name: 'App',
-	components: {
-		Layout,
-		Sider,
-		FLHeader,
-		Body,
-		FLFooter,
-		NavMenu,
-		Logo,
-		PBreadcrump
-	},
-	data: function() {
-		return {
-			COLLAPSED_SIDER_W,
-			HEADER_H,
-			isLogin: true,
-			isCollapsedSider: false
-		};
-	},
-	created: function() {
-		this.checkRouter();
-	},
-	mounted: function() {
-		// console.log(this.$store.state.login.state);
-		if(auth.user && auth.isLoginIn()) {
-			const data = auth.user;
-			this.$store.commit('login/LOGIN_SUCCESS', data);
-		}
-		else {
-			this.$router.push('/login');
-		}
-	},
-	computed: {
-		...mapGetters({
-			isCollapsed: 'isCollapsed',
-			layout: 'layout',
-			theme: 'theme'
-		}),
-		isShowSider () {
-			return this.layout == 'left' && this.isLogin;
-		},
-		siderClass () {
-			return `sider-${this.theme}`;
-		}
-	},
-	watch: {
-		// 如果路由有变化，会再次执行该方法
-		'$route': 'checkRouter',
-		isCollapsed: 'collapsedSider'
-	},
-	methods: {
-		checkRouter() {
-			const path = this.$route.path;
-			// console.log(path);
-			if (path === '/login' || path === '/*') {
-				this.isLogin = false;
-			}
-			else {
-				this.isLogin = true;
-			}
-		},
-		collapsedSider () {        
-			this.$refs.sider.toggleCollapse();
-		}
-	}
+  name: 'App',
+  components: {
+    Layout,
+    Sider,
+    FLHeader,
+    Body,
+    FLFooter,
+    NavMenu,
+    Logo,
+    PBreadcrump
+  },
+  data: function() {
+    return {
+      COLLAPSED_SIDER_W,
+      HEADER_H,
+      isLogin: true,
+      isCollapsedSider: false
+    };
+  },
+  created: function() {
+    this.checkRouter();
+  },
+  mounted: function() {
+    // console.log(this.$store.state.login.state);
+    if(auth.user && auth.isLoginIn()) {
+      const data = auth.user;
+      this.$store.commit('login/LOGIN_SUCCESS', data);
+    }
+    else {
+      this.$router.push('/login');
+    }
+  },
+  computed: {
+    ...mapGetters({
+      isCollapsed: 'isCollapsed',
+      layout: 'layout',
+      theme: 'theme'
+    }),
+    isShowSider () {
+      return this.layout == 'left' && this.isLogin;
+    },
+    siderClass () {
+      return `sider-${this.theme}`;
+    }
+  },
+  watch: {
+    // 如果路由有变化，会再次执行该方法
+    '$route': 'checkRouter',
+    isCollapsed: 'collapsedSider'
+  },
+  methods: {
+    checkRouter() {
+      const path = this.$route.path;
+      // console.log(path);
+      if (path === '/login' || path === '/*') {
+        this.isLogin = false;
+      }
+      else {
+        this.isLogin = true;
+      }
+    },
+    collapsedSider () {        
+      this.$refs.sider.toggleCollapse();
+    }
+  }
 };
 </script>
 

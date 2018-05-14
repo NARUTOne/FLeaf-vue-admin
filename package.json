@@ -75,6 +75,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "countup.js": "^1.9.3",
+    "echarts": "^4.1.0",
+    "element-resize-event": "^2.0.9",
     "iview": "^2.13.0",
     "mockjs": "^1.0.1-beta3",
     "screenfull": "^3.3.2",

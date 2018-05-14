@@ -1,6 +1,8 @@
 <template>
   <Content :class="bodyClass">
-    <slot />
+		<div>
+			<slot />
+		</div>
   </Content>
 </template>
 
@@ -11,21 +13,21 @@ import {Layout} from 'iview';
 const Content = Layout.Content;
 
 export default {
-	name: 'Body',
-	components: {
-		Content
-	},
-	computed: {
-		...mapGetters({
-			isFix: 'isFix'
-		}),
-		bodyClass () {
-			return [
-				'body',
-				this.isFix ? 'body-scroll': ''
-			];
-		}
-	}
+  name: 'Body',
+  components: {
+    Content
+  },
+  computed: {
+    ...mapGetters({
+      isFix: 'isFix'
+    }),
+    bodyClass () {
+      return [
+        'body',
+        this.isFix ? 'body-scroll': ''
+      ];
+    }
+  }
 };
 </script>
 
@@ -37,8 +39,16 @@ export default {
     flex-grow:1;
   }
   .body-scroll {
-    height: calc(~'100% - 120px');
-    overflow: auto;
+		position: relative;
+		> div {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			height: calc(~'100vh - 103px');
+			overflow-y: auto;
+			overflow-x:hidden; 
+		}    
   }
 </style>
 
