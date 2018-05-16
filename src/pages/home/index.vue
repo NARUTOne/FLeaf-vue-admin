@@ -29,7 +29,7 @@
 								<li v-for="(item, index) in fromInfoList" :key="'info-'+index">
 									<Row :gutter="16">
 										<Col span="4">
-											<Avatar style="background-color: #87d068" icon="person" :src="item.src"></Avatar>
+											<Avatar style="background-color: #87d068" size="large" icon="person" :src="item.src"></Avatar>
 										</Col>
 										<Col span="20">
 											<dl>
@@ -52,11 +52,12 @@
 								<Card>
 									<div class="clear-float home-reward-box">
 										<div class="left">
-											<Poptip trigger="hover" :title="item.sets + '话'" :content="item.info">
+											<Poptip trigger="hover" :title="item.career" :content="item.info">
 												<div class="home-reward-img"><img :src="item.src" alt=""></div>
 											</Poptip>
 										</div>										
 										<div class="left home-reward-num">
+											<p>{{item.name}}</p>
 											<NumCountup :number="item.reward"></NumCountup>&nbsp;$
 										</div>
 									</div>									
@@ -187,7 +188,7 @@ export default {
 		.home-reward-num {
 			font-size: 16px;
 			font-weight: 600;
-			line-height: 80px;
+			line-height: 40px;
 		}
 	}
 }

@@ -4,63 +4,107 @@
 
 const FROM_INFO = [
   {
-    src: '',
+    src: 'https://i.loli.net/2018/05/17/5afc5bb536576.jpg',
     name: '鸣人',
     info: '我的忍道，一直都是有话就说，说到做到（嘴遁😀），然后成为大家认可的火影🔥'
   },
   {
-    src: '',
+    src: 'https://i.loli.net/2018/05/17/5afc5bb53f84a.jpeg',
     name: '孙悟空',
     info: '哇，好兴奋啊 😠 , 龟 .. 派 .. 气 .. 功 .. 啊......'
   },
   {
-    src: '',
+    src: 'https://i.loli.net/2018/05/17/5afc5bb4f4230.jpg',
     name: '纳兹',
     info: '你准备好成为妖精的尾巴的敌人了吗？🔥 🐲'
   },
   {
-    src: '',
+    src: 'https://i.loli.net/2018/05/17/5afc5bb605028.jpg',
     name: '纲吉',
     info: '指环上铭刻着我们的光阴 💍，黑手党什么的，我要亲手毁灭'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/17/5afc5bb51ee12.jpg',
+    name: 'reborn',
+    info: '对我以貌取人可是会受伤的唷'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/17/5afc5bb52b0dd.jpg',
+    name: '宝宝',
+    info: '没得事，交给我，我弄死他们，不要叫宝儿姐，要叫主人'
   }
 ];
 
 const REWARDS = [
   {
-    src: '',
-    reward: 30000000,
-    sets: 96,
-    info: '打败巴基+克洛船长+克利克提督+恶龙之后海军累加的赏金'
-  },
-  {
-    src: '',
-    reward: 100000000,
-    sets: 213,
-    info: '阿拉巴斯坦事件，打败克洛克达尔'
-  },
-  {
-    src: '',
-    reward: 300000000,
-    sets: 435,
-    info: '司法岛事件，营救罗宾而大闹司法岛，烧毁政府旗帜，打败CP9，正式与世界政府为敌。'
-  },
-  {
-    src: '',
-    reward: 400000000,
-    sets: 601,
-    info: '深海大监狱、顶上战争事件，为营救艾斯，外加此前的天龙人事件。'
-  },
-  {
-    src: '',
-    reward: 500000000,
-    sets: 801,
-    info: '德雷斯罗萨事件，打败唐吉诃德·多弗朗明哥并推翻其统治国家'
-  },
-  {
-    src: '',
+    src: 'https://i.loli.net/2018/05/16/5afc4eb0ad1c7.jpg',
     reward: 1500000000,
-    sets: 903,
-    info: '蛋糕岛事件，营救山治而大闹蛋糕岛，打败夏洛特·克力架和夏洛特·卡塔库栗。'
+    name: '“草帽”蒙奇·D·路飞',
+    career: '草帽海贼团船长',
+    info: '海贼王'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/16/5afc4eb0a3dc1.jpg',
+    reward: 100,
+    name: '“驯鹿”托尼托尼·乔巴',
+    career: '草帽海贼团船医',
+    info: '【宠物】成为万能药（不管什么病都能治的医生）'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/16/5afc4eb0a5748.jpg',
+    reward: 94000000,
+    name: '“改造人”弗兰奇',
+    career: '草帽海贼团船工',
+    info: '制造出梦想之船'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/16/5afc4eb0b1fdf.jpg',
+    reward: 66000000,
+    name: '“小贼猫”娜美',
+    career: '草帽海贼团航海士',
+    info: '绘制出自己的世界地图、绘制全世界的航海图'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/16/5afc4eb0b4ee1.jpg',
+    reward: 130000000,
+    name: '“恶魔之子”妮可·罗宾',
+    career: '草帽海贼团考古学家',
+    info: '寻找真正的“历史正文”，并且在历史正文碑的指引下，到达伟大航道的尽头“拉夫德鲁”'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/16/5afc4eb0b9a2a.jpg',
+    reward: 177000000,
+    name: '“黑足”山治',
+    career: '草帽海贼团厨师',
+    info: '寻找传说中的奇迹之海－ALL BLUE'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/16/5afc4eb092c17.jpg',
+    reward: 83000000,
+    name: '“灵魂之王”布鲁克',
+    career: '草帽海贼团音乐家',
+    info: '环绕世界一周到伟大航道双子岬跟伙伴鲸鱼“拉布”重逢。'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/16/5afc4eb0bcea2.jpg',
+    reward: 200000000,
+    name: '“GOD”▪乌索普',
+    career: '草帽海贼团狙击手',
+    info: '成为勇敢的海上战士'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/16/5afc4eb0bb460.jpg',
+    reward: 320000000,
+    name: '“海贼猎人”罗罗诺亚·索隆',
+    career: '草帽海贼团剑客',
+    info: '世界第一大剑豪'
+  },
+  {
+    src: 'https://i.loli.net/2018/05/16/5afc53ebe9802.jpg',
+    reward: 250000000,
+    name: '“海侠”甚平',
+    career: '草帽海贼团舵手',
+    info: '人类和鱼人之间的共处'
   }
 ];
 
