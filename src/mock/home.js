@@ -9,7 +9,7 @@ const FROM_INFO = [
     info: '我的忍道，一直都是有话就说，说到做到（嘴遁😀），然后成为大家认可的火影🔥'
   },
   {
-    src: 'https://i.loli.net/2018/05/17/5afc5bb53f84a.jpeg',
+    src: 'https://i.loli.net/2018/05/17/5afd9803b5959.png',
     name: '孙悟空',
     info: '哇，好兴奋啊 😠 , 龟 .. 派 .. 气 .. 功 .. 啊......'
   },
@@ -19,19 +19,19 @@ const FROM_INFO = [
     info: '你准备好成为妖精的尾巴的敌人了吗？🔥 🐲'
   },
   {
-    src: 'https://i.loli.net/2018/05/17/5afc5bb605028.jpg',
+    src: 'https://i.loli.net/2018/05/17/5afd96c8bf7aa.jpg',
     name: '纲吉',
     info: '指环上铭刻着我们的光阴 💍，黑手党什么的，我要亲手毁灭'
   },
   {
     src: 'https://i.loli.net/2018/05/17/5afc5bb51ee12.jpg',
     name: 'reborn',
-    info: '对我以貌取人可是会受伤的唷'
+    info: '对我以貌取人可是会受伤的唷, reborn 🍵 '
   },
   {
     src: 'https://i.loli.net/2018/05/17/5afc5bb52b0dd.jpg',
     name: '宝宝',
-    info: '没得事，交给我，我弄死他们，不要叫宝儿姐，要叫主人'
+    info: '没得事，交给我，我弄死他们，不要叫宝儿姐，要叫主人 😉'
   }
 ];
 
