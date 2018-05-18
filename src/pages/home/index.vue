@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-		<Row :gutter="12" class-name="margin-b-2">
-			<Col :lg="8" :md="8" :xs="24">
+		<Row :gutter="8" class-name="margin-b-2">
+			<Col :lg="7" :md="8" :xs="24">
 				<Row>
 					<Col class-name='margin-b-1 home-user'>
 						<Card>
@@ -44,16 +44,21 @@
 					</Col>
 				</Row>
 			</Col>
-			<Col :lg="16" :md="16" :xs="24">
+			<Col :lg="17" :md="16" :xs="24">
 				<Row>
 					<Col class-name="home-reward">
 						<Row :gutter="12">
-							<Col span="8" v-for="(item, index) in rewards" class-name="margin-b-1" :key="'reward-'+index">
+							<Col :lg="8" :md="8" :xs="24" v-for="(item, index) in rewards" class-name="margin-b-1" :key="'reward-'+index">
 								<Card>
 									<div class="clear-float home-reward-box">
 										<div class="left">
 											<Poptip trigger="hover" :title="item.career" :content="item.info">
-												<div class="home-reward-img"><img :src="item.src" alt=""></div>
+												<div class="home-reward-img" @click="handleShowImg(item.src)">
+                          <img :src="item.src" alt="">
+                          <div class="demo-upload-list-cover">
+                            <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+                          </div>
+                        </div>
 											</Poptip>
 										</div>										
 										<div class="left home-reward-num">
@@ -86,11 +91,14 @@
         </div>        
       </Card>
     </div>
+		<Modal title="View Image" v-model="visible">
+      <img :src="imgLarge" v-if="visible" style="width: 100%; height: 500px;">
+    </Modal>
   </div>
 </template>
 
 <script>
-import {Row, Col, Card, Icon, Avatar, Poptip } from "iview";
+import {Row, Col, Card, Icon, Avatar, Poptip, Modal } from "iview";
 import {VRecharts} from 'components';
 import NumCountup from '@/pages/main-components/num-countup/';
 import {FROM_INFO, REWARDS, ONEPIECE_CHAPTERS} from '@/mock/home';
@@ -99,13 +107,15 @@ import {chaptesChart} from './chart';
 export default {
   name: "Home",
   components: {
-    Row, Col, Card, Icon, Avatar, NumCountup, Poptip, VRecharts
+    Row, Col, Card, Icon, Avatar, NumCountup, Poptip, VRecharts, Modal
   },
   data() {
     return {
       fromInfoList: FROM_INFO,
       rewards: REWARDS,
-      chaptesOption: {}
+      chaptesOption: {},
+      imgLarge: '',
+      visible: false
     };
   },
   mounted() {
@@ -115,6 +125,10 @@ export default {
     renderChaptes () {
       const chaptesOption = chaptesChart(ONEPIECE_CHAPTERS);
       this.chaptesOption = {...chaptesOption};
+    },
+    handleShowImg (src) {
+      this.visible = true;
+      this.imgLarge = src;
     }
   }
 };
@@ -138,7 +152,7 @@ export default {
 					width: 100%;
 					height: 100%;
 					vertical-align: middle;
-				}
+        }
 			}
 			.home-user-base-info {
 				padding: 8px;
@@ -173,17 +187,40 @@ export default {
 			height: 80px;
 		}
 		.home-reward-img {
-			width: 80px;
+      position: relative;
+			width: 60px;
 			height: 80px;
-			margin-right: 16px;
+			margin-right: 12px;
 			border-radius: 8px;
 			overflow: hidden;
-			border: 2px solid @flv-warn-color;
+      border: 2px solid @flv-warn-color;
+      box-shadow: 0 1px 1px rgba(0,0,0,.2);
 			img {
 				width: 100%;
 				height: 100%;
 				vertical-align: middle;
-			}
+      }
+      .demo-upload-list-cover{
+        display: none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,.6);
+        text-align: center;
+        line-height: 80px;
+      }
+      &:hover .demo-upload-list-cover{
+        display: block;
+      }
+      .demo-upload-list-cover i{
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        margin: 0 auto;
+        vertical-align: middle;
+      }
 		}
 		.home-reward-num {
 			font-size: 16px;
