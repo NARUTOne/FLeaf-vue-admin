@@ -24,11 +24,14 @@
       clearable
       placeholder="input here"
       style="width:200px"></AutoComplete>
-			<Select v-model="selectVal" :style="{width: '300px'}">
-				<Option value="null">全部</Option>
-				<Option value="1">1</Option>
-				<Option value="2">2</Option>
-			</Select>
+    <Select v-model="selectVal" :style="{width: '300px'}">
+      <Option value="null">全部</Option>
+      <Option value="1">1</Option>
+      <Option value="2">2</Option>
+    </Select>
+    <Select v-model="asynSelect" :style="{width: '300px'}">
+      <Option v-for="(item, index) in asynSelectList" :value="item.id" :key="index">{{item.name}}</Option>
+    </Select>
   </div>
 </template>
 
@@ -64,13 +67,44 @@ export default {
     return {
       value1: "",
       data1: [],
-      selectVal: 'null'
+      selectVal: 'null',
+      asynSelect: '2',
+      asynSelectList: []
     };
   },
   mounted() {
     this.$Message.info("flv");
+    this.handleAsynSelect();
   },
   methods: {
+    handleAsynSelect () {
+      setTimeout(() => {
+        this.asynSelectList = [
+          {
+            id: '0',
+            name: 'label-0'
+          },
+          {
+            id: '1',
+            name: 'label-1'
+          },
+          {
+            id: '2',
+            name: 'label-2'
+          },
+          {
+            id: '3',
+            name: 'label-3'
+          },
+          {
+            id: '4',
+            name: 'label-4'
+          }
+        ];
+        this.asynSelect = '1';
+      }, 600);
+      // this.asynSelect = '1';
+    },
     showMessage() {
       console.log(1);
       this.$Message.success("$Message:");
