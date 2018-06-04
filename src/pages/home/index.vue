@@ -75,7 +75,7 @@
 							<p slot="title">
 								<Icon type="flag"></Icon>&nbsp;伙伴及大事件
 							</p>
-							<div class="chart-box"></div>
+							<div class="chart-box"><BubbleRelation :options="strawBubble"></BubbleRelation></div>
 						</Card>
 					</Col>
 				</Row>
@@ -99,7 +99,7 @@
 
 <script>
 import {Row, Col, Card, Icon, Avatar, Poptip, Modal } from "iview";
-import {VRecharts} from 'components';
+import {VRecharts, BubbleRelation} from 'components';
 import NumCountup from '@/pages/main-components/num-countup/';
 import {FROM_INFO, REWARDS, ONEPIECE_CHAPTERS} from '@/mock/home';
 import {chaptesChart} from './chart';
@@ -107,21 +107,33 @@ import {chaptesChart} from './chart';
 export default {
   name: "Home",
   components: {
-    Row, Col, Card, Icon, Avatar, NumCountup, Poptip, VRecharts, Modal
+    Row, Col, Card, Icon, Avatar, NumCountup, Poptip, VRecharts, Modal, BubbleRelation
   },
   data() {
     return {
       fromInfoList: FROM_INFO,
       rewards: REWARDS,
+      strawBubble: {
+        data: []
+      },
       chaptesOption: {},
       imgLarge: '',
       visible: false
     };
   },
   mounted() {
+    this.init();
     this.renderChaptes();
   },
   methods: {
+    init () {
+      const arr = REWARDS.map(item => {
+        item.text = item.name;
+        item.count = item.reward;
+        return item;
+      });
+      this.strawBubble.data = [...arr];
+    },
     renderChaptes () {
       const chaptesOption = chaptesChart(ONEPIECE_CHAPTERS);
       this.chaptesOption = {...chaptesOption};

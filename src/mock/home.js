@@ -223,6 +223,7 @@ const ONEPIECE_CHAPTERS = [
   }
 ];
 
+
 export {
   FROM_INFO,
   REWARDS,

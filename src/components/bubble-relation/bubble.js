@@ -15,13 +15,15 @@ class bubble {
   init () {
     const {container, options} = this.props;
     this.container = container;
-    this.W = this.container.innerWidth;
-    this.H = this.container.innerHeight;
+    if(!container) return;
+    this.W = this.container.offsetWidth || 600;
+    this.H = this.container.offsetHeight || 600;
 
     const MIN_SIZE = Math.min(this.W, this.H);
-    const defaultConfigs = {
+    const defaultConfig = {
       colors: [],
       plugins: [],
+      data: [],
       viewBoxSize: [this.W, this.H],
       innerRadius: MIN_SIZE/6, // 内半径
       outerRadius: MIN_SIZE/4, // 外半径
@@ -29,12 +31,14 @@ class bubble {
       radiusMax: (MIN_SIZE/4 - MIN_SIZE/6) / 2, 
       duration: 1000,
       intersectDelta: 0, // 圆之间的交点
-      intersectInc: 0 // intersectDelta的增量
+      intersectInc: 0, // intersectDelta的增量
+      transitDuration: 1000
     };
-    this.configs = Object.assign({}, defaultConfigs, options);
-
+    this.config = Object.assign({}, defaultConfig, options);
+    if(!this.config.data.length) return;
+    console.log(this.config.data);
     this.setup();
-    this.registerClickEvent(self.getNodes());
+    this.registerClickEvent(this.getNodes());
     this.moveToCentral(d3.select(".node"));
   }
 
@@ -70,6 +74,10 @@ class bubble {
     return this.circlePositions;
   }
 
+  getNodes () {
+    return this.svg.selectAll(".node");
+  }
+
   get () {
     return this.svg;
   }
@@ -82,23 +90,29 @@ class bubble {
     this.centralPointX = this.W / 2;
     this.centralPointY = this.H / 2;
     this.intervalMax = this.W * this.Y; // 最大间距
-    this.items = config.data.items; // 数据量
+    this.items = config.data || []; // 数据量
     this.values = this.getValues();
-    this.valueMax = this.values.max();
+    this.valueMax = Math.max(this.values);
     this.transition = {};
-    this.svg = d3.select(config.container).append("svg")
-      .attr({preserveAspectRatio: "xMidYMid", width: this.W, height: this.H, class: "bubbleChartSvg"})
+
+    d3.select(this.container).html('');
+    this.svg = d3.select(this.container)
+      .append("svg")
+      .attr('preserveAspectRatio', 'xMidYMid')
+      .attr('width', this.W)
+      .attr('height', this.H)
+      .attr('class', 'bubbleChartSvg')
       .attr("viewBox", () => {return ["0 0", config.viewBoxSize[0], config.viewBoxSize[1]].join(" ");});
     
     this.circlePositions = this.randomCirclesPos(config.intersectDelta);
-
+    console.log(this.circlePositions);
     const fnColor = d3.scaleOrdinal(d3.schemeCategory20c);
-    const node = self.svg.selectAll(".node")
+    const node = this.svg.selectAll(".node")
       .data(self.circlePositions)
       .enter().append("g")
-      .attr("class", function (d) {
-        const className = d.item.text.split(" ").join("");
-        return ["node", className].join(" ");
+      .attr("class", () => {
+        // const className = d.item.text.split(" ").join("");
+        return "node";
       });
     node.append("circle")
       .attr({r: function (d) {return d.r;}, cx: function (d) {return d.cx;}, cy: function (d) {return d.cy;}})
@@ -115,11 +129,11 @@ class bubble {
     const self = this;
     const circles = [];
     let interval = 0;
-    const options = self.config;
+    const config = self.config;
     while (circles.length < self.items.length && ++interval < self.intervalMax) {
       const val = self.values[circles.length];
-      const rad = Math.max((val * options.radiusMax) / self.valueMax, options.radiusMin);
-      const dist = self.innerRadius + rad + Math.random() * (self.outerRadius - self.innerRadius - rad * 2);
+      const rad = Math.max((val * config.radiusMax) / self.valueMax, config.radiusMin);
+      const dist = self.config.innerRadius + rad + Math.random() * (self.outerRadius - self.config.innerRadius - rad * 2);
       const angle = Math.random() * self.P2;
       const cx = self.centralPointX + dist * Math.cos(angle);
       const cy = self.centralPointY + dist * Math.sin(angle);
@@ -139,20 +153,20 @@ class bubble {
       }
     }
     if (circles.length < self.items.length) {
-      if (delta === options.radiusMin) {
+      if (delta === config.radiusMin) {
         throw {
           message: "Not enough space for all bubble. Please change the options.",
-          options: options
+          options: config
         };
       }
-      return self.randomCirclesPositions(delta + options.intersectInc);
+      return self.randomCirclesPos(delta + config.intersectInc);
     }
     return shuffle(circles);
   }
 
   moveToCentral (node) {
     const self = this;
-    const toCentralPoint = d3.svg.transform()
+    const toCentralPoint = this.svg.transform()
       .translate(function (d) {
         // var cx = node.select('circle').attr("cx");
         var dx = self.centralPoint - d.cx;
@@ -169,7 +183,7 @@ class bubble {
 
   moveToReflection (node, swapped) {
     const self = this;
-    const toReflectionPoint = d3.svg.transform()
+    const toReflectionPoint = this.svg.transform()
       .translate(function (d) {
         const dx = 2 * (self.centralPoint - d.cx);
         const dy = 2 * (self.centralPoint - d.cy);

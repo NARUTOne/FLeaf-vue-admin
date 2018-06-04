@@ -1,4 +1,7 @@
 
+const isObject = obj => Object.prototype.toString.call(obj) === '[object Object]';
+const isArray = arr => Array.isArray(arr);
+
 // 千分符
 const numPoints = (str) => {
   str = str+'';
@@ -239,6 +242,8 @@ const util = function () {
 };
 
 util.prototype = {
+  isObject,
+  isArray,
   numPoints,
   emptyObj,
   toDouble,

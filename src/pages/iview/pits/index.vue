@@ -32,11 +32,19 @@
     <Select v-model="asynSelect" :style="{width: '300px'}">
       <Option v-for="(item, index) in asynSelectList" :value="item.id" :key="index">{{item.name}}</Option>
     </Select>
+    <Form ref="formValidate" :model="formValidate">
+      <FormItem prop="date"><DatePicker type="date" placeholder="贷款到日" v-model="formValidate.date"></DatePicker></FormItem>
+      <FormItem prop="date2"><DatePicker :editable="false" v-model="formValidate.date2" type="daterange" placeholder="选择日期"></DatePicker></FormItem>
+    </Form>
+    <Button @click="handleReset">重置</Button>
   </div>
 </template>
 
 <script>
 import {
+  Form,
+  FormItem,
+  DatePicker,
   Icon,
   Spin,
   Button,
@@ -61,7 +69,10 @@ export default {
     DropdownItem,
     AutoComplete,
     Select,
-    Option
+    Option,
+    Form,
+    FormItem,
+    DatePicker
   },
   data() {
     return {
@@ -69,7 +80,11 @@ export default {
       data1: [],
       selectVal: 'null',
       asynSelect: '2',
-      asynSelectList: []
+      asynSelectList: [],
+      formValidate: {
+        date: '',
+        date2: ''
+      }
     };
   },
   mounted() {
@@ -77,6 +92,11 @@ export default {
     this.handleAsynSelect();
   },
   methods: {
+    handleReset () {
+      this.$refs['formValidate'].resetFields();
+      this.formValidate.date = '';
+      this.formValidate.date2 = '';
+    },
     handleAsynSelect () {
       setTimeout(() => {
         this.asynSelectList = [
@@ -101,9 +121,9 @@ export default {
             name: 'label-4'
           }
         ];
-        this.asynSelect = '1';
+        // this.asynSelect = '1';
       }, 600);
-      // this.asynSelect = '1';
+      this.asynSelect = '1';
     },
     showMessage() {
       console.log(1);
