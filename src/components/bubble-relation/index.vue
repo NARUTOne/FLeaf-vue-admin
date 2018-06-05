@@ -5,7 +5,6 @@
 <script>
 import bubble from './bubble';
 import lines from './plugins/lines';
-import centralEvent from './plugins/central-event';
 
 export default {
   name: 'BubbleRelation',
@@ -39,33 +38,16 @@ export default {
       const container = this.$refs['bubble'];
       if(!container) return;
       const defaultOptions = {
+        radiusMin: 50,
         data: [],
         plugins: [
-          {
-            name: "central-click",
-            options: {
-              text: "(See more detail)",
-              style: {
-                "font-size": "12px",
-                "font-style": "italic",
-                "font-family": "Source Sans Pro, sans-serif",
-                // "font-weight": "700",
-                "text-anchor": "middle",
-                "fill": "white"
-              },
-              attr: {dy: "65px"},
-              centralClick: function() {
-                alert("Here is more details!!");
-              }
-            }
-          },
           {
             name: "lines",
             options: {
               format: [
                 {// Line #0
                   textField: "count",
-                  classed: {count: true},
+                  classed: 'count',
                   style: {
                     "font-size": "28px",
                     "font-family": "Source Sans Pro, sans-serif",
@@ -80,7 +62,7 @@ export default {
                 },
                 {// Line #1
                   textField: "text",
-                  classed: {text: true},
+                  classed: 'text',
                   style: {
                     "font-size": "14px",
                     "font-family": "Source Sans Pro, sans-serif",
@@ -109,26 +91,36 @@ export default {
         ]
       };
       this.opt = Object.assign({}, defaultOptions, options);
-
+      console.time('renderbubble');
       this.renderBubble(this.opt, container);
+      console.timeEnd("renderbubble");
     },
     renderBubble (options, container) {
-      const {plugins} = options;
-      const centralFormat = options.plugins;
-      const linePlugin = plugins.filter(item => item.name === 'lines');
-      const centralEventPlugin = plugins.filter(item => item.name === 'central-click');
-      linePlugin.centralFormat = Object.assign(centralFormat, {});
-      
+      const self = this;
       const obj = {options, container};
-      new bubble(obj);
+      const bubbleClass = new bubble(obj);
+      bubbleClass.init().then(() => {
+        self.renderPlugins(options);
+      });
+    },
+    renderPlugins (options) {
+      const {plugins, centralFormat} = options;
+      const linePlugin = plugins.filter(item => item.name === 'lines')[0].options;
+      linePlugin.centralFormat = Object.assign(centralFormat, {});
+
       new lines(linePlugin);
-      new centralEvent(centralEventPlugin);
     }
   }
 };
 </script>
 
 <style lang="less" scoped>
-
+.bubble-relatoin {
+  height: 100%;
+  position: relative;
+  svg {
+      display: block;
+  }
+}
 </style>
 

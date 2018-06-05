@@ -39,6 +39,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc4eb0ad1c7.jpg',
     reward: 1500000000,
+    auth: 100,
     name: '“草帽”蒙奇·D·路飞',
     career: '草帽海贼团船长',
     info: '海贼王'
@@ -46,6 +47,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc4eb0a3dc1.jpg',
     reward: 100,
+    auth: 60,
     name: '“驯鹿”托尼托尼·乔巴',
     career: '草帽海贼团船医',
     info: '【宠物】成为万能药（不管什么病都能治的医生）'
@@ -53,6 +55,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc4eb0a5748.jpg',
     reward: 94000000,
+    auth: 78,
     name: '“改造人”弗兰奇',
     career: '草帽海贼团船工',
     info: '制造出梦想之船'
@@ -60,6 +63,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc4eb0b1fdf.jpg',
     reward: 66000000,
+    auth: 70,
     name: '“小贼猫”娜美',
     career: '草帽海贼团航海士',
     info: '绘制出自己的世界地图、绘制全世界的航海图'
@@ -67,6 +71,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc4eb0b4ee1.jpg',
     reward: 130000000,
+    auth: 76,
     name: '“恶魔之子”妮可·罗宾',
     career: '草帽海贼团考古学家',
     info: '寻找真正的“历史正文”，并且在历史正文碑的指引下，到达伟大航道的尽头“拉夫德鲁”'
@@ -74,6 +79,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc4eb0b9a2a.jpg',
     reward: 177000000,
+    auth: 86,
     name: '“黑足”山治',
     career: '草帽海贼团厨师',
     info: '寻找传说中的奇迹之海－ALL BLUE'
@@ -81,6 +87,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc4eb092c17.jpg',
     reward: 83000000,
+    auth: 78,
     name: '“灵魂之王”布鲁克',
     career: '草帽海贼团音乐家',
     info: '环绕世界一周到伟大航道双子岬跟伙伴鲸鱼“拉布”重逢。'
@@ -88,6 +95,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc4eb0bcea2.jpg',
     reward: 200000000,
+    auth: 80,
     name: '“GOD”▪乌索普',
     career: '草帽海贼团狙击手',
     info: '成为勇敢的海上战士'
@@ -95,6 +103,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc4eb0bb460.jpg',
     reward: 320000000,
+    auth: 92,
     name: '“海贼猎人”罗罗诺亚·索隆',
     career: '草帽海贼团剑客',
     info: '世界第一大剑豪'
@@ -102,6 +111,7 @@ const REWARDS = [
   {
     src: 'https://i.loli.net/2018/05/16/5afc53ebe9802.jpg',
     reward: 250000000,
+    auth: 90,
     name: '“海侠”甚平',
     career: '草帽海贼团舵手',
     info: '人类和鱼人之间的共处'

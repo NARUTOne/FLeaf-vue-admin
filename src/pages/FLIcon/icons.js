@@ -20,7 +20,7 @@ const ICONS_LIST = [
     title: '旅游'
   },
   {
-    name: 'home-big',
+    name: 'homebig',
     title: '房子'
   },
   {
