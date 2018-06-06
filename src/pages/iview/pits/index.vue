@@ -1,47 +1,65 @@
 <template>
   <div class="iview-pits">
-    <h1>FLV &nbsp; <FLIcon type='travel'/></h1>
-    <h2 class='home-hi'><Spin size="large" fix/> hello, world ! </h2>
-    <p class="home-text"><Icon type='ionic' /> &nbsp; &nbsp;welcome! Fire Leaf Vue Scaffold !</p>
-    <Button type="success" @click="showMessage">$Message 测试</Button>
-    <Dropdown placement="right">
-      <a href="javascript:void(0)">
-        下拉菜单
-        <Icon type="arrow-down-b"></Icon>
-      </a>
-      <DropdownMenu slot="list">
-        <DropdownItem>驴打滚</DropdownItem>
-        <DropdownItem>炸酱面</DropdownItem>
-        <DropdownItem disabled>豆汁儿</DropdownItem>
-        <DropdownItem>冰糖葫芦</DropdownItem>
-        <DropdownItem divided>北京烤鸭</DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
-    <AutoComplete
-      v-model="value1"
-      :data="data1"
-      @on-search="handleSearch1"
-      clearable
-      placeholder="input here"
-      style="width:200px"></AutoComplete>
-    <Select v-model="selectVal" :style="{width: '300px'}">
-      <Option value="null">全部</Option>
-      <Option value="1">1</Option>
-      <Option value="2">2</Option>
-    </Select>
-    <Select v-model="asynSelect" :style="{width: '300px'}">
-      <Option v-for="(item, index) in asynSelectList" :value="item.id" :key="index">{{item.name}}</Option>
-    </Select>
-    <Form ref="formValidate" :model="formValidate">
-      <FormItem prop="date"><DatePicker type="date" placeholder="贷款到日" v-model="formValidate.date"></DatePicker></FormItem>
-      <FormItem prop="date2"><DatePicker :editable="false" v-model="formValidate.date2" type="daterange" placeholder="选择日期"></DatePicker></FormItem>
-    </Form>
-    <Button @click="handleReset">重置</Button>
+    <Row :gutter="8">
+      <Col :md="12" :xs="24">
+        <Demo>
+          <div slot="header">AutoComputed-async</div>
+          <div slot="body">
+            <AutoComplete
+              v-model="value1"
+              :data="data1"
+              @on-search="handleSearch1"
+              clearable
+              placeholder="input here"
+              style="width:200px">
+            </AutoComplete>
+          </div>
+          <div slot="footer">
+            <Doc>
+              <DocLine warn>异步数据展示，不展开下拉</DocLine>
+              <DocLine>解决：设置默认值<code>{{'[""]'}}</code></DocLine>
+            </Doc>
+          </div>
+        </Demo>
+      </Col>
+      <Col :md="12" :xs="24">
+        <Demo>
+          <div slot="header"></div>
+          <div slot="body">
+            <Select v-model="selectVal" :style="{width: '300px'}">
+              <Option value="null">全部</Option>
+              <Option value="1">1</Option>
+              <Option value="2">2</Option>
+            </Select>
+            <Select v-model="asynSelect" :style="{width: '300px'}">
+              <Option v-for="(item, index) in asynSelectList" :value="item.id" :key="index">{{item.name}}</Option>
+            </Select>
+            <Button @click="handleAsynSelect">异步数据</Button>
+          </div>
+          <div slot="footer"></div>
+        </Demo>
+      </Col>
+      <Col :md="12" :xs="24">
+        <Demo>
+          <div slot="header">Form-reset-datePicker</div>
+          <div slot="body">
+            <Form ref="formValidate" :model="formValidate">
+              <FormItem prop="date"><DatePicker type="date" placeholder="贷款到日" v-model="formValidate.date"></DatePicker></FormItem>
+              <FormItem prop="date2"><DatePicker :editable="false" v-model="formValidate.date2" type="daterange" placeholder="选择日期"></DatePicker></FormItem>
+            </Form>
+            <Button @click="handleReset">重置</Button>
+          </div>
+          <div slot="footer"></div>
+        </Demo>
+      </Col>
+    </Row>
   </div>
 </template>
 
 <script>
+import {Demo, Doc, DocLine} from '@/components/';
 import {
+  Row, Col,
   Form,
   FormItem,
   DatePicker,
@@ -60,6 +78,7 @@ import { FLIcon } from "components";
 export default {
   name: "IviewPits",
   components: {
+    Row, Col,
     Icon,
     Spin,
     FLIcon,
@@ -72,14 +91,15 @@ export default {
     Option,
     Form,
     FormItem,
-    DatePicker
+    DatePicker,
+    Demo, Doc, DocLine
   },
   data() {
     return {
       value1: "",
       data1: [],
       selectVal: 'null',
-      asynSelect: '2',
+      asynSelect: '',
       asynSelectList: [],
       formValidate: {
         date: '',
@@ -88,8 +108,7 @@ export default {
     };
   },
   mounted() {
-    this.$Message.info("flv");
-    this.handleAsynSelect();
+    this.$Message.info("iview-message");
   },
   methods: {
     handleReset () {
@@ -121,14 +140,9 @@ export default {
             name: 'label-4'
           }
         ];
-        // this.asynSelect = '1';
+        this.asynSelect = '1';
       }, 600);
-      this.asynSelect = '1';
-    },
-    showMessage() {
-      console.log(1);
-      this.$Message.success("$Message:");
-      this.$Message.error("hello world");
+      // this.asynSelect = '1';
     },
     handleSearch1(value) {
       if (!value) {
@@ -150,17 +164,6 @@ export default {
 @import "~utils/style/variables.less";
 
 .iview-pits {
-  text-align: center;
-  padding-top: 15%;
-  .home-hi {
-    position: relative;
-    font-size: 30px;
-    color: @flv-warn-color;
-  }
-  .home-text {
-    font-size: 16px;
-    color: @flv-default-color;
-  }
 }
 </style>
 
