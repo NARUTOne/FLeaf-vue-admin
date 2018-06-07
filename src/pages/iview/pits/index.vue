@@ -16,7 +16,7 @@
           </div>
           <div slot="footer">
             <Doc>
-              <DocLine warn>异步数据展示，不展开下拉</DocLine>
+              <DocLine type="bug">异步数据展示，不展开下拉</DocLine>
               <DocLine>解决：设置默认值<code>{{'[""]'}}</code></DocLine>
             </Doc>
           </div>
@@ -36,9 +36,16 @@
             </Select>
             <Button @click="handleAsynSelect">异步数据</Button>
           </div>
-          <div slot="footer"></div>
+          <div slot="footer">
+            <Doc>
+              <DocLine type="bug">异步数据展示，下拉设置默认初始值，匹配不上</DocLine>
+              <DocLine><a href="https://github.com/iview/iview/issues/3722">Asynchronous creation of [Bug Report]select filterable #3722</a></DocLine>
+            </Doc>
+          </div>
         </Demo>
       </Col>
+    </Row>
+    <Row :gutter="8">
       <Col :md="12" :xs="24">
         <Demo>
           <div slot="header">Form-reset-datePicker</div>
@@ -49,7 +56,36 @@
             </Form>
             <Button @click="handleReset">重置</Button>
           </div>
-          <div slot="footer"></div>
+          <div slot="footer">
+            <Doc>
+              <DocLine type="bug"><code>DatePicker</code>类型为 daterange 无法重置输入的值，可以重置选择的日期</DocLine>
+              <DocLine>解决：设置<code>editable:false</code></DocLine>
+            </Doc>
+          </div>
+        </Demo>
+      </Col>
+      <Col :md="12" :xs="24">
+        <Demo>
+          <div slot="header">Select-if</div>
+          <div slot="body">
+            <Select v-model="statisMode" style="width: 300px" placeholder="请选择统计方式" v-if="switch1">
+              <Option value="1">32</Option>
+              <Option value="2">汇总同评分不区分版本</Option>
+              <Option value="3">区分评分和版本</Option>
+            </Select>
+            <Select v-model="statisMode" style="width: 300px" placeholder="请选择统计方式" v-else>
+              <Option value="4">122</Option>
+              <Option value="5">汇总本</Option>
+              <Option value="6">区分版本</Option>
+            </Select>
+            <iSwitch v-model="switch1" @on-change="handleSwitchchange"></iSwitch>
+          </div>
+          <div slot="footer">
+            <Doc>
+              <DocLine type="bug"><code>v-if</code>进行选择渲染 <code>select</code> 在同 <code>v-model</code>下，出现选中文本错乱显示</DocLine>
+              <DocLine>解决：改为<code>v-show</code> 或 采用 <code>data</code> 循环渲染</DocLine>
+            </Doc>
+          </div>
         </Demo>
       </Col>
     </Row>
@@ -71,7 +107,7 @@ import {
   DropdownItem,
   AutoComplete,
   Select,
-  Option
+  Option, Switch
 } from "iview";
 import { FLIcon } from "components";
 
@@ -92,7 +128,8 @@ export default {
     Form,
     FormItem,
     DatePicker,
-    Demo, Doc, DocLine
+    Demo, Doc, DocLine,
+    'iSwitch': Switch 
   },
   data() {
     return {
@@ -104,7 +141,9 @@ export default {
       formValidate: {
         date: '',
         date2: ''
-      }
+      },
+      statisMode: '',
+      switch1: false
     };
   },
   mounted() {
@@ -155,6 +194,9 @@ export default {
             : [value + "32", value + value, value + value + value];
         }, 500);
       }
+    },
+    handleSwitchchange (bol) {
+      this.switch1 = bol;
     }
   }
 };
@@ -164,6 +206,9 @@ export default {
 @import "~utils/style/variables.less";
 
 .iview-pits {
+  > div {
+    margin-bottom: 8px;
+  }
 }
 </style>
 

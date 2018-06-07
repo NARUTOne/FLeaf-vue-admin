@@ -8,16 +8,16 @@
 export default {
   name: 'DocLine',
   props: {
-    warn: {
-      type: Boolean,
-      default: false
+    type: {
+      type: String,
+      default: 'text' // text, warn, bug
     }
   },
   computed: {
     warnClass () {
       return [
         'doc-line',
-        this.warn? 'doc-warn' : 'doc-default'
+        this.type === 'warn' ? 'doc-warn' : this.type === 'bug' ? 'doc-bug' : 'doc-default'
       ];
     }
   }
@@ -27,7 +27,7 @@ export default {
 <style lang="less" scoped>
   .doc-line {
     position: relative;
-    padding: 8px 16px 8px;
+    padding: 8px 16px 8px 20px;
     line-height: 1.2;
     pre {
       display: block;
@@ -56,12 +56,23 @@ export default {
     }
   }
   .doc-warn {
+    background-color: rgba(236, 193, 113, 0.6);
+    &::before {
+      content: '❗';
+      position: absolute;
+      top: 8px;
+      left: 3px;
+      z-index: 9;
+    }
+  }
+
+  .doc-bug {
     background-color: rgba(236, 117, 113, 0.6);
     &::before {
-      content: '🔸';
+      content: '❓';
       position: absolute;
-      top: 10px;
-      left: 0;
+      top: 8px;
+      left: 1px;
       z-index: 9;
     }
   }

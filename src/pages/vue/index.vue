@@ -40,7 +40,11 @@
             <Doc>
               <DocLine><code>v-if</code>惰性的、条件渲染，监听进行销毁和重建</DocLine>
               <DocLine><code>v-show</code>条件显隐，监听进行css显隐切换</DocLine>
-              <DocLine warn><code>v-show</code>不支持 <code>{{'template'}}</code> 元素，也不支持 <code>v-else</code></DocLine>
+              <DocLine>
+                一般来说，<code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。
+                因此，如果需要非常频繁地切换，则使用 <code>v-show</code> 较好；如果在运行时条件很少改变，则使用 <code>v-if</code> 较好。
+              </DocLine>
+              <DocLine type="warn"><code>v-show</code>不支持 <code>{{'template'}}</code> 元素，也不支持 <code>v-else</code></DocLine>
             </Doc>
           </p>
         </Demo>
