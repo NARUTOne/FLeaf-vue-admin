@@ -56,7 +56,7 @@
 												<div class="home-reward-img" @click="handleShowImg(item.src)">
                           <img :src="item.src" alt="">
                           <div class="demo-upload-list-cover">
-                            <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+                            <Icon type="ios-eye-outline"></Icon>
                           </div>
                         </div>
 											</Poptip>
