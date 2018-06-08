@@ -15,14 +15,21 @@
           </div>
           <NavMenu :isCollapsed="isCollapsed" :layout="layout" :theme="theme"/>
         </Sider>
-        <Layout>
-          <FLHeader v-show="isLogin"/>
-          <Body :style="{width: bodyWidth + 'px'}">
-						<PBreadcrump></PBreadcrump>
-						<div class="body-content"><router-view></router-view></div>	
-					</Body>
-          <FLFooter />
-        </Layout>    
+        <template>
+          <Layout v-if="isLogin">
+            <FLHeader />
+            <Body :style="{width: bodyWidth + 'px'}">
+              <PBreadcrump ></PBreadcrump>
+              <div class="body-content"><router-view></router-view></div>	
+            </Body>
+            <FLFooter />
+          </Layout>
+          <Layout v-else>
+            <Body :style="{width: bodyWidth + 'px'}">
+              <router-view></router-view>
+            </Body>
+          </Layout>
+        </template>
       </Layout>
     </div>    
   </div>
@@ -178,8 +185,8 @@ export default {
 		}
 	}
 	.body-content {
-		padding: 8px;
-		>div {
+    padding: 8px;
+		> div {
 			padding: 8px;
 			border-radius: 6px;
 			border: 1px solid #efefef;

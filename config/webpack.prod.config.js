@@ -13,13 +13,13 @@ const PATHS = require('../script/PATHS');
 const baseConfig = require('./webpack.base.config.js');
 const pnamePath = PATHS.PName ? (PATHS.PName + '/').replace(/\/\//, '/') : '' ;
 
-
 const webpackConfig = merge(baseConfig, {
   mode: 'production',
   entry: {
     vendor: ['vue', 'vue-router']
   },
   output: {
+    publicPath: PATHS.build.assetsPublicPath,
     filename: pnamePath +'static/js/[name].[chunkhash:8].js'
   },
   module: {
@@ -41,8 +41,8 @@ const webpackConfig = merge(baseConfig, {
     }),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, PATHS.build.buildPath, 'index.html'),
-      template: 'template.html',
-      inject: true, // 注入
+      template: 'template.ejs',
+      inject: false, // 注入
       favicon: utils.resolve('favicon.ico'),
       minify: {
         removeComments: true, // 带HTML注释

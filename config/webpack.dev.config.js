@@ -37,8 +37,8 @@ module.exports = merge.smart(baseConfig, {
     new webpack.HotModuleReplacementPlugin(), // 启用HMR
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'template.html',
-      inject: true,
+      template: 'template.ejs',
+      inject: false,
       favicon: utils.resolve('favicon.ico')
     })
   ]

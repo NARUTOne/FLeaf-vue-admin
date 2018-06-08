@@ -37,6 +37,12 @@ export default {
     flex-direction: column;
     -webkit-flex-grow:1;
     flex-grow:1;
+    > div {
+      display: flex;
+      flex-direction: column;
+      -webkit-flex-grow:1;
+      flex-grow:1;
+    }
   }
   .body-scroll {
 		position: relative;
