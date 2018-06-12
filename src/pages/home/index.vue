@@ -56,7 +56,7 @@
 												<div class="home-reward-img" @click="handleShowImg(item.src)">
                           <img :src="item.src" alt="">
                           <div class="demo-upload-list-cover">
-                            <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+                            <Icon type="ios-eye-outline"></Icon>
                           </div>
                         </div>
 											</Poptip>
@@ -73,9 +73,11 @@
 					<Col>
 						<Card>
 							<p slot="title">
-								<Icon type="flag"></Icon>&nbsp;伙伴及大事件
+								🔥&nbsp;海贼篇章燃力值
 							</p>
-							<div class="chart-box"></div>
+							<div class="chart-box">
+								<VRecharts :options="chaptesOption"></VRecharts>
+							</div>        
 						</Card>
 					</Col>
 				</Row>
@@ -83,13 +85,14 @@
 		</Row>
     <div>
       <Card>
-        <p slot="title">
-          🔥&nbsp;海贼篇章燃力值
-        </p>
-        <div class="chart-box">
-          <VRecharts :options="chaptesOption"></VRecharts>
-        </div>        
-      </Card>
+				<p slot="title">
+					<Icon type="flag"></Icon>&nbsp;伙伴及大事件
+				</p>
+				<div class="chart-box2 spin-fix">
+          <Spin fix v-if="isBubbleLoading"></Spin>
+          <BubbleRelation v-else :options="strawBubble"></BubbleRelation>
+        </div>
+			</Card>
     </div>
 		<Modal title="View Image" v-model="visible">
       <img :src="imgLarge" v-if="visible" style="width: 100%; height: 500px;">
@@ -98,8 +101,8 @@
 </template>
 
 <script>
-import {Row, Col, Card, Icon, Avatar, Poptip, Modal } from "iview";
-import {VRecharts} from 'components';
+import {Spin, Row, Col, Card, Icon, Avatar, Poptip, Modal } from "iview";
+import {VRecharts, BubbleRelation} from 'components';
 import NumCountup from '@/pages/main-components/num-countup/';
 import {FROM_INFO, REWARDS, ONEPIECE_CHAPTERS} from '@/mock/home';
 import {chaptesChart} from './chart';
@@ -107,21 +110,40 @@ import {chaptesChart} from './chart';
 export default {
   name: "Home",
   components: {
-    Row, Col, Card, Icon, Avatar, NumCountup, Poptip, VRecharts, Modal
+    Spin, Row, Col, Card, Icon, Avatar, NumCountup, Poptip, VRecharts, Modal, BubbleRelation
   },
   data() {
     return {
+      isBubbleLoading: true,
       fromInfoList: FROM_INFO,
       rewards: REWARDS,
+      strawBubble: {
+        data: []
+      },
       chaptesOption: {},
       imgLarge: '',
       visible: false
     };
   },
   mounted() {
-    this.renderChaptes();
+    this.init();
   },
   methods: {
+    init () {
+      this.renderBubble();
+      this.renderChaptes();
+    },
+    renderBubble () {
+      setTimeout(() => {
+        const arr = REWARDS.map(item => {
+          item.text = item.name;
+          item.count = item.auth || 60;
+          return item;
+        });
+        this.strawBubble.data = [...arr];
+        this.isBubbleLoading = false;
+      }, 500);
+    },
     renderChaptes () {
       const chaptesOption = chaptesChart(ONEPIECE_CHAPTERS);
       this.chaptesOption = {...chaptesOption};

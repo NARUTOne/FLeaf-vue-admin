@@ -16,6 +16,9 @@ const LayoutRem= () => import('@/pages/layout/rem/');
 const Iview = () => import('@/pages/iview/');
 const IviewPits = () => import('@/pages/iview/pits/');
 
+// vue
+const Vue = () => import('@/pages/vue/');
+
 // icons
 const FLIcon = () => import('@/pages/FLIcon/');
 
@@ -83,6 +86,15 @@ export default [
             title: '填坑'
           },
         }]
+      },
+      {
+        // vue
+        path: 'vue',
+        name: 'vue',
+        component: Vue,
+        meta: {
+          title: 'vue'
+        },
       },
       {
         path: 'flicons',

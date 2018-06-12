@@ -1,42 +1,104 @@
 <template>
   <div class="iview-pits">
-    <h1>FLV &nbsp; <FLIcon type='travel'/></h1>
-    <h2 class='home-hi'><Spin size="large" fix/> hello, world ! </h2>
-    <p class="home-text"><Icon type='ionic' /> &nbsp; &nbsp;welcome! Fire Leaf Vue Scaffold !</p>
-    <Button type="success" @click="showMessage">$Message 测试</Button>
-    <Dropdown placement="right">
-      <a href="javascript:void(0)">
-        下拉菜单
-        <Icon type="arrow-down-b"></Icon>
-      </a>
-      <DropdownMenu slot="list">
-        <DropdownItem>驴打滚</DropdownItem>
-        <DropdownItem>炸酱面</DropdownItem>
-        <DropdownItem disabled>豆汁儿</DropdownItem>
-        <DropdownItem>冰糖葫芦</DropdownItem>
-        <DropdownItem divided>北京烤鸭</DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
-    <AutoComplete
-      v-model="value1"
-      :data="data1"
-      @on-search="handleSearch1"
-      clearable
-      placeholder="input here"
-      style="width:200px"></AutoComplete>
-    <Select v-model="selectVal" :style="{width: '300px'}">
-      <Option value="null">全部</Option>
-      <Option value="1">1</Option>
-      <Option value="2">2</Option>
-    </Select>
-    <Select v-model="asynSelect" :style="{width: '300px'}">
-      <Option v-for="(item, index) in asynSelectList" :value="item.id" :key="index">{{item.name}}</Option>
-    </Select>
+    <Row :gutter="8">
+      <Col :md="12" :xs="24">
+        <Demo>
+          <div slot="header">AutoComputed-async</div>
+          <div slot="body">
+            <AutoComplete
+              v-model="value1"
+              :data="data1"
+              @on-search="handleSearch1"
+              clearable
+              placeholder="input here"
+              style="width:200px">
+            </AutoComplete>
+          </div>
+          <div slot="footer">
+            <Doc>
+              <DocLine type="bug">异步数据展示，不展开下拉</DocLine>
+              <DocLine>解决：设置默认值<code>{{'[""]'}}</code></DocLine>
+            </Doc>
+          </div>
+        </Demo>
+      </Col>
+      <Col :md="12" :xs="24">
+        <Demo>
+          <div slot="header"></div>
+          <div slot="body">
+            <Select v-model="selectVal" :style="{width: '300px'}">
+              <Option value="null">全部</Option>
+              <Option value="1">1</Option>
+              <Option value="2">2</Option>
+            </Select>
+            <Select v-model="asynSelect" :style="{width: '300px'}">
+              <Option v-for="(item, index) in asynSelectList" :value="item.id" :key="index">{{item.name}}</Option>
+            </Select>
+            <Button @click="handleAsynSelect">异步数据</Button>
+          </div>
+          <div slot="footer">
+            <Doc>
+              <DocLine type="bug">异步数据展示，下拉设置默认初始值，匹配不上</DocLine>
+              <DocLine><a href="https://github.com/iview/iview/issues/3722">Asynchronous creation of [Bug Report]select filterable #3722</a></DocLine>
+            </Doc>
+          </div>
+        </Demo>
+      </Col>
+    </Row>
+    <Row :gutter="8">
+      <Col :md="12" :xs="24">
+        <Demo>
+          <div slot="header">Form-reset-datePicker</div>
+          <div slot="body">
+            <Form ref="formValidate" :model="formValidate">
+              <FormItem prop="date"><DatePicker type="date" placeholder="贷款到日" v-model="formValidate.date"></DatePicker></FormItem>
+              <FormItem prop="date2"><DatePicker :editable="false" v-model="formValidate.date2" type="daterange" placeholder="选择日期"></DatePicker></FormItem>
+            </Form>
+            <Button @click="handleReset">重置</Button>
+          </div>
+          <div slot="footer">
+            <Doc>
+              <DocLine type="bug"><code>DatePicker</code>类型为 daterange 无法重置输入的值，可以重置选择的日期</DocLine>
+              <DocLine>解决：设置<code>editable:false</code></DocLine>
+            </Doc>
+          </div>
+        </Demo>
+      </Col>
+      <Col :md="12" :xs="24">
+        <Demo>
+          <div slot="header">Select-if</div>
+          <div slot="body">
+            <Select v-model="statisMode" style="width: 300px" placeholder="请选择统计方式" v-if="switch1">
+              <Option value="1">32</Option>
+              <Option value="2">汇总同评分不区分版本</Option>
+              <Option value="3">区分评分和版本</Option>
+            </Select>
+            <Select v-model="statisMode" style="width: 300px" placeholder="请选择统计方式" v-else>
+              <Option value="4">122</Option>
+              <Option value="5">汇总本</Option>
+              <Option value="6">区分版本</Option>
+            </Select>
+            <iSwitch v-model="switch1" @on-change="handleSwitchchange"></iSwitch>
+          </div>
+          <div slot="footer">
+            <Doc>
+              <DocLine type="bug"><code>v-if</code>进行选择渲染 <code>select</code> 在同 <code>v-model</code>下，出现选中文本错乱显示</DocLine>
+              <DocLine>解决：改为<code>v-show</code> 或 采用 <code>data</code> 循环渲染</DocLine>
+            </Doc>
+          </div>
+        </Demo>
+      </Col>
+    </Row>
   </div>
 </template>
 
 <script>
+import {Demo, Doc, DocLine} from '@/components/';
 import {
+  Row, Col,
+  Form,
+  FormItem,
+  DatePicker,
   Icon,
   Spin,
   Button,
@@ -45,13 +107,14 @@ import {
   DropdownItem,
   AutoComplete,
   Select,
-  Option
+  Option, Switch
 } from "iview";
 import { FLIcon } from "components";
 
 export default {
   name: "IviewPits",
   components: {
+    Row, Col,
     Icon,
     Spin,
     FLIcon,
@@ -61,22 +124,37 @@ export default {
     DropdownItem,
     AutoComplete,
     Select,
-    Option
+    Option,
+    Form,
+    FormItem,
+    DatePicker,
+    Demo, Doc, DocLine,
+    'iSwitch': Switch 
   },
   data() {
     return {
       value1: "",
       data1: [],
       selectVal: 'null',
-      asynSelect: '2',
-      asynSelectList: []
+      asynSelect: '',
+      asynSelectList: [],
+      formValidate: {
+        date: '',
+        date2: ''
+      },
+      statisMode: '',
+      switch1: false
     };
   },
   mounted() {
-    this.$Message.info("flv");
-    this.handleAsynSelect();
+    this.$Message.info("iview-message");
   },
   methods: {
+    handleReset () {
+      this.$refs['formValidate'].resetFields();
+      this.formValidate.date = '';
+      this.formValidate.date2 = '';
+    },
     handleAsynSelect () {
       setTimeout(() => {
         this.asynSelectList = [
@@ -105,11 +183,6 @@ export default {
       }, 600);
       // this.asynSelect = '1';
     },
-    showMessage() {
-      console.log(1);
-      this.$Message.success("$Message:");
-      this.$Message.error("hello world");
-    },
     handleSearch1(value) {
       if (!value) {
         this.data1 = [];
@@ -121,6 +194,9 @@ export default {
             : [value + "32", value + value, value + value + value];
         }, 500);
       }
+    },
+    handleSwitchchange (bol) {
+      this.switch1 = bol;
     }
   }
 };
@@ -130,16 +206,8 @@ export default {
 @import "~utils/style/variables.less";
 
 .iview-pits {
-  text-align: center;
-  padding-top: 15%;
-  .home-hi {
-    position: relative;
-    font-size: 30px;
-    color: @flv-warn-color;
-  }
-  .home-text {
-    font-size: 16px;
-    color: @flv-default-color;
+  > div {
+    margin-bottom: 8px;
   }
 }
 </style>

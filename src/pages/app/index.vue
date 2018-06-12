@@ -8,21 +8,28 @@
           :width="200"
 					:class="siderClass"
 					:collapsed-width="COLLAPSED_SIDER_W" 
-					ref='sider' v-model="isCollapsedSider" 
+					ref='sider' v-model="isCollapsedSider"
 					v-show='isShowSider'>
           <div class="sider-logo" :style="{height: HEADER_H + 'px'}">
             <Logo :isCollapsed="isCollapsed"/>
           </div>
           <NavMenu :isCollapsed="isCollapsed" :layout="layout" :theme="theme"/>
         </Sider>
-        <Layout>
-          <FLHeader v-show="isLogin"/>
-          <Body :style="{width: bodyWidth + 'px'}">
-						<PBreadcrump></PBreadcrump>
-						<div class="body-content"><router-view></router-view></div>	
-					</Body>
-          <FLFooter />
-        </Layout>    
+        <template>
+          <Layout v-if="isLogin">
+            <FLHeader />
+            <Body :style="{width: bodyWidth + 'px'}">
+              <PBreadcrump ></PBreadcrump>
+              <div class="body-content"><router-view></router-view></div>	
+            </Body>
+            <FLFooter />
+          </Layout>
+          <Layout v-else>
+            <Body :style="{width: bodyWidth + 'px'}">
+              <router-view></router-view>
+            </Body>
+          </Layout>
+        </template>
       </Layout>
     </div>    
   </div>
@@ -59,7 +66,8 @@ export default {
       COLLAPSED_SIDER_W,
       HEADER_H,
       isLogin: true,
-      isCollapsedSider: false
+      isCollapsedSider: false,
+      bodyWidth: 0,
     };
   },
   created: function() {
@@ -70,10 +78,15 @@ export default {
     if(auth.user && auth.isLoginIn()) {
       const data = auth.user;
       this.$store.commit('login/LOGIN_SUCCESS', data);
+      this.renderBodyWidth();
     }
     else {
       this.$router.push('/login');
     }
+
+    window.onresize = () => {
+      this.renderBodyWidth();
+    };
   },
   computed: {
     ...mapGetters({
@@ -86,25 +99,32 @@ export default {
     },
     siderClass () {
       return `sider-${this.theme}`;
-    },
-    bodyWidth () {
-      const W = window.innerWidth;
-      if(this.isShowSider) {
-        if(this.isCollapsedSider) {
-          return W - COLLAPSED_SIDER_W;
-        }
-        return W - 200;
-      }
-      
-      return W;
     }
   },
   watch: {
     // 如果路由有变化，会再次执行该方法
     '$route': 'checkRouter',
-    isCollapsed: 'collapsedSider'
+    isCollapsed: 'collapsedSider',
+    isShowSider: 'renderBodyWidth',
+    isCollapsedSider: 'renderBodyWidth'
   },
   methods: {
+    renderBodyWidth () {
+      let width = 0;
+      const W = window.innerWidth;
+      if(this.isShowSider) {
+        if(this.isCollapsedSider) {
+          width = W - COLLAPSED_SIDER_W;
+        } else {
+          width = W - 200;
+        }
+      }
+      else {
+        width = W;
+      }
+      
+      this.bodyWidth = width;
+    },
     checkRouter() {
       const path = this.$route.path;
       // console.log(path);
@@ -165,8 +185,8 @@ export default {
 		}
 	}
 	.body-content {
-		padding: 8px;
-		>div {
+    padding: 8px;
+		> div {
 			padding: 8px;
 			border-radius: 6px;
 			border: 1px solid #efefef;

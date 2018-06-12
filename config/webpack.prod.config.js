@@ -13,13 +13,13 @@ const PATHS = require('../script/PATHS');
 const baseConfig = require('./webpack.base.config.js');
 const pnamePath = PATHS.PName ? (PATHS.PName + '/').replace(/\/\//, '/') : '' ;
 
-
 const webpackConfig = merge(baseConfig, {
   mode: 'production',
   entry: {
     vendor: ['vue', 'vue-router']
   },
   output: {
+    publicPath: PATHS.build.assetsPublicPath,
     filename: pnamePath +'static/js/[name].[chunkhash:8].js'
   },
   module: {
@@ -41,8 +41,8 @@ const webpackConfig = merge(baseConfig, {
     }),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, PATHS.build.buildPath, 'index.html'),
-      template: 'template.html',
-      inject: true, // 注入
+      template: 'template.ejs',
+      inject: false, // 注入
       favicon: utils.resolve('favicon.ico'),
       minify: {
         removeComments: true, // 带HTML注释
@@ -71,7 +71,7 @@ const webpackConfig = merge(baseConfig, {
         },
         vendor: { // key 为entry中定义的 入口名称
           chunks: "initial", // 必须三选一： "initial" | "all" | "async"(默认) 
-          test: /vue|lodash/, // 正则规则验证，如果符合就提取 chunk
+          test: /vue|lodash|d3|echarts/, // 正则规则验证，如果符合就提取 chunk
           name: "vendor", // 要缓存的 分隔出来的 chunk 名称 
           minSize: 0,
           minChunks: 1,

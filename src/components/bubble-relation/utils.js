@@ -7,11 +7,14 @@
  * @param {any} arr 
  */
 export function shuffle(arr) {
-  let i = arr.length;
+  const newArr = [...arr];
+  let i = newArr.length;
   while (i) {
     const j = Math.floor(Math.random() * i--);
-    [arr[j], arr[i]] = [arr[i], arr[j]];
+    [newArr[j], newArr[i]] = [newArr[i], newArr[j]];
   }
+
+  return newArr;
 }
 
 /* dom event on */

@@ -41,6 +41,12 @@ const NAV_LIST = [{
     isFLIcon: false
   }]
 }, {
+  title: 'vue',
+  name: 'vue',
+  url: '/vue',
+  icon: 'play',
+  isFLIcon: false
+}, {
   title: 'FLicons',
   name: 'flicons',
   url: '/flicons',

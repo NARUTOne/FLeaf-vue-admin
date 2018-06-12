@@ -6,6 +6,8 @@
 
 const path = require('path');
 
+const ghPath = "https://narutone.github.io/FLeaf-vue-admin/";
+
 module.exports = {
   dev: {
     assetsPublicPath: '/', // 资源path
@@ -15,12 +17,12 @@ module.exports = {
   },
   build: {
     buildPath: path.resolve(__dirname, '../dist'), // 打包文件path 
-    assetsPublicPath: '/', // 资源path
+    assetsPublicPath: ghPath, // 资源path
     assetsSubDirectory: 'static', // 项目资源目录
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
   },  
-  PName: 'app', // 项目名称
+  PName: 'FLeaf-vue-admin', // 项目名称
   useEslint: true // eslint
 };

@@ -34,8 +34,8 @@ export default {
       return data.meta && data.meta.title ? data.meta.title : 'null';
     },
     getBreadData () {
-      let rMatcheds = this.$route.matched.filter(item => item.name);
-
+      const arr = this.$route.matched.filter(item => item.name);
+      let rMatcheds = [...arr];
       if (!rMatcheds || !rMatcheds.length) {
         rMatcheds = [{path: '/', name: '/', meta: {title: '/'}}].concat(rMatcheds);
       }

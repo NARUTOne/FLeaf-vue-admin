@@ -78,10 +78,12 @@
                 <DropdownMenu slot="list">
                   <DropdownItem>
                     <template  v-if="isLogin">
-                      <Icon type='log-out' class='header-log-icon' title='登出' @click.native="handleLoginOut()"/>&nbsp;登出
+                      <div @click="handleLoginOut"><Icon type='log-out' class='header-log-icon' title='登出' />&nbsp;登出</div>
                     </template>
                     <template v-else>
-                      <Icon type='log-in'  class='header-log-icon' title='登录' @click.native="handleLogin()"/>&nbsp;登录
+                      <div @click="handleLogin">
+                        <Icon type='log-in'  class='header-log-icon' title='登录' />&nbsp;登录
+                      </div>                      
                     </template>
                   </DropdownItem>                
                 </DropdownMenu>

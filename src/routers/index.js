@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import iView from 'iview';
 import {PName} from 'utils/config';
 import auth from 'utils/auth';
 import routes from './map/'; // 路由映射
@@ -15,8 +16,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  iView.LoadingBar.start();
   const LOGIN_PATH = '/login';
-  const TO_PATH = to.path;
+  const TO_PATH = to.path; 
   // console.log(auth);
 
   if(!auth.isLoginIn()) {
@@ -25,6 +27,11 @@ router.beforeEach((to, from, next) => {
   else {
     next();
   }
+});
+
+router.afterEach(() => {
+  iView.LoadingBar.finish();
+  window.scrollTo(0, 0);
 });
 
 export default router;
