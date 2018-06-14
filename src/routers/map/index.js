@@ -10,7 +10,6 @@ const Home = () => import('@/pages/home/');
 // Layout
 const Layout = () => import('@/pages/layout/');
 const LayoutFlex = () => import('@/pages/layout/flex/');
-const LayoutRem= () => import('@/pages/layout/rem/');
 
 // iview
 const Iview = () => import('@/pages/iview/');
@@ -60,13 +59,6 @@ export default [
           component: LayoutFlex,
           meta: {
             title: 'flex'
-          },
-        }, {
-          path: 'rem',
-          name: 'rem',
-          component: LayoutRem,
-          meta: {
-            title: 'rem'
           },
         }]
       },
