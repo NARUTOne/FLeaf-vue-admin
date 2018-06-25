@@ -137,20 +137,20 @@ class bubble {
         // const className = d.item.text.split(" ").join("");
         return "node";
       })
-      .on('mouseover', function(d) {
+      .on('mouseover', function (d) {
         const {item} = d;
-        tip.html(function() {
+        tip.html(function () {
           return item.text;
         })
           .style("left", (d3.mouse(self.container)[0]+20) + "px")
           .style("top", (d3.mouse(self.container)[1]+20) + "px")
           .style("display", "block");
       })
-      .on("mousemove", function(){
+      .on("mousemove", function (){
         tip.style("left", (d3.mouse(self.container)[0]+20) + "px")
           .style("top", (d3.mouse(self.container)[1]+20) + "px");
       })
-      .on('mouseout', function() {
+      .on('mouseout', function () {
         tip.style("display", "none");
       });
     node.append("circle")
