@@ -8,14 +8,14 @@ import tools from 'utils/tools';
 const COLORS = ['#48a9ee', '#8996e5', '#4ecda5', '#eb4456', '#ffd96e', '#f4857a',  '#98d97d', '#bda29a', '#6e7074', '#546570', '#c4ccd3'];
 
 class Chart {
-  constructor(config) {
+  constructor (config) {
     this.config = config;
     this.container = config.container;
     
     this.init();
   }
    
-  init() {
+  init () {
     const _this = this;
     if(_this.config.showMapName) {
       if(_this.config.showMapName == 'china') {
@@ -32,11 +32,11 @@ class Chart {
     }
   }
 
-  resize() {
+  resize () {
     this.myChart.resize();
   }
 
-  renderChart() {    
+  renderChart () {    
     var _this = this;
 
     const myChart = echarts.init(this.container);

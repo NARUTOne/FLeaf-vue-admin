@@ -174,7 +174,7 @@ export default {
     Demo, Doc, DocLine,
     'iSwitch': Switch, Table
   },
-  data() {
+  data () {
     return {
       value1: "",
       data1: [],
@@ -214,7 +214,7 @@ export default {
       tableData: tableData
     };
   },
-  mounted() {
+  mounted () {
     this.$Message.info("iview-message");
   },
   methods: {
@@ -251,7 +251,7 @@ export default {
       }, 600);
       // this.asynSelect = '1';
     },
-    handleSearch1(value) {
+    handleSearch1 (value) {
       if (!value) {
         this.data1 = [];
       } else {

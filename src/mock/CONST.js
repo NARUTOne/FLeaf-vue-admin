@@ -20,6 +20,12 @@ const NAV_LIST = [{
     url: '/layout/flex',
     icon: 'leaf',
     isFLIcon: false
+  }, {
+    title: 'Grid',
+    name: 'grid',
+    url: '/layout/grid',
+    icon: 'leaf',
+    isFLIcon: false
   }]
 }, {
   title: 'iview',

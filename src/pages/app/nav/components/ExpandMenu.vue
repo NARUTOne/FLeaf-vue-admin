@@ -35,7 +35,7 @@ export default {
   components: {
     MenuItem, Submenu, Icon, FLIcon
   },
-  data() {
+  data () {
     return {};
   },
   props: {
@@ -52,7 +52,7 @@ export default {
     },
   },
   computed: {
-    isChildren() {
+    isChildren () {
       return  this.data[this.childrenKey] &&  this.data[this.childrenKey].length ;
     }
   }

@@ -13,7 +13,7 @@ import axios from 'axios';
 const isObject = obj => Object.prototype.toString.call(obj) === '[object Object]';
 const isArray = arr => Array.isArray(arr);
 
-function setData(params) {
+function setData (params) {
   let sendData = params;
   if (isObject(sendData)) {
     sendData = Object.assign({}, sendData);
@@ -37,10 +37,10 @@ const server = axios.create({
 });
 
 // request interceptors
-server.interceptors.request.use(function(config){
+server.interceptors.request.use(function (config){
   // Do something before request is sent
   return config;
-}, function(error){
+}, function (error){
   // Do something with request error
   console.log(error);
   return Promise.reject(error);
@@ -48,7 +48,7 @@ server.interceptors.request.use(function(config){
 
 // respone interceptors
 
-server.interceptors.response.use(function(response){
+server.interceptors.response.use(function (response){
   // 对响应数据做些事
   /**
    * @public
@@ -69,7 +69,7 @@ server.interceptors.response.use(function(response){
     return Promise.reject(response.msg || 'unknown error');
   }
   
-}, function(error){
+}, function (error){
   // 请求错误时做些事
   console.log('err: ' + error);
   return Promise.reject(error);
@@ -92,7 +92,7 @@ server.interceptors.response.use(function(response){
  * @return {object}  return an object containing either "data" or "err"
  */
 
-export default function xhr(options) {
+export default function xhr (options) {
   if(!options) return new Error ('The options field is required, and the type is object, for XHR !');
 
   const config = {

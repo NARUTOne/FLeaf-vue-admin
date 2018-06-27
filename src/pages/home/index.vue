@@ -112,7 +112,7 @@ export default {
   components: {
     Spin, Row, Col, Card, Icon, Avatar, NumCountup, Poptip, VRecharts, Modal, BubbleRelation
   },
-  data() {
+  data () {
     return {
       isBubbleLoading: true,
       fromInfoList: FROM_INFO,
@@ -125,7 +125,7 @@ export default {
       visible: false
     };
   },
-  mounted() {
+  mounted () {
     this.init();
   },
   methods: {

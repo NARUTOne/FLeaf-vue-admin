@@ -54,7 +54,11 @@ export default {
       el.style.height = el.scrollHeight + 'px';
     },
     handleLeave (el) {
-
+      if (document.getElementsByClassName('fl-message').length !== 1) {
+        el.style.height = 0;
+        el.style.paddingTop = 0;
+        el.style.paddingBottom = 0;
+      }
     }
   }
 };

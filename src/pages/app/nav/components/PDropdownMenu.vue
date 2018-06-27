@@ -36,7 +36,7 @@ import {FLIcon} from "@/components/";
 export default {
   name: 'PDropdownMenu',
   components: {Dropdown, DropdownMenu, DropdownItem, Icon, FLIcon},
-  data() {
+  data () {
     return {};
   },
   props: {

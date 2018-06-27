@@ -61,7 +61,7 @@ export default {
     Logo,
     PBreadcrump
   },
-  data: function() {
+  data: function () {
     return {
       COLLAPSED_SIDER_W,
       HEADER_H,
@@ -70,10 +70,10 @@ export default {
       bodyWidth: 0,
     };
   },
-  created: function() {
+  created: function () {
     this.checkRouter();
   },
-  mounted: function() {
+  mounted: function () {
     // console.log(this.$store.state.login.state);
     if(auth.user && auth.isLoginIn()) {
       const data = auth.user;
@@ -125,7 +125,7 @@ export default {
       
       this.bodyWidth = width;
     },
-    checkRouter() {
+    checkRouter () {
       const path = this.$route.path;
       // console.log(path);
       if (path === '/login' || path === '/*') {

@@ -61,7 +61,7 @@ import LevelMenu from './components/LevelMenu';
 
 export default {
   name: 'NavMenu',
-  data: function() {
+  data: function () {
     return {
       navsData: NAV_LIST,
       childrenKey: 'children',
@@ -120,7 +120,7 @@ export default {
       this.activeName = name;
       this.openNames = [openName];
     },
-    handleMenuClick(name) {
+    handleMenuClick (name) {
       if(name.indexOf('/') < 0) {
         this.$router.push({name});
       } else {

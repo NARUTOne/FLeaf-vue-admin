@@ -10,6 +10,7 @@ const Home = () => import('@/pages/home/');
 // Layout
 const Layout = () => import('@/pages/layout/');
 const LayoutFlex = () => import('@/pages/layout/flex/');
+const LayoutGrid = () => import('@/pages/layout/grid/');
 
 // iview
 const Iview = () => import('@/pages/iview/');
@@ -59,6 +60,13 @@ export default [
           component: LayoutFlex,
           meta: {
             title: 'flex'
+          },
+        }, {
+          path: 'grid',
+          name: 'grid',
+          component: LayoutGrid,
+          meta: {
+            title: 'grid'
           },
         }]
       },

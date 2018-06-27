@@ -65,7 +65,7 @@ export default {
     Form, FormItem, Input, Icon, Button
   },
   methods: {
-    handleSubmit(name) {
+    handleSubmit (name) {
       
       this.$refs[name].validate((valid) => {
         if (valid) {

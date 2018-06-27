@@ -16,7 +16,7 @@ export default {
     htmlClass: String
   },
   computed: {
-    classes() {
+    classes () {
       return [
         iconCls,
         prefixCls + `-${this.type}`,
