@@ -40,6 +40,20 @@ const NAV_LIST = [{
     icon: 'ios-paw',
     isFLIcon: false
   }]
+},
+{
+  title: '组件',
+  name: 'componentsview',
+  url: '/componentsview',
+  icon: 'cube',
+  isFLIcon: false,
+  children: [{
+    title: '提示Message',
+    name: 'CMessage',
+    url: '/componentsview/Message',
+    icon: 'chatbox-working',
+    isFLIcon: false
+  }]
 }, {
   title: 'vue',
   name: 'vue',

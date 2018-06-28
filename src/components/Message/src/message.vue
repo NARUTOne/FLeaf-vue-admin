@@ -1,11 +1,13 @@
 <template>
-  <transition name="fl-message-fade" @enter="handleEnter" @leave="handleLeave">
+  <transition name="move-up" @enter="handleEnter" @leave="handleLeave">
     <div class="fl-message">
       <div :class="FLMclass">
-        <Icon :type="type" class="fl-message-icon"></Icon>
+        <Icon :type="typeMap" class="fl-message-icon"></Icon>
         <slot>
-          <p v-if="!dangerouslyUseHTMLString" class="fl-message__content">{{ message }}</p>
-          <p v-else v-html="message" class="fl-message__content"></p>
+          <p v-show="message" class="fl-message__content">{{ message }}</p>
+          <div v-show="render" class="fl-message__content">
+            <RenderDom :render="renderFunc"></RenderDom>
+          </div>
         </slot>
         <Icon type="ios-close-empty" class="fl-message-close" v-show="closable" @click="close"></Icon>
       </div>
@@ -15,6 +17,7 @@
 
 <script>
 import {Icon} from 'iview';
+import RenderDom from '@/components/render';
 
 const iconTypes = {
   'info': 'information-circled',
@@ -27,15 +30,44 @@ const iconTypes = {
 export default {
   name: 'FLMessage',
   components: {
-    Icon
+    Icon, RenderDom
+  },
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    type: {
+      type: String,
+      default: 'info'
+    },
+    closable: {
+      type: Boolean,
+      default: false
+    },
+    render: {
+      type: Function
+    },
+    onClose: {
+      type: Function
+    },
+    message: {
+      type: String
+    },
+    duration: {
+      type: Number,
+      default: 3000
+    }
   },
   data () {
     return {
-      type: 'info',
-      closable: false
+      timer: null
     };
   },
   computed: {
+    renderFunc () {
+      return this.render || function () {};
+    },
     FLMclass () {
       return [
         'fl-message-box',
@@ -46,9 +78,27 @@ export default {
       return iconTypes[this.type];
     }
   },
+  mounted () {
+    this.init();
+  },
   methods: {
+    init () {
+      if (this.duration !== 0) {
+        this.timer = setTimeout(() => {
+          this.close();
+        }, this.duration);
+      }
+    },
+    clearTimer () {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+    },
     close () {
-
+      this.clearTimer();
+      this.onClose && this.onClose();
+      this.$parent.close(this.name);
     },
     handleEnter (el) {
       el.style.height = el.scrollHeight + 'px';
@@ -65,6 +115,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+ @import 'animation.less';
+
 .fl-message {
   font-size: 12px;
   position: fixed;

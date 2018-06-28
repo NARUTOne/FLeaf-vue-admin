@@ -22,6 +22,10 @@ const Vue = () => import('@/pages/vue/');
 // icons
 const FLIcon = () => import('@/pages/FLIcon/');
 
+// FLV-Components
+const ComponentsView = () => import('@/pages/components-view/');
+const CMessage = () => import('@/pages/components-view/Message/');
+
 export default [
   { // 路由从根app开始，注意@/index.js 注册
     path: '/',
@@ -84,6 +88,23 @@ export default [
           component: IviewPits,
           meta: {
             title: '填坑'
+          },
+        }]
+      },
+      { // v-components
+        path: 'componentsview',
+        name: 'componentsview',
+        redirect: '/componentsview/Message',
+        component: ComponentsView,
+        meta: {
+          title: '组件'
+        },
+        children: [{
+          path: 'Message',
+          name: 'CMessage',
+          component: CMessage,
+          meta: {
+            title: '提示Message'
           },
         }]
       },

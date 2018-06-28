@@ -14,11 +14,14 @@ import 'utils/style/theme.less';
 import 'utils/xhr_config';
 import './mock/'; // simulation data
 
+import {FLVMessage} from '@/components/';
+
 Vue.config.productionTip = false; // 阻止 vue 在启动时生成生产提示
 
 // Vue.use(iView);
 
 Vue.prototype.$Message = Message;
+Vue.prototype.$FLVMessage = FLVMessage;
 Vue.prototype.$Loading = LoadingBar;
 
 new Vue({
