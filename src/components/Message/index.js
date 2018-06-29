@@ -20,7 +20,7 @@ function getMessageInstance () {
 
 function messageFun (message = '', duration = defaults.duration, type, onClose = function () {}, closable = false, render = function () {}) {
   const instance = getMessageInstance();
-
+  
   instance.message({
     name: `${prefixKey}-${name}`,
     duration: duration,

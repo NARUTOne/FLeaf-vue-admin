@@ -12,9 +12,11 @@
             <Demo>
               <span slot="header">CSS grid</span>
               <div slot="body">
-                <Button @click="success">Display success prompt</Button>
-                <Button @click="warning">Display warning prompt</Button>
-                <Button @click="error">Display error prompt</Button>      
+                <Button @click="info">info</Button>
+                <Button @click="success">success</Button>
+                <Button @click="warning">warning</Button>
+                <Button @click="error">error</Button>    
+                <Button @click="loading">loading</Button>    
               </div>
               <div slot="footer">
                 <Doc>
@@ -24,6 +26,34 @@
             </Demo>
           </Col>
           <Col :md="12" :xs="24">
+            <Demo>
+              <span slot="header">CSS grid</span>
+              <div slot="body">
+                <Button @click="close">close</Button>
+                <Button @click="noTime">noTime</Button>           
+              </div>
+              <div slot="footer">
+                <Doc>
+                  <DocLine><code>Message config：</code>duration为0 则不关闭</DocLine>
+                  <DocLine><code>Message config：</code>closable 显示关闭</DocLine>
+                </Doc>
+              </div>
+            </Demo>
+          </Col>
+        </Row>
+        <Row :gutter="8" class-name="margin-b-1">
+          <Col :md="12" :xs="24">
+            <Demo>
+              <span slot="header">CSS grid</span>
+              <div slot="body">
+                <Button @click="renderFunc">render message</Button>
+              </div>
+              <div slot="footer">
+                <Doc>
+                  <DocLine><code>Message render</code>自定义描述内容</DocLine>
+                </Doc>
+              </div>
+            </Demo>
           </Col>
         </Row>
 			</template>
@@ -39,6 +69,12 @@ export default {
   name: 'CMessage',
   components: {Demo, Doc, DocLine, Row, Col, PageDemo, Button},
   methods: {
+    info () {
+      this.$FLVMessage.info('This is a default info tip');
+    },
+    loading () {
+      this.$FLVMessage.loading('This is a loading tip');
+    },
     success () {
       this.$FLVMessage.success('This is a success tip');
     },
@@ -47,6 +83,27 @@ export default {
     },
     error () {
       this.$FLVMessage.error('This is an error tip');
+    },
+    close () {
+      this.$FLVMessage.info({
+        message: '10S内可关闭message',
+        duration: 10000,
+        closable: true
+      });
+    },
+    noTime () {
+      this.$FLVMessage.info({
+        message: '只能手动关闭message',
+        duration: 0,
+        closable: true
+      });
+    },
+    renderFunc () {
+      this.$FLVMessage.info({
+        render: () => {
+          return (<span>这是<a>render</a>自定义渲染</span>);
+        }
+      });
     }
   }
 };

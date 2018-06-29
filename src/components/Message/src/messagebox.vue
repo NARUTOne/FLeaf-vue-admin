@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="flv-message-box" :style="styles">
     <Message 
       v-for="(message, i) in messages"
       :key="message.name"
@@ -10,6 +10,7 @@
       :closable="message.closable"
       :name="message.name"
       :on-close="message.onClose"
+      :style="message.style"
     ></Message>
   </div>
 </template>
@@ -30,6 +31,15 @@ export default {
   props: {
     className: {
       type: String
+    },
+    styles: {
+      type: Object,
+      default: function () {
+        return {
+          top: '65px',
+          left: '50%'
+        };
+      }
     }
   },
   data () {
@@ -51,6 +61,9 @@ export default {
     add (message) {
       const name = message.name || getMName();
       const _message = Object.assign({
+        styles: {
+          right: '50%'
+        },
         message: '',
         duration: 3000,
         closable: false,
@@ -76,6 +89,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+.flv-message-box {
+  font-size: 12px;
+  position: fixed;
+  z-index: 1010;
+  width: 100%;
+  top: 16px;
+  left: 0;
+  pointer-events: none;
+}
 </style>
 

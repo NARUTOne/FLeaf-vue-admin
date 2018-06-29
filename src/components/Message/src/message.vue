@@ -1,8 +1,15 @@
 <template>
   <transition name="move-up" @enter="handleEnter" @leave="handleLeave">
-    <div class="fl-message">
+    <div class="fl-message" :style="styles">
       <div :class="FLMclass">
-        <Icon :type="typeMap" class="fl-message-icon"></Icon>
+        <template>
+          <div style="display:inline-block;" v-if="type === 'loading'">
+            <Spin>
+                <Icon :type="typeMap" :class="loadingIconClass"></Icon>
+            </Spin>
+          </div>
+          <Icon v-else :type="typeMap" :class="iconClass"></Icon>
+        </template>
         <slot>
           <p v-show="message" class="fl-message__content">{{ message }}</p>
           <div v-show="render" class="fl-message__content">
@@ -16,7 +23,7 @@
 </template>
 
 <script>
-import {Icon} from 'iview';
+import {Icon, Spin} from 'iview';
 import RenderDom from '@/components/render';
 
 const iconTypes = {
@@ -30,7 +37,7 @@ const iconTypes = {
 export default {
   name: 'FLMessage',
   components: {
-    Icon, RenderDom
+    Icon, RenderDom, Spin
   },
   props: {
     name: {
@@ -57,6 +64,14 @@ export default {
     duration: {
       type: Number,
       default: 3000
+    },
+    styles: {
+      type: Object,
+      default: function () {
+        return {
+          right: '50%'
+        };
+      }
     }
   },
   data () {
@@ -70,8 +85,21 @@ export default {
     },
     FLMclass () {
       return [
-        'fl-message-box',
+        'fl-message-body',
         this.type ? 'fl-message-' + this.type : ''
+      ];
+    },
+    loadingIconClass () {
+      return [
+        'fl-message-icon',
+        'spin-icon-load',
+        this.type ? 'fl-message-icon-' + this.type : ''
+      ];
+    },
+    iconClass () {
+      return [
+        'fl-message-icon',
+        this.type ? 'fl-message-icon-' + this.type : ''
       ];
     },
     typeMap () {
@@ -115,31 +143,69 @@ export default {
 </script>
 
 <style lang="less" scoped>
- @import 'animation.less';
+@import '~utils/style/variables.less';
+@import 'animation.less';
 
 .fl-message {
-  font-size: 12px;
-  position: fixed;
-  z-index: 1010;
-  width: 100%;
-  top: 16px;
-  left: 0;
-  pointer-events: none;
+  padding: 8px 0;
   text-align: center;
-  .fl-message-box {
+  .fl-message-body {
     display: inline-block;
     padding: 8px 16px;
     border-radius: 4px;
     box-shadow: 0 1px 6px rgba(0,0,0,.2);
     background: #fff;
     pointer-events: all;
+    .fl-message-icon {
+      font-size: 1.2em;
+    }
     .fl-message__content {
+      display: inline-block;
       margin: 0 16px;
     }
     .fl-message-close {
+      font-size: 16px;
       cursor: pointer;
+      &:hover {
+        color: @flv-default-color;
+      }
     }
   }
+}
+.fl-message-info, .fl-message-loading {
+  border: 2px solid @flv-default-color;
+  .fl-message-icon-info, .fl-message-icon-loading {
+    color: @flv-default-color;
+  }
+}
+
+.fl-message-success{
+  border: 2px solid @flv-success-color;
+  .fl-message-icon-success {
+    color: @flv-success-color;
+  }
+}
+
+.fl-message-warning {
+  border: 2px solid @flv-warn-color;
+  .fl-message-icon-warning {
+    color: @flv-warn-color;
+  }
+}
+
+.fl-message-error {
+  border: 2px solid @flv-error-color;
+  .fl-message-icon-error {
+    color: @flv-error-color;
+  }
+}
+.spin-icon-load{
+  animation: ani-demo-spin 1s linear infinite;
+}
+@keyframes ani-demo-spin {
+  from { transform: rotate(0deg);}
+  50%  { transform: rotate(180deg);}
+  to   { transform: rotate(360deg);}
 }
 </style>
 
