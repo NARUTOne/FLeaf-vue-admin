@@ -5,7 +5,7 @@
 import {APP_TYPES} from '@/store/mutations-type';
 
 export default {
-  handleThemeChange({commit, state}, payload) {
+  handleThemeChange ({commit, state}, payload) {
     return new Promise((resolve, reject) => {
       if('theme' in payload) {
         setTimeout(() => {
@@ -20,7 +20,7 @@ export default {
       }
     });
   },
-  handleLayoutChange({commit, state}, payload) {
+  handleLayoutChange ({commit, state}, payload) {
     return new Promise((resolve, reject) => {
       if('layout' in payload) {
         setTimeout(() => {
@@ -35,7 +35,7 @@ export default {
       }
     });
   },
-  handleLayoutFixChange({commit, state}, payload) {
+  handleLayoutFixChange ({commit, state}, payload) {
     return new Promise((resolve, reject) => {
       if('isFix' in payload) {
         setTimeout(() => {

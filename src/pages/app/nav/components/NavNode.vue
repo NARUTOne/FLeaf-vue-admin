@@ -80,7 +80,7 @@ export default {
     DropdownMenu,
     DropdownItem
   },
-  data() {
+  data () {
     return {
       COLLAPSED_SIDER_W
     };
@@ -106,16 +106,16 @@ export default {
     }
   },
   computed: {
-    isChildren() {
+    isChildren () {
       return  this.data[this.childrenKey] &&  this.data[this.childrenKey].length ;
     },
-    children() {
+    children () {
       return this.data[this.childrenKey];
     },
-    dropdownClass() {
+    dropdownClass () {
       return `dropdown-theme-${this.theme}`;
     },
-    dropdownRelW() {
+    dropdownRelW () {
       return this.COLLAPSED_SIDER_W - 24;
     }
   }

@@ -5,6 +5,9 @@ import VRecharts from './vue-echarts/';
 import BubbleRelation from './bubble-relation/';
 import Demo from './Demo/';
 import {Doc, DocLine} from './doc-line/';
+import Message from './Message/';
+
+const FLVMessage = Message;
 
 export {
   FLIcon,
@@ -14,5 +17,6 @@ export {
   BubbleRelation,
   Demo,
   Doc, 
-  DocLine
+  DocLine,
+  FLVMessage
 };

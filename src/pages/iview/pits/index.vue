@@ -89,6 +89,22 @@
         </Demo>
       </Col>
     </Row>
+    <Row :gutter="8">
+      <Col :md="12" :xs="24">
+        <Demo>
+          <div slot="header">Table-render</div>
+          <div slot="body">
+            <Table :columns="columns1" :data="tableData"></Table>
+          </div>
+          <div slot="footer">
+            <Doc>
+              <DocLine type="warn"><code>Table-render</code>渲染需要采用virtual-dom, 使用了vue中的render函数</DocLine>
+            </Doc>
+          </div>
+        </Demo>
+      </Col>
+      <Col :md="12" :xs="24"></Col>
+    </Row>
   </div>
 </template>
 
@@ -107,9 +123,36 @@ import {
   DropdownItem,
   AutoComplete,
   Select,
-  Option, Switch
+  Option, Switch, Table
 } from "iview";
 import { FLIcon } from "components";
+
+const tableData = [
+  {
+    name: 'John Brown',
+    age: 18,
+    address: 'New York No. 1 Lake Park',
+    date: '2016-10-03'
+  },
+  {
+    name: 'Jim Green',
+    age: 24,
+    address: 'London No. 1 Lake Park',
+    date: '2016-10-01'
+  },
+  {
+    name: 'Joe Black',
+    age: 30,
+    address: 'Sydney No. 1 Lake Park',
+    date: '2016-10-02'
+  },
+  {
+    name: 'Jon Snow',
+    age: 26,
+    address: 'Ottawa No. 2 Lake Park',
+    date: '2016-10-04'
+  }
+];
 
 export default {
   name: "IviewPits",
@@ -129,9 +172,9 @@ export default {
     FormItem,
     DatePicker,
     Demo, Doc, DocLine,
-    'iSwitch': Switch 
+    'iSwitch': Switch, Table
   },
-  data() {
+  data () {
     return {
       value1: "",
       data1: [],
@@ -143,10 +186,35 @@ export default {
         date2: ''
       },
       statisMode: '',
-      switch1: false
+      switch1: false,
+      columns1: [
+        {
+          title: 'Name',
+          key: 'name',
+          render: (h, params) => {
+            const {name} = params.row;
+            const text = 'FL-' + name;
+            return h( 'span', [text]);
+          }
+        },
+        {
+          title: 'Age',
+          key: 'age',
+          render: (h, params) => {
+            const {age} = params.row;
+            const text = 'FL-' + age;
+            return (<span>{text}</span>);
+          }
+        },
+        {
+          title: 'Address',
+          key: 'address'
+        }
+      ],
+      tableData: tableData
     };
   },
-  mounted() {
+  mounted () {
     this.$Message.info("iview-message");
   },
   methods: {
@@ -183,7 +251,7 @@ export default {
       }, 600);
       // this.asynSelect = '1';
     },
-    handleSearch1(value) {
+    handleSearch1 (value) {
       if (!value) {
         this.data1 = [];
       } else {

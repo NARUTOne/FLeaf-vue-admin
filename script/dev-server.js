@@ -29,6 +29,6 @@ WebpackDevServer.addDevServerEntrypoints(devConfig, options);
 const compiler = webpack(devConfig);
 const server = new WebpackDevServer(compiler, options);
 
-server.listen(3001, 'localhost', function() {    
+server.listen(3001, 'localhost', function () {    
   console.log('dev server listening on port 3001');
 });

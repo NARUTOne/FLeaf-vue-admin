@@ -51,13 +51,13 @@ export default {
     }
   },
   methods: {
-    renderChart(props) {
+    renderChart (props) {
       new Chart({
         container: this.container,
         ...props
       });
     },
-    resize() {
+    resize () {
       const props = {
         options: this.stateOptions,
         showMapName: this.showMapName

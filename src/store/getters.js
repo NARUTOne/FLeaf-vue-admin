@@ -3,7 +3,7 @@
  */
 
 export default {
-  theme(state) {
+  theme (state) {
     return state.theme;
   },
   layout: state => state.layout,

@@ -151,7 +151,7 @@ const btSize = (size) => {
 };
 
 // 时间范围生成
-function rangeDate(min, max) {
+function rangeDate (min, max) {
   const  dates = [];
   const  days = (new Date(max) - new Date(min))/1000/60/60/24;
   const  len = Math.floor(days) + 1;
@@ -163,7 +163,7 @@ function rangeDate(min, max) {
   } 
   return  dates; 
 
-  function format(date) {
+  function format (date) {
     var dateString = new Date(date),
       month = (dateString.getMonth() + 1) < 10 ? '0'+ (dateString.getMonth() + 1): (dateString.getMonth() + 1),
       day = dateString.getDate() < 10 ? '0'+ dateString.getDate() : dateString.getDate();
@@ -172,7 +172,7 @@ function rangeDate(min, max) {
 }
 
 // xhr  data 解析
-function xhrSetData(data) {
+function xhrSetData (data) {
   const isObject = obj => Object.prototype.toString.call(obj) === '[object Object]';
   const isArray = arr => Array.isArray(arr);
 
@@ -202,12 +202,12 @@ function xhrSetData(data) {
  * @param {any} options 
  * @returns 
  */
-function arrayTreeCallBack(treeNodes, Fn, options) {
+function arrayTreeCallBack (treeNodes, Fn, options) {
   if (!treeNodes || !treeNodes.length) return;
   options = options || {};
   options.childrenKeyName = options.childrenKeyName || 'children';
   
-  function treeMap(tree) {
+  function treeMap (tree) {
     return tree.map((item, i) => {
       item = Fn(item, i);
 
@@ -227,7 +227,7 @@ function arrayTreeCallBack(treeNodes, Fn, options) {
  * @param {any} paramsString 
  * @returns 
  */
-function param2Obj(paramsString) {
+function param2Obj (paramsString) {
   const search = paramsString;
   if (!search) {
     return {};

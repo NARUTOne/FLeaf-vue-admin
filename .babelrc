@@ -15,6 +15,7 @@
     }],
     ["transform-class-properties", { "spec": true }],
     "transform-runtime",
-    "syntax-dynamic-import"    
+    "syntax-dynamic-import",
+    "transform-vue-jsx" 
   ]
 }

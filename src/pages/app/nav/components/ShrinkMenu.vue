@@ -37,7 +37,7 @@ export default {
   components: {
     MenuItem, Submenu, Icon, FLIcon, PDropdownMenu, Dropdown, DropdownMenu, DropdownItem, Button
   },
-  data() {
+  data () {
     return {};
   },
   props: {
@@ -63,7 +63,7 @@ export default {
     dropdownClass () {
       return `dropdown-theme-${this.theme}`;
     },
-    isChildren() {
+    isChildren () {
       return  this.data[this.childrenKey] &&  this.data[this.childrenKey].length;
     }
   },

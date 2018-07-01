@@ -21,9 +21,9 @@ const NAV_LIST = [{
     icon: 'leaf',
     isFLIcon: false
   }, {
-    title: 'Rem',
-    name: 'rem',
-    url: '/layout/Rem',
+    title: 'Grid',
+    name: 'grid',
+    url: '/layout/grid',
     icon: 'leaf',
     isFLIcon: false
   }]
@@ -38,6 +38,20 @@ const NAV_LIST = [{
     name: 'pits',
     url: '/iview/pits',
     icon: 'ios-paw',
+    isFLIcon: false
+  }]
+},
+{
+  title: '组件',
+  name: 'componentsview',
+  url: '/componentsview',
+  icon: 'cube',
+  isFLIcon: false,
+  children: [{
+    title: '提示Message',
+    name: 'CMessage',
+    url: '/componentsview/Message',
+    icon: 'chatbox-working',
     isFLIcon: false
   }]
 }, {

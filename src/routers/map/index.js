@@ -10,7 +10,7 @@ const Home = () => import('@/pages/home/');
 // Layout
 const Layout = () => import('@/pages/layout/');
 const LayoutFlex = () => import('@/pages/layout/flex/');
-const LayoutRem= () => import('@/pages/layout/rem/');
+const LayoutGrid = () => import('@/pages/layout/grid/');
 
 // iview
 const Iview = () => import('@/pages/iview/');
@@ -21,6 +21,10 @@ const Vue = () => import('@/pages/vue/');
 
 // icons
 const FLIcon = () => import('@/pages/FLIcon/');
+
+// FLV-Components
+const ComponentsView = () => import('@/pages/components-view/');
+const CMessage = () => import('@/pages/components-view/Message/');
 
 export default [
   { // 路由从根app开始，注意@/index.js 注册
@@ -62,11 +66,11 @@ export default [
             title: 'flex'
           },
         }, {
-          path: 'rem',
-          name: 'rem',
-          component: LayoutRem,
+          path: 'grid',
+          name: 'grid',
+          component: LayoutGrid,
           meta: {
-            title: 'rem'
+            title: 'grid'
           },
         }]
       },
@@ -84,6 +88,23 @@ export default [
           component: IviewPits,
           meta: {
             title: '填坑'
+          },
+        }]
+      },
+      { // v-components
+        path: 'componentsview',
+        name: 'componentsview',
+        redirect: '/componentsview/Message',
+        component: ComponentsView,
+        meta: {
+          title: '组件'
+        },
+        children: [{
+          path: 'Message',
+          name: 'CMessage',
+          component: CMessage,
+          meta: {
+            title: '提示Message'
           },
         }]
       },

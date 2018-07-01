@@ -107,7 +107,7 @@ const Header = Layout.Header;
 
 export default {
   name: 'FLHeader',
-  data() {
+  data () {
     return {
 		
     };
@@ -126,16 +126,16 @@ export default {
       layout: 'layout',
       isCollapsed: 'isCollapsed'
     }),
-    headerClass() {
+    headerClass () {
       return `header header-theme-${this.theme}`;
     },
-    dropdownClass() {
+    dropdownClass () {
       return `dropdown-theme-${this.theme}`;
     },
     isLogin () {
       return this.user && this.user.userName;
     },
-    isLogo() {
+    isLogo () {
       return this.layout == 'top';
     },
     rotateIcon () {
@@ -154,7 +154,7 @@ export default {
       'handleLayoutChange',
       'handleLayoutFixChange'
     ]),
-    setLayoutChange(value) {
+    setLayoutChange (value) {
       const obj = {
         layout: value
       };
@@ -166,7 +166,7 @@ export default {
         this.$Message.error(err);
       });
     },
-    setThemeChange(value) {
+    setThemeChange (value) {
       const obj = {
         theme: value
       };
@@ -186,10 +186,10 @@ export default {
         this.$Loading.finish();
       });
     },
-    handleLogin() {
+    handleLogin () {
       this.handleLoginOut();
     },
-    handleLoginOut() {
+    handleLoginOut () {
       this.toLogout().then((msg) => {
         this.$Message.success(msg || 'success!');
         this.$router.push('/login');
@@ -197,12 +197,12 @@ export default {
         this.$Message.error('error!');
       });
     },
-    collapsedSider() {
+    collapsedSider () {
       this.$store.commit('handleCollapsedSider', {
         isCollapsed: !this.isCollapsed
       });
     },
-    handleScreenFull() {
+    handleScreenFull () {
       if (screenfull.enabled) {
         screenfull.request();
       }

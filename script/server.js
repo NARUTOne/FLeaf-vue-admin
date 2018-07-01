@@ -37,7 +37,7 @@ var resourcePath = path.resolve(__dirname, '..', PATHS.build.buildPath);
 app.use(express.static(resourcePath));
 // //配置任何请求都转到index.html，而index.html会根据Router规则去匹配任何一个route
 // 这个需要动态修改index.html
-app.get('*', function(req, res) {
+app.get('*', function (req, res) {
   // res.sendFile(path.resolve(resourcePath, 'index.html'))
   const filename = path.join(compiler.outputPath, 'index.html');
   compiler.outputFileSystem.readFile(filename, (err, result) => {
