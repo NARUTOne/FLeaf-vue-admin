@@ -40,8 +40,7 @@ const NAV_LIST = [{
     icon: 'ios-paw',
     isFLIcon: false
   }]
-},
-{
+}, {
   title: '组件',
   name: 'componentsview',
   url: '/componentsview',
@@ -53,6 +52,26 @@ const NAV_LIST = [{
     url: '/componentsview/Message',
     icon: 'chatbox-working',
     isFLIcon: false
+  }]
+}, {
+  title: '图表',
+  name: 'charts',
+  url: '/charts',
+  icon: 'pie-graph',
+  isFLIcon: false,
+  children: [{
+    title: 'd3',
+    name: 'd3JS',
+    url: '/charts/d3',
+    icon: 'settings',
+    isFLIcon: false,
+    children: [{
+      title: 'flow-chart',
+      name: 'flow-chart',
+      url: '/charts/d3/flow-chart',
+      icon: 'network',
+      isFLIcon: false,
+    }]
   }]
 }, {
   title: 'vue',

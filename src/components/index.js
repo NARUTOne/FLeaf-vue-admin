@@ -6,6 +6,7 @@ import BubbleRelation from './bubble-relation/';
 import Demo from './Demo/';
 import {Doc, DocLine} from './doc-line/';
 import Message from './Message/';
+import CFlowChart from './flow-chart/';
 
 const FLVMessage = Message;
 
@@ -18,5 +19,6 @@ export {
   Demo,
   Doc, 
   DocLine,
-  FLVMessage
+  FLVMessage,
+  CFlowChart
 };

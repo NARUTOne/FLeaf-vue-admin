@@ -1,0 +1,57 @@
+.chart-body {
+  position: relative;
+  width: 100%;
+  height: 70vh; 
+  overflow: hidden;
+  border: 1px solid #ececec;
+  .chart-icons-box {
+    position: absolute;
+    right: 30px;
+    top: 0;
+    z-index: 99;
+    font-size: 16px;
+    >span {
+      margin-right: 30px;
+    }
+  }
+  .chart-params-box {
+    position: absolute;
+    right: -2px;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+    .params-content {
+      .ant-card-body {
+        width: 400px;
+        max-height: 460px;
+        overflow: auto;
+      }
+    }
+  }
+  .chart-nodes-box {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    z-index: 99;
+    .chart-nodes-type {
+      height: 300px;
+      overflow-y: auto;
+      > div {
+        margin-bottom: 8px;
+      }
+      .chart-nodes-type-list {
+        li {
+          text-align: center;
+          padding: 8px 12px;
+          border-radius: 6px;
+          margin-top: 8px;
+          cursor: move;
+        }
+      }
+    }
+  }
+  .chart-flow-box {
+    width: 100%;
+    height: 100%;
+  }
+}

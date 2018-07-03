@@ -7,24 +7,25 @@ const NotFound = () => import('@/pages/notFound/');
 
 const Home = () => import('@/pages/home/');
 
-// Layout
-const Layout = () => import('@/pages/layout/');
-const LayoutFlex = () => import('@/pages/layout/flex/');
-const LayoutGrid = () => import('@/pages/layout/grid/');
-
-// iview
-const Iview = () => import('@/pages/iview/');
-const IviewPits = () => import('@/pages/iview/pits/');
-
 // vue
 const Vue = () => import('@/pages/vue/');
 
 // icons
 const FLIcon = () => import('@/pages/FLIcon/');
 
+// layout
+import layout from './layout';
+
+// iview
+import iview from './iview';
+
 // FLV-Components
-const ComponentsView = () => import('@/pages/components-view/');
-const CMessage = () => import('@/pages/components-view/Message/');
+import vComponents from './v-components';
+
+// chart
+import charts from './charts';
+
+
 
 export default [
   { // 路由从根app开始，注意@/index.js 注册
@@ -50,64 +51,10 @@ export default [
           title: '首页'
         },
       },
-      { // layout
-        path: 'layout',
-        name: 'layout',
-        redirect: '/layout/flex',
-        component: Layout,
-        meta: {
-          title: 'layout'
-        },
-        children: [{
-          path: 'flex',
-          name: 'flex',
-          component: LayoutFlex,
-          meta: {
-            title: 'flex'
-          },
-        }, {
-          path: 'grid',
-          name: 'grid',
-          component: LayoutGrid,
-          meta: {
-            title: 'grid'
-          },
-        }]
-      },
-      { // iview
-        path: 'iview',
-        name: 'iview',
-        redirect: '/iview/pits',
-        component: Iview,
-        meta: {
-          title: 'iview'
-        },
-        children: [{
-          path: 'pits',
-          name: 'pits',
-          component: IviewPits,
-          meta: {
-            title: '填坑'
-          },
-        }]
-      },
-      { // v-components
-        path: 'componentsview',
-        name: 'componentsview',
-        redirect: '/componentsview/Message',
-        component: ComponentsView,
-        meta: {
-          title: '组件'
-        },
-        children: [{
-          path: 'Message',
-          name: 'CMessage',
-          component: CMessage,
-          meta: {
-            title: '提示Message'
-          },
-        }]
-      },
+      {...layout},
+      {...iview},
+      {...vComponents},
+      {...charts},
       {
         // vue
         path: 'vue',

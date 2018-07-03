@@ -103,6 +103,11 @@ var baseConfig = {
       filename: pnamePath +'static/css/[name].[contenthash].css',
       disable: false,
       allChunks: true
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
     })
   ],
   node: {

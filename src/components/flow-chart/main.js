@@ -1,8 +1,36 @@
 import  * as d3 from 'd3';
-import ContextMenu from 'components/ContextMenu';
-import {execStatus} from 'utils/config';
+import $ from 'jquery';
+import ContextMenu from '@/components/ContextMenu/';
 
-const EXEC_STATUS = execStatus;
+const EXEC_STATUS = [{
+  code: -1,
+  title: '未运行',
+  color: '#1b6d85'
+}, {
+  code: 1,
+  title: '提交',
+  color: '#30abdc'
+}, {
+  code: 2,
+  title: '等待',
+  color: '#eead2e'
+}, {
+  code: 3,
+  title: '执行',
+  color: '#8193e8'
+}, {
+  code: 4,
+  title: '成功完成',
+  color: '#98de91'
+}, {
+  code: 5,
+  title: '失败',
+  color: '#e4393c'
+}, {
+  code: 6,
+  title: '被关闭',
+  color: '#e6af5f'
+}];
 
 class ChartDrag {
   constructor (config) {
