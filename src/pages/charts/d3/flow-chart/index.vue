@@ -60,22 +60,37 @@
         </div>
       </div>
     </PageDemo>
+    <Modal
+      v-model="isNodeModal"
+      title="节点modal"
+      :styles="{top: '50px'}"
+      :mask-closable="false"
+      @on-visible-change="handleNodeModalChange"
+    >
+      <NodeModal ref="nodeModal"></NodeModal>
+      <div slot="footer">
+        <Button type="primary" @click="handleAdd">添加</Button>
+        <Button type="ghost" @click="handleCancel">取消</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
-import {Icon, Card} from 'iview';
+import {Icon, Card, Modal, Button} from 'iview';
 import PageDemo from '@/pages/main-components/page-demo';
 import {CFlowChart} from '@/components/';
+import NodeModal from './nodeModal.vue';
 
 export default {
   name: 'FlowChart',
   components: {
-    Icon, Card, PageDemo, CFlowChart
+    Icon, Card, PageDemo, CFlowChart, Modal, Button, NodeModal
   },
   data () {
     return {
       isChange: false,
+      isNodeModal: false,
       chartOptions: {
         zoom: {
           x: 0,
@@ -142,7 +157,8 @@ export default {
       }
       else {
         node.type = key;
-        this.dragObj = [...node];
+        this.dragObj = {...node};
+        this.isNodeModal = true;
       }
     },
     handleVirOk (data) {
@@ -218,6 +234,33 @@ export default {
     },
     handleChartChange () {
       this.isChange = true;
+    },
+    // modal
+    handleReset (name) {
+      this.$refs[name].resetFields();
+    },
+    handleNodeModalChange (bol) {
+      !bol && (this.handleReset('nodeModal'));
+    },
+    handleCancel () {
+      this.handleReset('nodeModal');
+      this.isNodeModal = false;
+    },
+    handleAdd () {
+      const _this = this;
+      this.$refs['nodeModal'].getFormData().then(data => {
+        _this.handleCancel();
+        const obj = Object.assign({}, data, _this.dragObj);
+        const newDragData = Object.assign({}, _this.dragData);
+
+        function add () {
+          newDragData.nodes.push(obj);
+          _this.dragData = {...newDragData};
+        }
+        add();
+      }).catch(() => {
+        _this.$Message.error('error');
+      });
     }
   }
 };
