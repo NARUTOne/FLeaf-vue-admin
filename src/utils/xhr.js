@@ -102,9 +102,18 @@ export default function xhr (options) {
     }
   };
 
+  // header
+  if (options.headers) {
+    config.headers = Object.assign({}, config.headers, options.headers);
+  }
+
   // data
   if(config.method === 'POST' || config.method === 'PUT') {
-    config.data = setData(options.data) || {};
+    if (config.headers['Content-Type'].indexOf('application/x-www-form-urlencoded') > 0) {
+      config.data = setData(options.data) || {};
+    } else {
+      config.data = options.data || {};
+    }    
   }
 
   /**

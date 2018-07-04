@@ -60,15 +60,41 @@ const NAV_LIST = [{
   icon: 'pie-graph',
   isFLIcon: false,
   children: [{
+    title: 'antv',
+    name: 'antv',
+    url: '/charts/antv',
+    icon: 'settings',
+    isFLIcon: false,
+    children: [{
+      title: '树形tree',
+      name: 'antvTree',
+      url: '/charts/antv/tree',
+      icon: 'network',
+      isFLIcon: false,
+    }]
+  }, {
     title: 'd3',
     name: 'd3JS',
     url: '/charts/d3',
     icon: 'settings',
     isFLIcon: false,
     children: [{
-      title: 'flow-chart',
+      title: '流程图',
       name: 'flow-chart',
       url: '/charts/d3/flow-chart',
+      icon: 'network',
+      isFLIcon: false,
+    }]
+  }, {
+    title: 'echarts',
+    name: 'echarts',
+    url: '/charts/echarts',
+    icon: 'settings',
+    isFLIcon: false,
+    children: [{
+      title: 'bars图',
+      name: 'bars',
+      url: '/charts/echarts/bars',
       icon: 'network',
       isFLIcon: false,
     }]

@@ -1,6 +1,16 @@
 const Charts = () => import('@/pages/charts/');
+
+// d3
 const DTree = () => import('@/pages/charts/d3/');
 const FlowChart = () => import('@/pages/charts/d3/flow-chart/');
+
+// antv
+const CAntv = () => import('@/pages/charts/antv/');
+const AntvTree = () => import('@/pages/charts/antv/tree/');
+
+// echarts
+const CEcharts = () => import('@/pages/charts/echarts/');
+const EchartsBars = () => import('@/pages/charts/echarts/bars/');
 
 export default {
   // chart
@@ -12,6 +22,21 @@ export default {
     title: '图表'
   },
   children: [{
+    path: 'antv',
+    name: 'antv',
+    component: CAntv,
+    meta: {
+      title: 'antv'
+    },
+    children: [{
+      path: 'tree',
+      name: 'antvTree',
+      component: AntvTree,
+      meta: {
+        title: '树形tree'
+      }
+    }]
+  }, {
     path: 'd3',
     name: 'd3',
     component: DTree,
@@ -24,6 +49,21 @@ export default {
       component: FlowChart,
       meta: {
         title: '流程图'
+      }
+    }]
+  }, {
+    path: 'echarts',
+    name: 'echarts',
+    component: CEcharts,
+    meta: {
+      title: 'echarts'
+    },
+    children: [{
+      path: 'bars',
+      name: 'bars',
+      component: EchartsBars,
+      meta: {
+        title: 'bar图'
       }
     }]
   }]

@@ -35,6 +35,14 @@ export default {
   watch: {
     data () {
       this.renderChart();
+    },
+    options: {
+      deep: true,
+      handler (val, oldVal) {
+        if (val !== oldVal) {
+          this.renderChart();
+        }
+      }
     }
   },
   mounted () {

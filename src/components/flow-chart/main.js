@@ -189,6 +189,7 @@ class ChartDrag {
 
     // zoom 
     function zoom () {
+      if(_this.options.isLock) return;
       _this.options.zoom.x = d3.event.transform.x;
       _this.options.zoom.y = d3.event.transform.y;
       _this.options.zoom.scale = d3.event.transform.k;

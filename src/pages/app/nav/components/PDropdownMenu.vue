@@ -16,12 +16,14 @@
           :children-key="childrenKey"
           @on-select="handleMenuClick">
           <template slot="dropContent">
-            <template>
-              <FLIcon :type="item.icon" v-if="item.isFLIcon"></FLIcon>
-              <Icon :type="item.icon" v-else></Icon>
-            </template>      
-            <span class="dropdown-menu-title">{{item.title}}</span>
-            <Icon type="ios-arrow-right" class='right'></Icon>
+            <div class="dp-children">
+              <template>
+                <FLIcon :type="item.icon" v-if="item.isFLIcon"></FLIcon>
+                <Icon :type="item.icon" v-else></Icon>
+              </template>      
+              <span class="dropdown-menu-title">{{item.title}}</span>
+              <Icon type="ios-arrow-right" class='right dp-right-icon'></Icon>
+            </div>            
           </template>  
         </PDropdownMenu>
       </template>
@@ -66,8 +68,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  .dp-children {
+    padding: 8px 0;
+    i {
+      padding: 0 8px;
+    }
+    .dp-right-icon {
+      padding: 4px 8px;
+    }
+  }
   .dropdown-menu-title {
-    margin: 0 24px;
+    margin-left: 8px;
   }
 </style>
 

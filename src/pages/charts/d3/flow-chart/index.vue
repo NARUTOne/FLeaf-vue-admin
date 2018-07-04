@@ -174,44 +174,58 @@ export default {
       this.$Message.info('运行流程图！');
     },
     handleLock () {
-      this.chartOptions.isLock = !this.chartOptions.isLock;
+      const options = Object.assign({}, this.chartOptions);
+      const bol = !this.chartOptions.isLock;
+      options.isLock = bol;
+      this.chartOptions = {...options};
     },
     handleZoomRepeat () {
+      if(this.checkLock()) return;
       const zoom =  {
         x: 0,
         y: 0,
         scale: 1.0
       };
-
-      this.chartOptions.zoom = Object.assign({}, zoom);
+      const options = Object.assign({}, this.chartOptions);
+      options.zoom = Object.assign({}, zoom);
+      this.chartOptions = {...options};
     },
     handleZoomBig () {
-      const { chartOptions } = this;
-      if(chartOptions.zoom.scale > 3.0) return;
-      else {
-        this.chartOptions.zoom.scale = this.chartOptions.zoom.scale + 0.3;
-      }
+      if(this.checkLock()) return;
+      const options = Object.assign({}, this.chartOptions);
+      if(options.zoom.scale > 3.0) return;
+
+      options.zoom.scale = options.zoom.scale + 0.3;
+      this.chartOptions = {...options};
     },
     handleZoomSmall () {
-      const { chartOptions } = this;
-      const scale = chartOptions.zoom.scale;
-      if(chartOptions.zoom.scale < 0.2) return;
-      else {
-        this.chartOptions.zoom.scale =  scale - 0.2;
-      }
+      if(this.checkLock()) return;
+      const options = Object.assign({}, this.chartOptions);
+      const scale = options.zoom.scale;
+      if(options.zoom.scale < 0.2) return;
+
+      options.zoom.scale =  scale - 0.2;
+      this.chartOptions = {...options};
     },
     handleZoomChange (zoom) {
-      this.chartOptions.zoom = zoom;
+      if(this.checkLock()) return;
+      const options = Object.assign({}, this.chartOptions);
+      options.zoom = zoom;
+
+      this.chartOptions = {...options};
     },
     handleNodesChange (nodes) {
+      if(this.checkLock()) return;
       this.dragData.nodes = nodes;
       this.handleChartChange();
     },
     handleLinksChange (links) {
+      if(this.checkLock()) return;
       this.dragData.edges  = links;
       this.handleChartChange();
     },
     handleDeleteNode (d) {
+      if(this.checkLock()) return;
       const newDragData = Object.assign({}, this.dragData);
       const arrNodes = newDragData.nodes.filter(item => item.id != d.id);
       const arrLinks = newDragData.edges.filter(item => item.sourceId !== d.id || item.targetId !== d.id);
@@ -221,9 +235,11 @@ export default {
       this.handleChartChange();
     },
     handleEditNode (d) {
+      if(this.checkLock()) return;
       this.$Message.warning(`${d.nodeId}节点编辑！`);
     },
     handleDeleteLink (d) {
+      if(this.checkLock()) return;
       const newDragData = Object.assign({}, this.dragData);
       const arr = newDragData.edges.filter(item => {
         const bol = (item.sourceId != d.sourceId) || (item.targetId != d.targetId);

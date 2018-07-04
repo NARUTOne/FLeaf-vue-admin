@@ -1,5 +1,5 @@
 /**
- * some config
+ * some config of project
  */
 var apiBaseUrl = '/';
 const PROJECT_NAME = 'app';
