@@ -1,7 +1,7 @@
 <template>
   <div class="antv-tree">
     <PageDemo>
-			<template slot='page-title'>FireLeaf 🍂 Echarts Bars</template>
+			<template slot='page-title'>FireLeaf 🍂 AntV Tree</template>
 			<template slot="page-quote">
         树形图&nbsp;<a href="https://antv.alipay.com/zh-cn/index.html" target="_blank">AntV</a>
 			</template>
