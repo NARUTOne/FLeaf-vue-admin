@@ -17,7 +17,7 @@ const webpackConfig = merge(baseConfig, {
   mode: 'production',
   entry: {
     vendor: ['vue', 'vue-router', 'vuex'],
-    charts: ["d3", 'echarts'],
+    charts: ["d3", 'echarts', '@antv/g6'],
     tools: ['lodash', 'jquery']
   },
   output: {
@@ -85,7 +85,7 @@ const webpackConfig = merge(baseConfig, {
         },
         charts: { // key 为entry中定义的 入口名称
           chunks: "initial", 
-          test: /d3|echarts/, // 正则规则验证，如果符合就提取 chunk
+          test: /d3|echarts|@antv\/g6/, // 正则规则验证，如果符合就提取 chunk
           name: "charts", // 要缓存的 分隔出来的 chunk 名称 
           minSize: 0,
           minChunks: 1,
