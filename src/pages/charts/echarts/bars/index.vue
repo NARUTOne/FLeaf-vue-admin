@@ -12,7 +12,7 @@
         <Row :gutter="8" class-name="margin-b-2">
           <Col :lg="12" :md="12" :xs="24">
             <Card>
-              <h3 slot="title">simple bar</h3>
+              <h3 slot="title">简单柱状图（simple bar）</h3>
               <div class="chart-box">
 								<VRecharts :options="simpleOption"></VRecharts>
 							</div>        
@@ -20,9 +20,9 @@
           </Col>
           <Col :lg="12" :md="12" :xs="24">
             <Card>
-              <h3 slot="title">simple bar</h3>
+              <h3 slot="title">阶梯瀑布图（fall bar）</h3>
               <div class="chart-box">
-								<VRecharts :options="chaptesOption"></VRecharts>
+								<VRecharts :options="fallOption"></VRecharts>
 							</div>        
             </Card>
           </Col>
@@ -30,17 +30,17 @@
         <Row :gutter="8" class-name="margin-b-2">
           <Col :lg="12" :md="12" :xs="24">
             <Card>
-              <h3 slot="title">simple bar</h3>
+              <h3 slot="title">堆叠柱状图（pire bar）</h3>
               <div class="chart-box">
-								<VRecharts :options="chaptesOption"></VRecharts>
+								<VRecharts :options="pireOption"></VRecharts>
 							</div>        
             </Card>
           </Col>
           <Col :lg="12" :md="12" :xs="24">
             <Card>
-              <h3 slot="title">simple bar</h3>
+              <h3 slot="title">堆叠右柱状图（pire right bar）</h3>
               <div class="chart-box">
-								<VRecharts :options="chaptesOption"></VRecharts>
+								<VRecharts :options="pireRightOption"></VRecharts>
 							</div>        
             </Card>
           </Col>
@@ -54,8 +54,9 @@
 import PageDemo from '@/pages/main-components/page-demo';
 import {Row, Col, Card} from 'iview';
 import {VRecharts} from 'components';
-import {simpleBarsCfg} from './config';
-import {SIMPLE_BARS} from '@/mock/bars';
+import {simpleBarsCfg, pireBarsCfg, fallBarsCfg, pireRightBarsCfg} from './config';
+import {SIMPLE_BARS, PIRE_BARS} from '@/mock/bars';
+import tools from 'utils/tools';
 
 export default {
   name: 'EchartsBars',
@@ -63,8 +64,10 @@ export default {
   data () {
     return {
       simpleOption: {},
-      chaptesOption: {}
-    }
+      pireOption: {},
+      fallOption: {},
+      pireRightOption: {}
+    };
   },
   mounted () {
     this.init();
@@ -72,10 +75,27 @@ export default {
   methods: {
     init () {
       this.handleSimple();
+      this.handlePire();
+      this.handlePireRight();
+      this.handleFall();
     },
     handleSimple () {
       const simpleOption = simpleBarsCfg(SIMPLE_BARS);
       this.simpleOption = {...simpleOption};
+    },
+    handlePire () {
+      const param = tools.deepCopy(PIRE_BARS);
+      const pireOption = pireBarsCfg(param);
+      this.pireOption = {...pireOption};
+    },
+    handlePireRight () {
+      const param = tools.deepCopy(PIRE_BARS);
+      const pireRightOption = pireRightBarsCfg(param);
+      this.pireRightOption = {...pireRightOption};
+    },
+    handleFall () {
+      const fallOption = fallBarsCfg();
+      this.fallOption = {...fallOption};
     }
   }
 };

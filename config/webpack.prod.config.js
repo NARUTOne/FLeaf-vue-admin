@@ -16,7 +16,9 @@ const pnamePath = PATHS.PName ? (PATHS.PName + '/').replace(/\/\//, '/') : '' ;
 const webpackConfig = merge(baseConfig, {
   mode: 'production',
   entry: {
-    vendor: ['vue', 'vue-router']
+    vendor: ['vue', 'vue-router', 'vuex'],
+    charts: ["d3", 'echarts'],
+    tools: ['lodash', 'jquery']
   },
   output: {
     publicPath: PATHS.build.assetsPublicPath,
@@ -71,7 +73,7 @@ const webpackConfig = merge(baseConfig, {
         },
         vendor: { // key 为entry中定义的 入口名称
           chunks: "initial", // 必须三选一： "initial" | "all" | "async"(默认) 
-          test: /vue|lodash|d3|echarts|jquery/, // 正则规则验证，如果符合就提取 chunk
+          test: /vue|vuex|vue-router/, // 正则规则验证，如果符合就提取 chunk
           name: "vendor", // 要缓存的 分隔出来的 chunk 名称 
           minSize: 0,
           minChunks: 1,
@@ -80,6 +82,30 @@ const webpackConfig = merge(baseConfig, {
           maxAsyncRequests: 1, // 最大异步请求数， 默认1
           maxInitialRequests: 1, // 最大初始化请求书，默认1
           reuseExistingChunk: true // 可设置是否重用该chunk
+        },
+        charts: { // key 为entry中定义的 入口名称
+          chunks: "initial", 
+          test: /d3|echarts/, // 正则规则验证，如果符合就提取 chunk
+          name: "charts", // 要缓存的 分隔出来的 chunk 名称 
+          minSize: 0,
+          minChunks: 1,
+          enforce: true,
+          priority: -10, 
+          maxAsyncRequests: 1, 
+          maxInitialRequests: 1, 
+          reuseExistingChunk: true 
+        },
+        tools: { // key 为entry中定义的 入口名称
+          chunks: "initial", 
+          test: /lodash|jquery/, // 正则规则验证，如果符合就提取 chunk
+          name: "tools", // 要缓存的 分隔出来的 chunk 名称 
+          minSize: 0,
+          minChunks: 1,
+          enforce: true,
+          priority: -10, 
+          maxAsyncRequests: 1, 
+          maxInitialRequests: 1, 
+          reuseExistingChunk: true 
         }
       }
     }

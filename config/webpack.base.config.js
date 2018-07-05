@@ -100,9 +100,7 @@ var baseConfig = {
     // new CleanWebpackPlugin(['dist']), // 清除 测试dist
     new webpack.NoEmitOnErrorsPlugin(), // 2.x以上；编译时出错，跳过，编译后保错
     new ExtractTextPlugin({ // 提取出css模块，到公共文件.css
-      filename: pnamePath +'static/css/[name].[contenthash].css',
-      disable: false,
-      allChunks: true
+      filename: pnamePath +'static/css/[name].[contenthash].css'
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
