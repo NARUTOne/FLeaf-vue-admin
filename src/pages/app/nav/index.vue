@@ -29,23 +29,16 @@
       </div>
     </template> 
     <template v-else>
-      <div :class="navThemeClass" id="sd" >
-        <Menu 
-					mode="horizontal" 
-					width="auto"
-					:class="menuitemClasses"
-					:theme="theme" 					
-					:active-name="activeName"
-					:open-names="openNames"
-					@on-select="handleMenuClick" 
-					>
+      <div :class="navThemeClass" >
+        <ul class="nav-menu-level clear-float">
           <LevelMenu 
             v-for="(item, i) in navsData"
             :key="'level' + i"
             :data="item"
-						:theme="theme"
-            :children-key="childrenKey" />
-        </Menu>
+            :theme="theme"
+            :children-key="childrenKey"
+            @on-select="handleMenuClick" />
+        </ul>
       </div>
     </template>   
   </div>  
@@ -101,6 +94,7 @@ export default {
   computed: {
     navThemeClass () {
       return [
+        'nav-theme',
         'nav-theme-' + this.theme
       ];
     },
@@ -131,14 +125,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-  @import '~utils/style/variables.less';
-  .nav-theme-dark {
-    color: #fff;
-    background-color: @flv-dark;
-  }
-  .nav-theme-light {
-    background-color: #fff;
-  }
+<style lang="less">
+  @import './index.less';
 </style>
 
