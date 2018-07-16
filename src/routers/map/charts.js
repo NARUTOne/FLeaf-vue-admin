@@ -25,6 +25,7 @@ export default {
     path: 'antv',
     name: 'antv',
     component: CAntv,
+    redirect: '/charts/antv/tree',
     meta: {
       title: 'antv'
     },
@@ -40,6 +41,7 @@ export default {
     path: 'd3',
     name: 'd3',
     component: DTree,
+    redirect: '/charts/d3/flow-chart',
     meta: {
       title: 'd3JS'
     },
@@ -54,6 +56,7 @@ export default {
   }, {
     path: 'echarts',
     name: 'echarts',
+    redirect: '/charts/echarts/bars',
     component: CEcharts,
     meta: {
       title: 'echarts'

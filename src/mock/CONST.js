@@ -74,7 +74,7 @@ const NAV_LIST = [{
     }]
   }, {
     title: 'd3',
-    name: 'd3JS',
+    name: 'd3',
     url: '/charts/d3',
     icon: 'settings',
     isFLIcon: false,
