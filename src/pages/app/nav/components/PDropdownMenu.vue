@@ -1,8 +1,10 @@
 <template>
   <Dropdown placement="right-start" @on-click="handleMenuClick"  :class='dropdownClass'>
-    <slot name='dropContent'></slot>
+    <DropdownItem class="menu-hover" :name="data.name">
+      <slot name='dropContent'></slot>
+    </DropdownItem>
     <DropdownMenu slot="list">
-      <template v-for="(item, index) in data">
+      <template v-for="(item, index) in data.children">
         <DropdownItem v-if='!item.children || !item.children.length' :key="'dpchild' + index" :name="item.name">
           <template>
             <FLIcon :type="item.icon" v-if="item.isFLIcon"></FLIcon>
@@ -12,12 +14,12 @@
         </DropdownItem>
         <PDropdownMenu v-else 
           :key="'dpchildren' + index"
-          :data="item.children"
+          :data="item"
           :theme="theme"
           :children-key="childrenKey"
           @on-select="handleMenuClick">
           <template slot="dropContent">
-            <div class="dp-children menu-hover">
+            <div class="dp-children">
               <template>
                 <FLIcon :type="item.icon" v-if="item.isFLIcon"></FLIcon>
                 <Icon :type="item.icon" v-else></Icon>

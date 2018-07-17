@@ -1,7 +1,7 @@
 <template>
   <li v-if="isChildren" class="level-menu-root">
     <Dropdown placement="bottom" @on-click="handleMenuClick" :class='dropdownClass'>
-      <div class="menu-hover" @click="handleClick(data.name)">
+      <div class="menu-hover level-menu-root-title" @click="handleClick(data.name)">
         <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
         <Icon :type="data.icon" v-else></Icon>
         <span>{{data.title}}</span>
@@ -17,12 +17,12 @@
           </DropdownItem>
           <PDropdownMenu v-else
             :key="'dpchildren' + index"
-            :data="item.children"
+            :data="item"
             :children-key="childrenKey"
             :theme='theme'
             @on-select="handleMenuClick">
             <template slot="dropContent">
-              <div class="dp-children menu-hover">
+              <div class="dp-children">
                 <template>
                   <FLIcon :type="item.icon" v-if="item.isFLIcon"></FLIcon>
                   <Icon :type="item.icon" v-else></Icon>
@@ -37,7 +37,7 @@
     </Dropdown>   
   </li>
   <li v-else class="level-menu-root">
-    <div class="menu-hover" @click="handleClick(data.name)">
+    <div class="menu-hover level-menu-root-title" @click="handleClick(data.name)">
       <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
       <Icon :type="data.icon" v-else></Icon>  
       <span>{{data.title}}</span>
@@ -80,7 +80,7 @@ export default {
     },
     dropdownClass () {
       return `dropdown-theme-${this.theme}`;
-    }
+    } 
   },
   methods: {
     handleClick (name) {

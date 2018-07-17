@@ -1,11 +1,11 @@
 <template>
   <div v-if="isChildren" :class="pdClass">
     <PDropdownMenu
-      :data="data.children"
+      :data="data"
       :children-key="childrenKey"
       :theme="theme"
       @on-select="handleMenuClick">
-      <div slot="dropContent" class="menu-hover shrink-menu-root" @click="handleClick(data.name)">
+      <div slot="dropContent" class="shrink-menu-root">
         <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
         <Icon :type="data.icon" v-else></Icon>
       </div>
@@ -13,10 +13,12 @@
   </div>
   <div v-else :class="pdClass">
     <Dropdown placement="right-start" @on-click="handleMenuClick" :class='dropdownClass'>
-      <div class="menu-hover shrink-menu-root" @click="handleClick(data.name)">
+      <DropdownItem class="menu-hover" :name="data.name">
+         <div class="shrink-menu-root">
         <FLIcon :type="data.icon" v-if="data.isFLIcon"></FLIcon>
         <Icon :type="data.icon" v-else></Icon>
       </div>
+      </DropdownItem>
       <DropdownMenu slot="list">
         <DropdownItem :name="data.name">{{data.title}}</DropdownItem>
       </DropdownMenu>
@@ -68,9 +70,6 @@ export default {
     }
   },
   methods: {
-    handleClick (name) {
-      this.$emit('on-select', name);
-    },
     handleMenuClick (name) {
       this.$emit('on-select', name);
     }
