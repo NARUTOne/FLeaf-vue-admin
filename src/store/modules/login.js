@@ -30,9 +30,9 @@ const loginModule = {
       const user = Object.assign({}, payload);
       
       return new Promise((resolve, reject) => {
-        toLogin(user).then(response => {
+        toLogin(user).then(res => {
           // console.log(response);
-          const {data, msg} = response.data;
+          const {data, msg} = res;
           commit('LOGIN_SUCCESS', data);
           resolve(msg);
         }).catch(error => {
@@ -42,8 +42,8 @@ const loginModule = {
     },
     toLogout ({commit}) {
       return new Promise((resolve, reject) => {
-        toLogout().then((response) => {
-          const {msg} = response.data;
+        toLogout().then((res) => {
+          const {msg} = res;
           commit('LOGIN_OUT');
           resolve(msg);
         }).catch(error => {

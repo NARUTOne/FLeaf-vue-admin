@@ -24,57 +24,42 @@ function setData (params) {
       }
       return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
     }).join('&');
-  }else {
-    return new Error ('options.data is object type');
+  } else {
+    return new Error('options.data is object type');
   }
 
   return sendData;
 }
 
+let xhrsuccess = null;
+let xhrerror = null;
 
 const server = axios.create({
-  timeout: 3000
+  timeout: 1000
 });
 
 // request interceptors
-server.interceptors.request.use(function (config){
+server.interceptors.request.use(function (config) {
   // Do something before request is sent
   return config;
-}, function (error){
+}, function (err) {
   // Do something with request error
-  console.log(error);
-  return Promise.reject(error);
+  // console.log(error);
+  return Promise.reject(err);
+  
 });
 
 // respone interceptors
 
-server.interceptors.response.use(function (response){
+server.interceptors.response.use(function (response) {
   // 对响应数据做些事
-  /**
-   * @public
-   * @name xhr.success
-   * @param {object} response 当前response
-   * @description 实现动态 拦截配置
-   * ```js
-   * xhr.success = res => boolean
-   * ```
-   * @return {boolean}
-   */
-  const isSuccess = xhr.success ? xhr.success(response) : true;
-  
-  if(isSuccess) {
-    return response;
-  }
-  else {
-    return Promise.reject(response.msg || 'unknown error');
-  }
-  
-}, function (error){
+  return response;
+}, function (err) {
   // 请求错误时做些事
-  console.log('err: ' + error);
-  return Promise.reject(error);
+  // console.log('err: ' + err);
+  // const message = '服务器开小差！';
+  return Promise.reject(err);
 });
-
 
 /**
  * Requests a URL, returning a promise.
@@ -86,35 +71,27 @@ server.interceptors.response.use(function (response){
  *    url: 'api',  //{string} url , The URL we want to request
  *    type: 'GET,
  *    baseUrl: 'http://', xhr实例的baseUrl
- *    data: {}
+ *    data: {},
+ *    success: res => {},
+ *    error: error => {}
  * }
  * ```
  * @return {object}  return an object containing either "data" or "err"
  */
 
 export default function xhr (options) {
-  if(!options) return new Error ('The options field is required, and the type is object, for XHR !');
+  if (!options) return new Error('The options field is required, and the type is object, for XHR !');
 
-  const config = {
-    method: (options.type || "GET").toUpperCase(),
+  let config = {
+    method: (options.type || 'GET').toUpperCase(),
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     }
   };
 
-  // header
-  if (options.headers) {
-    config.headers = Object.assign({}, config.headers, options.headers);
-  }
+  // 全局部分配置 xhr.defaultConfig = {}
 
-  // data
-  if(config.method === 'POST' || config.method === 'PUT') {
-    if (config.headers['Content-Type'].indexOf('application/x-www-form-urlencoded') >= 0) {
-      config.data = setData(options.data) || {};
-    } else {
-      config.data = options.data || {};
-    }    
-  }
+  config = Object.assign({}, config, xhr.defaultConfig || {});
 
   /**
    * @public
@@ -126,7 +103,7 @@ export default function xhr (options) {
    * ```
    * @return {object} 返回实际请求 {baseUrl, url}
    */
-  if (xhr.getUrl) { 
+  if (xhr.getUrl) {
     const {baseUrl, url} = xhr.getUrl(options);
 
     config.baseURL = baseUrl;
@@ -136,13 +113,82 @@ export default function xhr (options) {
      * @public
      * @name xhr.baseUrl
      * @type {string}
-     * @description 全局基础 URL，常用的场景是接口是另外的服务，方便统一设置路径, 默认使用脚手架中 src/utils/config 中的apiBaseUrl, 
+     * @description 全局基础 URL，常用的场景是接口是另外的服务，方便统一设置路径, 默认使用脚手架中 src/utils/config 中的apiBaseUrl,
      * 配置 xhr_config.js
      */
-    
-    config.baseURL = xhr.baseUrl;
+
+    config.baseURL = xhr.baseUrl || options.baseUrl || '';
     config.url = options.url;
   }
 
-  return server(config);
+  /**
+   *  @public
+     * @name xhr.baseData
+     * @type {Object}
+     * @description 全局基础参数,将为每个调用xhr的接口合并参数data；适合放置项目接口需要的sessionId等。
+     * 配置 xhr_config.js
+  */
+  let params = {...options.data};
+  if (xhr.baseData && isObject(xhr.baseData)) {
+    params = Object.assign({}, xhr.baseData, options.data);
+  }
+
+  // header
+  if (options.headers) {
+    config.headers = Object.assign({}, config.headers, options.headers);
+  }
+
+  // data
+  if (config.method === 'POST' || config.method === 'PUT') {
+    if (config.headers['Content-Type'].indexOf('application/x-www-form-urlencoded') >= 0) {
+      config.data = setData(params) || {};
+    } else {
+      config.data = params || {};
+    }
+  }
+  else if (config.method === 'GET') {
+    config.params = params || {};
+  }
+  else {
+    config.data = params || {};
+  }
+
+  xhrsuccess = options.success || null;
+  xhrerror = options.error || null;
+
+  return server(config).then(response => {
+    /**
+   * @public
+   * @name xhr.success
+   * @param {object} response 当前response
+   * @description 实现动态 拦截配置
+   * ```js
+   * xhr.success = res => boolean
+   * ```
+   * @return {boolean}
+   */
+    const isSuccess = xhr.success ? xhr.success(response.data) : true;
+
+    if (isSuccess) {
+      return xhrsuccess ? xhrsuccess(response.data) : response.data ;
+    } else {
+      const err = response.data.msg || 'unknown error';
+      return xhrerror ? xhrerror(err) : err;
+    }
+
+  }).catch(err => {
+    /**
+   * @public
+   * @name xhr.error
+   * @param {string} error error
+   * @description 实现动态 拦截配置
+   * ```js
+   * xhr.error = res => boolean
+   * ```
+   * @return {boolean}
+   */
+
+    xhr.error && xhr.error(err);
+    return xhrerror ? xhrerror(err) : err;
+  });
 }

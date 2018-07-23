@@ -21,8 +21,12 @@ xhr.getUrl = option => {
   };
 };
 
-xhr.success = (response) => {
-  const res = response.data;
+xhr.baseData = {};
+xhr.defaultConfig = {
+  params: {t: Date.now()}
+};
+
+xhr.success = (res) => {
   let isSuccess = true;
   
   if (typeof res !== 'object') {
