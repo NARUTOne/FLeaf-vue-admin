@@ -13,10 +13,10 @@
           <div class="sider-logo" :style="{height: HEADER_H + 'px'}">
             <Logo :isCollapsed="isCollapsed"/>
           </div>
-          <NavMenu :isCollapsed="isCollapsed" :layout="layout" :theme="theme"/>
+          <NavMenu :isCollapsed="isCollapsed" :layout="layout" :theme="theme" :style="`height: calc(100% - ${HEADER_H}px)`"/>
         </Sider>
         <template>
-          <Layout v-if="isLogin">
+          <Layout v-if="isLogin" class="layout-right">
             <FLHeader />
             <Body :style="{width: bodyWidth + 'px'}">
               <PBreadcrump ></PBreadcrump>
@@ -147,12 +147,15 @@ export default {
   .wrapper {
     position: relative;
     display: flex;
-    min-height: 100vh;
-    width: 100%;    
+    height: 100vh;
+    width: 100%;
     overflow: hidden;
     animation: wrapper--fade .25s cubic-bezier(.455,.03,.515,.955);
     .app-layout {
       flex: 1;
+    }
+    > div {
+      height: 100%;
     }
   }
   @keyframes wrapper--fade {
@@ -162,6 +165,11 @@ export default {
     100% {
       opacity: 1;
     }
+  }
+  .layout-right {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
   }
   .sider-logo {
     overflow: hidden;

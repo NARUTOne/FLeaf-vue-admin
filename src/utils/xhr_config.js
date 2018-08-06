@@ -49,3 +49,9 @@ xhr.success = (res) => {
 
   return isSuccess;
 };
+
+xhr.error = (err) => {
+  console.log(err);
+  Message.error('服务器开小差了！');
+  return err;
+};

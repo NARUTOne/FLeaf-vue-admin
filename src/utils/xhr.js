@@ -31,12 +31,7 @@ function setData (params) {
   return sendData;
 }
 
-let xhrsuccess = null;
-let xhrerror = null;
-
-const server = axios.create({
-  timeout: 1000
-});
+const server = axios;
 
 // request interceptors
 server.interceptors.request.use(function (config) {
@@ -86,7 +81,8 @@ export default function xhr (options) {
     method: (options.type || 'GET').toUpperCase(),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-    }
+    },
+    timeout: 3000
   };
 
   // 全局部分配置 xhr.defaultConfig = {}
@@ -153,8 +149,8 @@ export default function xhr (options) {
     config.data = params || {};
   }
 
-  xhrsuccess = options.success || null;
-  xhrerror = options.error || null;
+  const xhrsuccess = options.success || null;
+  const xhrerror = options.error || null;
 
   return server(config).then(response => {
     /**

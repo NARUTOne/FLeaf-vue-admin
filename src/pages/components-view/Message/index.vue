@@ -10,7 +10,7 @@
         <Row :gutter="8" class-name="margin-b-1">
           <Col :md="12" :xs="24">
             <Demo>
-              <span slot="header">CSS grid</span>
+              <span slot="header">Message-basic</span>
               <div slot="body">
                 <Button @click="info">info</Button>
                 <Button @click="success">success</Button>
@@ -27,7 +27,7 @@
           </Col>
           <Col :md="12" :xs="24">
             <Demo>
-              <span slot="header">CSS grid</span>
+              <span slot="header">Message-close</span>
               <div slot="body">
                 <Button @click="close">close</Button>
                 <Button @click="noTime">noTime</Button>           
@@ -44,7 +44,7 @@
         <Row :gutter="8" class-name="margin-b-1">
           <Col :md="12" :xs="24">
             <Demo>
-              <span slot="header">CSS grid</span>
+              <span slot="header">Message-confirm</span>
               <div slot="body">
                 <Button @click="renderFunc">render message</Button>
               </div>

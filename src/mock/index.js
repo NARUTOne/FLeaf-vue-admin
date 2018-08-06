@@ -1,5 +1,5 @@
 import Mock from 'mockjs';
-import loginAPI from './login';
+// import loginAPI from './login';
 
 /**
  * api拦截 Mock.mock( rurl?, rtype?, template|function( options ) )
