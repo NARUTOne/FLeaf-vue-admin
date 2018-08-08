@@ -3,6 +3,7 @@
  */
 
 import Vue from 'vue';
+import App from './App';
 import router from './routers/';
 import store from './store/';
 
@@ -45,6 +46,8 @@ Vue.filter('toNum', function (arr) {
 new Vue({
   el: '#app',
   router,
-  store
+  store,
+  components: { App },
+  template: '<App/>'
 });
 

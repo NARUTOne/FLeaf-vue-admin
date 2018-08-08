@@ -119,7 +119,7 @@ export default {
   height: 100%;
   position: relative;
   svg {
-      display: block;
+    display: block;
   }
 }
 </style>

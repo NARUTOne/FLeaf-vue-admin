@@ -1,102 +1,97 @@
 @import '~utils/style/variables.less';
 
 .drag-chart {
-	width: 100%;
-	height: 100%;
-	.drag-chart-box {
-		width: 100%;
-		height: 100%;
-		position: relative;
-		svg {
-			display: block;
-		}
-	}
-
-	.svg-rect {
-		fill: transparent;
-	}
-
-	.g-node {
-		&:hover {
-			.point {
-				fill: @flv-default-color;
-			}
-		}
-	}
-
-	.node-rect {
-		
-	}
-
-	.node-status {
-		stroke: #fff;
-		stroke-width: 1.5px;
-	}
-
-	.node_breath {
-		animation: breathing 2s ease infinite
-	}
-
-	@keyframes breathing {
-		0% {
-			stroke-width: 0;
-    	stroke-opacity: 1;
-		}
-
-		100% {
-			stroke-width: 3px;
-    	stroke-opacity: 0;
-		}
-	}
-
-	.node-task {
-		stroke: @flv-success-color;
-	}
-
-	.node-code {
-		stroke: @flv-default-color;
-	}
-
-	.node-vir {
-		stroke: @flv-warn-color;
-	}
-
-	.g-point {
-		.point {
-			cursor: crosshair;
-			&:hover {
-				fill: @flv-default-color;
-			}
-		}
-	}
-
-	.link {
-  	stroke: #cdcdcd;
-  	stroke-width: 2;
-  	fill: transparent;
-  	&:hover {
-  		cursor: pointer;
-  		stroke: @flv-default-color;
-  		stroke-width: 3;
-  	}
+  width: 100%;
+  height: 100%;
+  .drag-chart-box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    svg {
+      display: block;
+    }
   }
 
-  .tooltips{
-	  position: absolute;
-	  max-width: 150px;
-	  height: auto;
-	  font-family: '微软雅黑';
-	  font-size: 14px;
-	  color: #fff;
-	  text-align: left;
-	  /*border: 1px solid #999;*/
-	  background: rgba(0,0,0,0.5);
-	  border-radius: 3px;
-	  /*box-shadow: 3px 3px 1px #999;*/
-	  padding: 8px;
-	  display:none;
-	  word-wrap:break-word;
-		word-break:break-all;
-	  z-index:4;
-	}
+  .svg-rect {
+    fill: transparent;
+  }
+
+  .g-node {
+    &:hover {
+      .point {
+        fill: @flv-default-color;
+      }
+    }
+  }
+
+  .node-status {
+    stroke: #fff;
+    stroke-width: 1.5px;
+  }
+
+  .node_breath {
+    animation: breathing 2s ease infinite;
+  }
+
+  @keyframes breathing {
+    0% {
+      stroke-width: 0;
+      stroke-opacity: 1;
+    }
+
+    100% {
+      stroke-width: 3px;
+      stroke-opacity: 0;
+    }
+  }
+
+  .node-task {
+    stroke: @flv-success-color;
+  }
+
+  .node-code {
+    stroke: @flv-default-color;
+  }
+
+  .node-vir {
+    stroke: @flv-warn-color;
+  }
+
+  .g-point {
+    .point {
+      cursor: crosshair;
+      &:hover {
+        fill: @flv-default-color;
+      }
+    }
+  }
+
+  .link {
+    stroke: #cdcdcd;
+    stroke-width: 2;
+    fill: transparent;
+    &:hover {
+      cursor: pointer;
+      stroke: @flv-default-color;
+      stroke-width: 3;
+    }
+  }
+
+  .tooltips {
+    position: absolute;
+    max-width: 150px;
+    height: auto;
+    font-size: 14px;
+    color: #fff;
+    text-align: left;
+    /*border: 1px solid #999;*/
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    /*box-shadow: 3px 3px 1px #999;*/
+    padding: 8px;
+    display:none;
+    word-wrap:break-word;
+    word-break:break-all;
+    z-index:4;
+  }
 }

@@ -42,7 +42,6 @@ export default {
       flex-direction: column;
       -webkit-flex-grow:1;
       flex-grow:1;
-      overflow-y: auto;
     }
   }
   .body-scroll {

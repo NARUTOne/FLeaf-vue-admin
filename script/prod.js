@@ -21,7 +21,11 @@ rm(path.join(PATHS.build.buildPath), err => {
   webpack(webpackConfig, function (err, stats) {
     spinner.stop();
     console.log(chalk.cyan('build step 2'));
-    if (err) throw err;
+    if (err) {
+      var str = err + '';
+      console.log(str.slice(0, 1500));
+      throw err;
+    }
     process.stdout.write(stats.toString({
       colors: true,
       modules: false,

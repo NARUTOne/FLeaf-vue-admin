@@ -1,37 +1,35 @@
 <template>
-  <div id="app">
-    <div :class="wrapClass">
-      <Layout class="app-layout">
-        <Sider 
-					hide-trigger 
-					collapsible
-          :width="200"
-					:class="siderClass"
-					:collapsed-width="COLLAPSED_SIDER_W" 
-					ref='sider' v-model="isCollapsedSider"
-					v-show='isShowSider'>
-          <div class="sider-logo" :style="{height: HEADER_H + 'px'}">
-            <Logo :isCollapsed="isCollapsed"/>
-          </div>
-          <NavMenu :isCollapsed="isCollapsed" :layout="layout" :theme="theme" :style="`height: calc(100% - ${HEADER_H}px)`"/>
-        </Sider>
-        <template>
-          <Layout v-if="isLogin" class="layout-right">
-            <FLHeader />
-            <Body :style="{width: bodyWidth + 'px'}">
-              <PBreadcrump ></PBreadcrump>
-              <div class="body-content"><router-view></router-view></div>	
-            </Body>
-            <FLFooter />
-          </Layout> 
-          <Layout v-else>
-            <Body :style="{width: bodyWidth + 'px'}">
-              <router-view></router-view>
-            </Body>
-          </Layout>
-        </template>
-      </Layout>
-    </div>    
+  <div :class="wrapClass">
+    <Layout class="app-layout">
+      <Sider 
+        hide-trigger 
+        collapsible
+        :width="200"
+        :class="siderClass"
+        :collapsed-width="COLLAPSED_SIDER_W" 
+        ref='sider' v-model="isCollapsedSider"
+        v-show='isShowSider'>
+        <div class="sider-logo" :style="{height: HEADER_H + 'px'}">
+          <Logo :isCollapsed="isCollapsed"/>
+        </div>
+        <NavMenu :isCollapsed="isCollapsed" :layout="layout" :theme="theme" :style="NavStyle"/>
+      </Sider>
+      <template>
+        <Layout v-if="isLogin" class="layout-right">
+          <FLHeader />
+          <Body :style="{width: bodyWidth + 'px'}">
+            <PBreadcrump ></PBreadcrump>
+            <div class="body-content"><router-view></router-view></div>	
+          </Body>
+          <FLFooter />
+        </Layout> 
+        <Layout v-else>
+          <Body :style="{width: bodyWidth + 'px'}">
+            <router-view></router-view>
+          </Body>
+        </Layout>
+      </template>
+    </Layout>
   </div>
 </template>
 <script>
@@ -100,6 +98,11 @@ export default {
         'wrapper',
         this.isFix ? 'wrapper-fixed' : 'wrapper-scroll'
       ];
+    },
+    NavStyle () {
+      let style = {};
+      style.height = `calc(100% - ${HEADER_H}px)`;
+      return style;
     },
     isShowSider () {
       return this.layout == 'left' && this.isLogin;
