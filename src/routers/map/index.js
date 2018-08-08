@@ -1,7 +1,7 @@
 /**
  * 不同功能模块的路由应代码分离
  */ 
-const App = () => import('@/pages/app/');
+const AppLayout = () => import('@/pages/app/');
 const Login = () => import('@/pages/login/');
 const NotFound = () => import('@/pages/notFound/');
 
@@ -31,7 +31,7 @@ export default [
   { // 路由从根app开始，注意@/index.js 注册
     path: '/',
     redirect: '/home',
-    component: App,
+    component: AppLayout,
     name: '/',
     meta: {
       title: 'FLV'

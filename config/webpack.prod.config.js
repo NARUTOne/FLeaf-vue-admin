@@ -18,7 +18,7 @@ const webpackConfig = merge(baseConfig, {
   entry: {
     vendor: ['vue', 'vue-router', 'vuex'],
     charts: ["d3", 'echarts', '@antv/g6'],
-    tools: ['lodash', 'jquery']
+    tools: ['lodash', 'jquery', 'moment']
   },
   output: {
     publicPath: PATHS.build.assetsPublicPath,
@@ -97,7 +97,7 @@ const webpackConfig = merge(baseConfig, {
         },
         tools: { // key 为entry中定义的 入口名称
           chunks: "initial", 
-          test: /lodash|jquery/, // 正则规则验证，如果符合就提取 chunk
+          test: /lodash|jquery|moment/, // 正则规则验证，如果符合就提取 chunk
           name: "tools", // 要缓存的 分隔出来的 chunk 名称 
           minSize: 0,
           minChunks: 1,

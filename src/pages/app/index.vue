@@ -48,7 +48,7 @@ const Sider = Layout.Sider;
 const {COLLAPSED_SIDER_W, HEADER_H} = LAYOUT_VAR;
 
 export default {
-  name: 'App',
+  name: 'AppLayout',
   components: {
     Layout,
     Sider,
