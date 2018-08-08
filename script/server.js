@@ -9,18 +9,24 @@ var path = require('path');
 var webpack = require('webpack');
 var rm = require('rimraf');
 var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
 var WebpackConfig = require('../config/webpack.dev.config.js');
 var PATHS = require('./PATHS');
 
 var app = express();
 var port = process.argv.slice(2)[0] || 3001;
-
 var uri = 'http://localhost:' + port;
  
 rm.sync(path.resolve(__dirname, '..', PATHS.build.buildPath));
 
+// add hot-reload related code to entry chunks
+Object.keys(WebpackConfig.entry).forEach(function (name) {
+  WebpackConfig.entry[name] = ['./script/dev-hot-client'].concat(WebpackConfig.entry[name]);
+});
+
 const compiler = webpack(WebpackConfig);
 
+// 自动更新编译代码中间件
 var devMiddleware = webpackDevMiddleware(compiler, {
   publicPath: WebpackConfig.output.publicPath,
   stats: {
@@ -28,7 +34,12 @@ var devMiddleware = webpackDevMiddleware(compiler, {
   }
 });
 
+// 自动刷新浏览器中间件
+const hotMiddleWare = webpackHotMiddleware(compiler);
+
 app.use(devMiddleware);
+app.use(hotMiddleWare);
+
 /**
  * browserHistory 下，静态资源加载
  */

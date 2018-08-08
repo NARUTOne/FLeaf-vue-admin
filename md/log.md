@@ -2,6 +2,13 @@
 
 > :fire: fl-vue-demo
 
+## 0.0.3
+
+`2018-08-08`
+
+- `express`开发支出热加载、热更新`webpack-hot-middleware` , `webpack-dev-middleware`
+- 修复布局bug， nav支出超出滚动
+
 ## 0.0.2
 
 `2018-07-03`

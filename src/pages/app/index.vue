@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="wrapper">
+    <div :class="wrapClass">
       <Layout class="app-layout">
         <Sider 
 					hide-trigger 
@@ -23,7 +23,7 @@
               <div class="body-content"><router-view></router-view></div>	
             </Body>
             <FLFooter />
-          </Layout>
+          </Layout> 
           <Layout v-else>
             <Body :style="{width: bodyWidth + 'px'}">
               <router-view></router-view>
@@ -92,8 +92,15 @@ export default {
     ...mapGetters({
       isCollapsed: 'isCollapsed',
       layout: 'layout',
-      theme: 'theme'
+      theme: 'theme',
+      isFix: 'isFix'
     }),
+    wrapClass () {
+      return [
+        'wrapper',
+        this.isFix ? 'wrapper-fixed' : 'wrapper-scroll'
+      ];
+    },
     isShowSider () {
       return this.layout == 'left' && this.isLogin;
     },
@@ -147,13 +154,19 @@ export default {
   .wrapper {
     position: relative;
     display: flex;
-    height: 100vh;
     width: 100%;
     overflow: hidden;
     animation: wrapper--fade .25s cubic-bezier(.455,.03,.515,.955);
     .app-layout {
       flex: 1;
     }
+  }
+  .wrapper-scroll {
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  .wrapper-fixed {
+    height: 100vh;
     > div {
       height: 100%;
     }
@@ -166,11 +179,11 @@ export default {
       opacity: 1;
     }
   }
-  .layout-right {
-    height: 100%;
-    overflow: hidden;
-    overflow-y: auto;
-  }
+  // .layout-right {
+  //   height: 100%;
+  //   overflow: hidden;
+  //   overflow-y: auto;
+  // }
   .sider-logo {
     overflow: hidden;
 	}

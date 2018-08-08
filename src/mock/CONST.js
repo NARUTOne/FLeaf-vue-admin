@@ -111,30 +111,6 @@ const NAV_LIST = [{
   url: '/flicons',
   icon: 'travel',
   isFLIcon: true
-}, {
-  title: 'FLicons',
-  name: 'flicons1',
-  url: '/flicons',
-  icon: 'travel',
-  isFLIcon: true
-}, {
-  title: 'FLicons',
-  name: 'flicons2',
-  url: '/flicons',
-  icon: 'travel',
-  isFLIcon: true
-}, {
-  title: 'FLicons',
-  name: 'flicons3',
-  url: '/flicons',
-  icon: 'travel',
-  isFLIcon: true
-}, {
-  title: 'FLicons',
-  name: 'flicons4',
-  url: '/flicons',
-  icon: 'travel',
-  isFLIcon: true
 }];
 
 const LAYOUT_VAR = {

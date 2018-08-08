@@ -10,7 +10,7 @@
 								<div class="left home-user-base-info">
 									<dl>
 										<dt>蒙奇·D·路飞</dt>
-										<dd>未来の海贼王&nbsp;😁</dd>
+										<dd style="line-height: 1.3">未来の海贼王&nbsp;😁</br><span>⏲{{years}}</span></dd>
 									</dl>
 								</div>
 							</div>
@@ -101,6 +101,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import {Spin, Row, Col, Card, Icon, Avatar, Poptip, Modal } from "iview";
 import {VRecharts, BubbleRelation} from 'components';
 import NumCountup from '@/pages/main-components/num-countup/';
@@ -114,6 +115,7 @@ export default {
   },
   data () {
     return {
+      now: new Date(),
       isBubbleLoading: true,
       fromInfoList: FROM_INFO,
       rewards: REWARDS,
@@ -125,11 +127,22 @@ export default {
       visible: false
     };
   },
+  computed: {
+    years () {
+      return moment(this.now).format('YYYY-MM-DD HH:mm:ss');
+    }
+  },
   mounted () {
     this.init();
   },
+  destroyed () {
+    clearInterval(this.t);
+  },
   methods: {
     init () {
+      this.t = setInterval(() => {
+        this.now = new Date();
+      }, 1000);
       this.renderBubble();
       this.renderChaptes();
     },
