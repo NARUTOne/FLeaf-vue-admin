@@ -38,7 +38,7 @@ export default {
     -webkit-transition: all .3s;
     transition: all .3s;
     &:hover {
-      box-shadow: 2px 3px 6px rgba(0,0,0,.2);
+      box-shadow: 2px 3px 6px rgba(0, 0, 0, .2);
       border-color: transparent;
     }
     .demo-header {

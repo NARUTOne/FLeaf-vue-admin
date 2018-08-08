@@ -32,22 +32,22 @@ export default {
 
 @font-face {
   font-family: "iconfont";
-  src: url('@{flv-my-icon-url}.eot'); /* IE9*/
+  src: url('@{flv-my-icon-url}.eot'); /* IE9 */
   src:
-  /* chrome、firefox */
-  url('@{flv-my-icon-url}.woff') format('woff'),
-  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('@{flv-my-icon-url}.ttf') format('truetype'),
-  /* iOS 4.1- */
-  url('@{flv-my-icon-url}.svg#iconfont') format('svg');
+    /* chrome、firefox */
+    url('@{flv-my-icon-url}.woff') format('woff'),
+    /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
+    url('@{flv-my-icon-url}.ttf') format('truetype'),
+    /* iOS 4.1- */
+    url('@{flv-my-icon-url}.svg#iconfont') format('svg');
 }
 
 .iconfont {
   display: inline-block;
   line-height: 1;
   speak: none;
-  font-family:"iconfont" !important;
-  font-style:normal;
+  font-family: "iconfont" !important;
+  font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
