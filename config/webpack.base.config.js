@@ -8,6 +8,7 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); 
 var eslintFF = require('eslint-friendly-formatter');
+// var StyleLintPlugin = require('stylelint-webpack-plugin');
 
 var utils = require('./utils');
 const vueLoaderConfig = require('./vue-loader.conf');
@@ -107,6 +108,10 @@ var baseConfig = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
     })
+    // new StyleLintPlugin({
+    //   // 正则匹配想要lint监测的文件
+    //   files: ['src/**/*.vue', 'src/**/*.l?(e|c)ss'] 
+    // })
   ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue

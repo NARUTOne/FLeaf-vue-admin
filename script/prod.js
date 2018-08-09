@@ -22,8 +22,6 @@ rm(path.join(PATHS.build.buildPath), err => {
     spinner.stop();
     console.log(chalk.cyan('build step 2'));
     if (err) {
-      var str = err + '';
-      console.log(str.slice(0, 1500));
       throw err;
     }
     process.stdout.write(stats.toString({

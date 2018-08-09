@@ -153,7 +153,7 @@ export default {
     display: inline-block;
     padding: 8px 16px;
     border-radius: 4px;
-    box-shadow: 0 1px 6px rgba(0,0,0,.2);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
     background: #fff;
     pointer-events: all;
     .fl-message-icon {
@@ -199,13 +199,13 @@ export default {
     color: @flv-error-color;
   }
 }
-.spin-icon-load{
+.spin-icon-load {
   animation: ani-demo-spin 1s linear infinite;
 }
 @keyframes ani-demo-spin {
-  from { transform: rotate(0deg);}
-  50%  { transform: rotate(180deg);}
-  to   { transform: rotate(360deg);}
+  from { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  to { transform: rotate(360deg); }
 }
 </style>
 

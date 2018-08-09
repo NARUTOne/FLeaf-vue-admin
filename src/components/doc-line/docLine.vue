@@ -31,14 +31,14 @@ export default {
     line-height: 1.2;
     pre {
       display: block;
-      font-family: Consolas,Menlo,Courier,monospace;
+      font-family: Consolas, Menlo, Courier, monospace;
       font-size: 1em;
       white-space: pre;
     }
     code {
       display: inline-block;
       background: #f7f7f7;
-      font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+      font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
       margin: 0 3px;
       padding: 1px 5px;
       border-radius: 3px;
