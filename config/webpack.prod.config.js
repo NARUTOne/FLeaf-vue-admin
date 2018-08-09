@@ -15,11 +15,11 @@ const pnamePath = PATHS.PName ? (PATHS.PName + '/').replace(/\/\//, '/') : '' ;
 
 const webpackConfig = merge(baseConfig, {
   mode: 'production',
-  entry: {
-    vendor: ['vue', 'vue-router', 'vuex'],
-    charts: ["d3", 'echarts', '@antv/g6'],
-    tools: ['lodash', 'jquery', 'moment']
-  },
+  // entry: {
+  //   vendor: ['vue', 'vue-router', 'vuex'],
+  //   charts: ["d3", 'echarts', '@antv/g6'],
+  //   tools: ['lodash', 'jquery', 'moment']
+  // },
   output: {
     publicPath: PATHS.build.assetsPublicPath,
     filename: pnamePath +'static/js/[name].[chunkhash:8].js'
@@ -37,9 +37,10 @@ const webpackConfig = merge(baseConfig, {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     }),
     new OptimizeCSSPlugin({
-      cssProcessorOptions: {
-        safe: true
-      }
+      assetNameRegExp: /\.(css|less)$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
+      canPrint: true
     }),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, PATHS.build.buildPath, 'index.html'),
@@ -54,62 +55,65 @@ const webpackConfig = merge(baseConfig, {
     })
   ],
   // webpack 4.x 删除了 CommonsChunkPlugin，以支持两个新的选项（optimization.splitChunks 和 optimization.runtimeChunk）
-  optimization: {
-    splitChunks: {
-      chunks: "initial", // 必须三选一： "initial" | "all"(默认) | "async" 
-      minSize: 0, // 最小尺寸，默认0
-      minChunks: 1, // 最小 chunk ，默认1
-      maxAsyncRequests: 1, // 最大异步请求数， 默认1
-      maxInitialRequests: 1, // 最大初始化请求书，默认1
-      name: function (){}, // 名称，此选项可接收 function
-      cacheGroups: { // 这里开始设置缓存的 chunks
-        common: {
-          name: 'common',
-          chunks: 'all',
-          // minSize: 1,
-          minChunks: 2,
-          enforce: true,
-          priority: -20, // 缓存组优先级
-        },
-        vendor: { // key 为entry中定义的 入口名称
-          chunks: "initial", // 必须三选一： "initial" | "all" | "async"(默认) 
-          test: /vue|vuex|vue-router/, // 正则规则验证，如果符合就提取 chunk
-          name: "vendor", // 要缓存的 分隔出来的 chunk 名称 
-          minSize: 0,
-          minChunks: 1,
-          enforce: true,
-          priority: -10, // 缓存组优先级
-          maxAsyncRequests: 1, // 最大异步请求数， 默认1
-          maxInitialRequests: 1, // 最大初始化请求书，默认1
-          reuseExistingChunk: true // 可设置是否重用该chunk
-        },
-        charts: { // key 为entry中定义的 入口名称
-          chunks: "async", 
-          test: /d3|echarts|@antv\/g6/, // 正则规则验证，如果符合就提取 chunk
-          name: "charts", // 要缓存的 分隔出来的 chunk 名称 
-          minSize: 0,
-          minChunks: 1,
-          enforce: true,
-          priority: -10, 
-          maxAsyncRequests: 1, 
-          maxInitialRequests: 1, 
-          reuseExistingChunk: true 
-        },
-        tools: { // key 为entry中定义的 入口名称
-          chunks: "async", 
-          test: /lodash|jquery|moment/, // 正则规则验证，如果符合就提取 chunk
-          name: "tools", // 要缓存的 分隔出来的 chunk 名称 
-          minSize: 0,
-          minChunks: 1,
-          enforce: true,
-          priority: -10, 
-          maxAsyncRequests: 1, 
-          maxInitialRequests: 1, 
-          reuseExistingChunk: true 
-        }
-      }
-    }
-  }
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: "all", // 必须三选一： "initial" | "all"(默认) | "async" 
+  //     minSize: 0, // 最小尺寸，默认0
+  //     minChunks: 1, // 最小 chunk ，默认1
+  //     maxAsyncRequests: 1, // 最大异步请求数， 默认1
+  //     maxInitialRequests: 1, // 最大初始化请求书，默认1
+  //     name: function (){}, // 名称，此选项可接收 function
+  //     cacheGroups: { // 这里开始设置缓存的 chunks
+  //       common: {
+  //         name: 'common',
+  //         chunks: 'all',
+  //         // minSize: 1,
+  //         minChunks: 2,
+  //         enforce: true,
+  //         priority: -20, // 缓存组优先级
+  //       },
+  //       vendor: { // key 为entry中定义的 入口名称
+  //         chunks: "all", // 必须三选一： "initial" | "all" | "async"(默认) 
+  //         test: /vue|vuex|vue-router/, // 正则规则验证，如果符合就提取 chunk
+  //         name: "vendor", // 要缓存的 分隔出来的 chunk 名称 
+  //         minSize: 0,
+  //         minChunks: 1,
+  //         enforce: true,
+  //         priority: -10, // 缓存组优先级
+  //         maxAsyncRequests: 1, // 最大异步请求数， 默认1
+  //         maxInitialRequests: 1, // 最大初始化请求书，默认1
+  //         reuseExistingChunk: true // 可设置是否重用该chunk
+  //       },
+  //       charts: { // key 为entry中定义的 入口名称
+  //         chunks: "all", 
+  //         test: /d3|echarts|@antv\/g6/, // 正则规则验证，如果符合就提取 chunk
+  //         name: "charts", // 要缓存的 分隔出来的 chunk 名称 
+  //         minSize: 0,
+  //         minChunks: 1,
+  //         enforce: true,
+  //         priority: -10, 
+  //         maxAsyncRequests: 1, 
+  //         maxInitialRequests: 1, 
+  //         reuseExistingChunk: true 
+  //       },
+  //       tools: { // key 为entry中定义的 入口名称
+  //         chunks: "all", 
+  //         test: /lodash|jquery|moment/, // 正则规则验证，如果符合就提取 chunk
+  //         name: "tools", // 要缓存的 分隔出来的 chunk 名称 
+  //         minSize: 0,
+  //         minChunks: 1,
+  //         enforce: true,
+  //         priority: -10, 
+  //         maxAsyncRequests: 1, 
+  //         maxInitialRequests: 1, 
+  //         reuseExistingChunk: true 
+  //       }
+  //     }
+  //   },
+  //   runtimeChunk: {
+  //     name: 'manifest'
+  //   }
+  // }
 });
 
 module.exports = webpackConfig;
