@@ -100,7 +100,7 @@ export default {
       ];
     },
     NavStyle () {
-      let style = {};
+      const style = {};
       style.height = `calc(100% - ${HEADER_H}px)`;
       return style;
     },
