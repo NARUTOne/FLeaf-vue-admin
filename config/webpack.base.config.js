@@ -6,12 +6,13 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin'); 
+var MiniCssExtractPlugin  = require('mini-css-extract-plugin'); 
 var eslintFF = require('eslint-friendly-formatter');
 // var StyleLintPlugin = require('stylelint-webpack-plugin');
 
 var utils = require('./utils');
-const vueLoaderConfig = require('./vue-loader.conf');
+const vueLoaderConfig = require('./vue-loader.conf'); // 升级 15.x 支持webpack4.x
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 var PATHS = require('../script/PATHS');
 var pnamePath = PATHS.PName ? (PATHS.PName + '/').replace(/\/\//, '/') : '' ;
 
@@ -100,14 +101,17 @@ var baseConfig = {
   plugins: [
     // new CleanWebpackPlugin(['dist']), // 清除 测试dist
     new webpack.NoEmitOnErrorsPlugin(), // 2.x以上；编译时出错，跳过，编译后保错
-    new ExtractTextPlugin({ // 提取出css模块，到公共文件.css
-      filename: pnamePath +'static/css/[name].[contenthash].css'
+    new MiniCssExtractPlugin ({ // 提取出css模块，到公共文件.css
+      filename: pnamePath +'static/css/[name].[contenthash].css',
+      chunkFilename: pnamePath +'static/css/[id].[contenthash].css',
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
-    })
+    }),
+    // 升级vue-loader ，支持webpack4.x
+    new VueLoaderPlugin(),
     // new StyleLintPlugin({
     //   // 正则匹配想要lint监测的文件
     //   files: ['src/**/*.vue', 'src/**/*.l?(e|c)ss'] 
