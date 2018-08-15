@@ -67,10 +67,21 @@ export default {
         message: '',
         duration: 3000,
         closable: false,
+        filterRepeat: false,
         name: name
       }, message);
       // console.log(_message);
-      this.messages.push(_message);
+      if (_message.filterRepeat) {
+        this.filterRepeat(_message);
+      } else {
+        this.messages.push(_message);
+      }
+    },
+    filterRepeat (_message) {
+      const some = this.messages.find(item => item.message === _message.message);
+      if (!some) {
+        this.messages.push(_message);
+      }
     },
     close (name) {
       const messages = this.messages;

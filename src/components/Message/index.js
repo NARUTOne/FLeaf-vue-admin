@@ -2,7 +2,8 @@ import MessageBox from './src/index';
 
 const defaults = {
   top: 24,
-  duration: 3000
+  duration: 3000,
+  filterRepeat: false
 };
 const prefixKey = 'flv-message';
 let messageInstance = null;
@@ -18,17 +19,24 @@ function getMessageInstance () {
   return messageInstance;
 }
 
-function messageFun (message = '', duration = defaults.duration, type, onClose = function () {}, closable = false, render = function () {}) {
+function messageFun (
+  message = '',
+  filterRepeat = defaults.filterRepeat,
+  duration = defaults.duration, type,
+  onClose = function () {},
+  closable = false,
+  render = function () {}) {
   const instance = getMessageInstance();
   
   instance.message({
     name: `${prefixKey}-${name}`,
-    duration: duration,
+    duration: duration || defaults.duration,
     styles: {},
     message: message,
     render: render,
     onClose: onClose,
     closable: closable,
+    filterRepeat: filterRepeat || defaults.filterRepeat,
     type: type
   });
 
@@ -65,7 +73,7 @@ export default {
         message: options
       };
     }
-    return messageFun(options.message, options.duration, type, options.onClose, options.closable, options.render);
+    return messageFun(options.message, options.filterRepeat, options.duration, type, options.onClose, options.closable, options.render);
   },
   config (options) {
     if (options.top || options.top === 0) {
@@ -74,6 +82,7 @@ export default {
     if (options.duration || options.duration === 0) {
       defaults.duration = options.duration;
     }
+    defaults.filterRepeat = options.filterRepeat || false;
   },
   destroy () {
     const instance = getMessageInstance();

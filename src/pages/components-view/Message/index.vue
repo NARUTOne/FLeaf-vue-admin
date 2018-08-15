@@ -55,6 +55,19 @@
               </div>
             </Demo>
           </Col>
+          <Col :md="12" :xs="24">
+            <Demo>
+              <span slot="header">Message-filterRepeat</span>
+              <div slot="body">
+                <Button @click="renderFilterRepeat">repeat filter</Button>
+              </div>
+              <div slot="footer">
+                <Doc>
+                  <DocLine><code>Message repeat filter</code>配置过滤重复</DocLine>
+                </Doc>
+              </div>
+            </Demo>
+          </Col>
         </Row>
 			</template>
     </PageDemo>
@@ -68,6 +81,11 @@ import PageDemo from '@/pages/main-components/page-demo';
 export default {
   name: 'CMessage',
   components: {Demo, Doc, DocLine, Row, Col, PageDemo, Button},
+  data () {
+    return {
+      filterRepeat: false
+    };
+  },
   methods: {
     info () {
       this.$FLVMessage.info('This is a default info tip');
@@ -104,6 +122,14 @@ export default {
           return (<span>这是<a>render</a>自定义渲染</span>);
         }
       });
+    },
+    renderFilterRepeat () {
+      const bol = !this.filterRepeat;
+      this.filterRepeat = bol;
+      this.$FLVMessage.config({
+        filterRepeat: bol
+      });
+      this.$FLVMessage.warning(`全局配置过滤重复：${this.filterRepeat ? '是' : '否'}`);
     }
   }
 };
