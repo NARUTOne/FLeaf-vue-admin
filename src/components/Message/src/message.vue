@@ -24,7 +24,7 @@
 
 <script>
 import {Icon, Spin} from 'iview';
-import RenderDom from '@/components/render';
+import RenderDom from '@/components/base/components/render';
 
 const iconTypes = {
   'info': 'information-circled',
@@ -144,11 +144,12 @@ export default {
 
 <style lang="less" scoped>
 @import '~utils/style/variables.less';
-@import 'animation.less';
+@import '~components/base/style/animation.less';
 
 .fl-message {
   padding: 8px 0;
   text-align: center;
+  transition: height .3s ease-in-out,padding .3s ease-in-out;
   .fl-message-body {
     display: inline-block;
     padding: 8px 16px;

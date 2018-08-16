@@ -6,6 +6,7 @@ import BubbleRelation from './bubble-relation/';
 import Demo from './Demo/';
 import {Doc, DocLine} from './doc-line/';
 import Message from './Message/';
+import {CollapseBox, PartBox} from './CollapseBox/';
 import CFlowChart from './flow-chart/';
 
 const FLVMessage = Message;
@@ -20,5 +21,6 @@ export {
   Doc, 
   DocLine,
   FLVMessage,
-  CFlowChart
+  CFlowChart,
+  CollapseBox, PartBox
 };

@@ -1,0 +1,52 @@
+@import './common.less';
+@collapse-prefix-cls: ~"@{css-prefix}collapse-box";
+
+.@{collapse-prefix-cls}{
+    background-color: @background-color-base;
+    border-radius: 3px;
+    border: 1px solid @border-color-base;
+
+    & > &-part{
+        border-top: 1px solid @border-color-base;
+        &:first-child {
+            border-top: 0;
+        }
+
+        > .@{collapse-prefix-cls}-header{
+            height: 38px;
+            line-height: 38px;
+            padding-left: 32px;
+            color: #666;
+            cursor: pointer;
+            position: relative;
+
+            > i{
+                transition: transform @transition-time @ease-in-out;
+            }
+        }
+    }
+    &  > &-part&-part-active > &-header > i{
+        transform: rotate(90deg);
+    }
+
+    &-content{
+        //display: none;
+        //overflow: hidden;
+        color: @text-color;
+        padding: 0 16px;
+        background-color: #fff;
+
+        & > &-box {
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+    }
+    &-part-active > &-content{
+        //display: block;
+    }
+    &-part:last-child {
+        > .@{collapse-prefix-cls}-content {
+            border-radius: 0 0 3px 3px;
+        }
+    }
+}
