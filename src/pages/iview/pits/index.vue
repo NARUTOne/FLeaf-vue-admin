@@ -23,7 +23,7 @@
         </Demo>
       </Col>
       <Col :md="12" :xs="24">
-        <Demo>
+        <Demo dark>
           <div slot="header"></div>
           <div slot="body">
             <Select v-model="selectVal" :style="{width: '300px'}">

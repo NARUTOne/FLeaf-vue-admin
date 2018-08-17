@@ -1,16 +1,17 @@
 <template>
   <div :class="classes">
-    <solt></solt>
+    <slot></slot>
   </div>
 </template>
 
 <script>
+import {findComponentsDownward} from '../base/utils/assist';
 const prefixCls = 'flv-collapse-box';
 
 export default {
   name: 'CollapseBox',
   props: {
-    actives: {
+    value: {
       type: [Array, String]
     },
     simple: Boolean,
@@ -23,16 +24,21 @@ export default {
   },
   computed: {
     classes () {
-      return [prefixCls];
+      return [
+        prefixCls,
+        {
+          [`${prefixCls}-simple`]: this.simple
+        }
+      ];
     }
   },
   mounted () {
-    this.currentActives = this.actives;
+    this.currentActives = this.value;
     this.setPartChildren();
   },
   watch: {
-    actives (actives) {
-      this.currentActives = actives;
+    value (value) {
+      this.currentActives = value;
     },
     currentActives () {
       this.setPartChildren();
@@ -41,7 +47,8 @@ export default {
   methods: {
     setPartChildren () {
       const activeKey = this.getActiveKey();
-      this.$children.forEach((child, index) => {
+      const partChildren = findComponentsDownward(this, 'PartBox');
+      partChildren.forEach((child, index) => {
         const name = child.name || index.toString();
         child.isActive = activeKey.indexOf(name) > -1;
         child.index = index;

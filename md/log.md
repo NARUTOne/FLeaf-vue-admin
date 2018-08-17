@@ -2,16 +2,18 @@
 
 > :fire: fl-vue-demo
 
-## 0.0.3
+## 2018-08-17
 
-`2018-08-08`
+- 新增组件`CollapseBox`
+- `Demo`支持主题 `dark`黑夜版
+- 优化组件文件夹代码块
+
+## 2018-08-08
 
 - `express`开发支出热加载、热更新`webpack-hot-middleware` , `webpack-dev-middleware`
-- 修复布局bug， nav支出超出滚动
+- 修复布局bug， nav支持超出滚动
 
-## 0.0.2
-
-`2018-07-03`
+## 2018-07-03
 
 - 构建项目的布局layout
 - 构建项目的内容
@@ -31,9 +33,8 @@
 
 - 发布github-pages: [https://narutone.github.io/FLeaf-vue-admin/](https://narutone.github.io/FLeaf-vue-admin/)
 
-## 0.0.1
+## 2018-03-28
 
-`2018-03-28`
 > 利用vue简易脚手架搭建（[FireLeaf-Vue-Scaffold](https://github.com/NARUTOne/FireLeaf-Vue-Scaffold)）
 
 - 初始化demo

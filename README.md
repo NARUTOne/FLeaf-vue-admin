@@ -1,7 +1,5 @@
 # FLeaf-vue-admin
 
-`0.0.3`
-
 [https://narutone.github.io/FLeaf-vue-admin/](https://narutone.github.io/FLeaf-vue-admin/)
 
 > :fallen_leaf: 基于[FireLeaf-Vue-Scaffold](https://github.com/NARUTOne/FireLeaf-Vue-Scaffold)开发的demo

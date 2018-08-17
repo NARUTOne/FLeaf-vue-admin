@@ -1,11 +1,11 @@
 <template>
   <div class="br-sort-arrow" @click="handleChange">
-    <slot name="left-text"></slot>&nbsp;
+    <slot name="left"></slot>&nbsp;
     <span class="br-sort-icons">
       <Icon type="arrow-up-b" :class="class0" />
       <Icon type="arrow-down-b" :class="class1"  />
     </span>&nbsp;
-    <slot name="right-text"></slot>
+    <slot name="right"></slot>
   </div>
 </template>
 
@@ -32,6 +32,11 @@ export default {
     },
     class1 () {
       return !this.currentActiveIndex ? '' : 'active';
+    }
+  },
+  watch: {
+    activeIndex (index) {
+      this.currentActiveIndex = index;
     }
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="flv-demo">
+  <div :class="classes">
     <div class="demo-header clear-float">
       <div class="left demo-header-circles">
         <span class="red"></span>
@@ -24,13 +24,31 @@
 
 <script>
 export default {
-  name: 'Demo'
+  name: 'Demo',
+  props: {
+    dark: Boolean
+  },
+  computed: {
+    classes () {
+      return [
+        'flv-demo',
+        this.dark ? 'flv-demo-dark' : 'flv-demo'
+      ];
+    }
+  }
 };
 </script>
 
 <style lang="less" scoped>
-  .flv-demo {
+  @import '~utils/style/variables.less';
+  .flv-demo-dark {
+    background: @flv-dark;
+    color: #fff;
+  }
+  .flv-demo-light {
     background: #fff;
+  }
+  .flv-demo {    
     border-radius: 3px;
     font-size: 14px;
     border: 1px solid #e9e9e9;

@@ -52,6 +52,12 @@ const NAV_LIST = [{
     url: '/componentsview/Message',
     icon: 'chatbox-working',
     isFLIcon: false
+  }, {
+    title: '折叠CollapseBox',
+    name: 'CCollapseBox',
+    url: '/componentsview/CollapseBox',
+    icon: 'chatbox-working',
+    isFLIcon: false
   }]
 }, {
   title: '图表',
