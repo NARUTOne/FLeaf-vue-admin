@@ -21,25 +21,25 @@ export default {
 
 <style lang="less" scoped>
 .flv-page-demo {
-	padding-bottom: 16px;
-	.flv-page-quote {
-		margin-bottom: 16px;
-		blockquote {
-			padding: 5px 5px 3px 10px;
-			line-height: 1.5;
-			border-left: 4px solid #ddd;
-			color: #999;
-		}
-	}
-	.flv-page-desc {
-		line-height: 1.2;
-		margin: 8px;
-		p {
-			text-align: justify;
-		}
-	}
-	.flv-page-body {
-		margin: 16px auto;
-	}
+  padding-bottom: 16px;
+  .flv-page-quote {
+    margin-bottom: 16px;
+    blockquote {
+      padding: 5px 5px 3px 10px;
+      line-height: 1.5;
+      border-left: 4px solid #ddd;
+      color: #999;
+    }
+  }
+  .flv-page-desc {
+    line-height: 1.2;
+    margin: 8px;
+    p {
+      text-align: justify;
+    }
+  }
+  .flv-page-body {
+    margin: 16px auto;
+  }
 }
 </style>

@@ -48,7 +48,7 @@ export default {
   .flv-demo-light {
     background: #fff;
   }
-  .flv-demo {    
+  .flv-demo {
     border-radius: 3px;
     font-size: 14px;
     border: 1px solid #e9e9e9;

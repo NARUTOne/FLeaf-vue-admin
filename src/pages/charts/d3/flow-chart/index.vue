@@ -285,4 +285,3 @@ export default {
 <style lang="less" scoped>
 @import 'index.less';
 </style>
-

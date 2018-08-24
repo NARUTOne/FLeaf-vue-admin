@@ -22,25 +22,25 @@ export default {
     display: flex;
   }
   .page {
-    width:100%;
-    height:50vh;
-    display:-webkit-flex;
-    display:flex;
-    -webkit-flex-direction:column;
-    flex-direction:column;
-    margin:0 auto; 
-    padding:0 20px;
-  }
-	.header, .content, .sider { 
-    padding:20px; 
-  }
-	.footer { 
-    padding:40px 20px; 
-  }
-  .body { 
+    width: 100%;
+    height: 50vh;
+    display: -webkit-flex;
     display: flex;
-    -webkit-flex-grow:1;
-    flex-grow:1;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .header, .content, .sider {
+    padding: 20px;
+  }
+  .footer {
+    padding: 40px 20px;
+  }
+  .body {
+    display: flex;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
     flex-direction: row;
   }
   .sider {

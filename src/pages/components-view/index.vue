@@ -9,8 +9,3 @@ export default {
   name: 'ComponentsView'
 };
 </script>
-
-<style lang="less" scoped>
-
-</style>
-

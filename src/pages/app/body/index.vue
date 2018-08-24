@@ -35,27 +35,27 @@ export default {
   .body {
     display: flex;
     flex-direction: column;
-    -webkit-flex-grow:1;
-    flex-grow:1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
     > div {
       display: flex;
       flex-direction: column;
-      -webkit-flex-grow:1;
-      flex-grow:1;
+      -webkit-flex-grow: 1;
+      flex-grow: 1;
     }
   }
   .body-scroll {
-		position: relative;
-		> div {
-			position: absolute;
-			top: 0;
+    position: relative;
+    > div {
+      position: absolute;
+      top: 0;
       left: 0;
       right: 0;
-			z-index: 1;
-			height: calc(~'100vh - 103px');
-			overflow-y: auto;
-			overflow-x:hidden; 
-		}    
+      z-index: 1;
+      height: calc(~'100vh - 103px');
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
   }
 </style>
 

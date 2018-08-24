@@ -9,9 +9,3 @@ export default {
   name: 'template'
 };
 </script>
-
-<style>
-  .template {
-    
-  }
-</style>

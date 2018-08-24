@@ -231,11 +231,11 @@ export default {
         cursor: pointer;
       }
     }
-    .menu-icon{
-			transition: all .3s;
-			cursor: pointer;
+    .menu-icon {
+      transition: all .3s;
+      cursor: pointer;
     }
-    .rotate-icon{
+    .rotate-icon {
       transform: rotate(-90deg);
     }
   }

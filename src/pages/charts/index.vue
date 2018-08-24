@@ -9,8 +9,3 @@ export default {
   name: 'Charts'
 };
 </script>
-
-<style lang="less" scoped>
-
-</style>
-

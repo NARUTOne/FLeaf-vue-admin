@@ -9,9 +9,3 @@ export default {
   name: 'CAntv'
 };
 </script>
-
-<style>
-
-</style>
-
-

@@ -20,8 +20,3 @@ export default {
   components: {PageDemo}
 };
 </script>
-
-<style lang="less" scoped>
-
-</style>
-

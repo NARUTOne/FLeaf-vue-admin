@@ -10,7 +10,7 @@
 								<div class="left home-user-base-info">
 									<dl>
 										<dt>蒙奇·D·路飞</dt>
-										<dd style="line-height: 1.3">未来の海贼王&nbsp;😁</br><span>⏲{{years}}</span></dd>
+										<dd style="line-height: 1.3;">未来の海贼王&nbsp;😁</br><span>⏲{{years}}</span></dd>
 									</dl>
 								</div>
 							</div>
@@ -29,7 +29,7 @@
 								<li v-for="(item, index) in fromInfoList" :key="'info-'+index">
 									<Row :gutter="16">
 										<Col span="4">
-											<Avatar style="background-color: #87d068" size="large" icon="person" :src="item.src"></Avatar>
+											<Avatar style="background-color: #87d068;" size="large" icon="person" :src="item.src"></Avatar>
 										</Col>
 										<Col span="20">
 											<dl>
@@ -172,97 +172,97 @@ export default {
 <style lang="less" scoped>
 @import "~utils/style/variables.less";
 .home {
-	.home-user {
-		.home-user-base {
-			> div {
-				margin-right: 32px;
-			}
-			.home-user-base-img {
-				width: 100px;
-				height: 100px;
-				border-radius: 50%;
-				overflow: hidden;
-				border: 3px solid @flv-default-color;
-				img {
-					width: 100%;
-					height: 100%;
-					vertical-align: middle;
-        }
-			}
-			.home-user-base-info {
-				padding: 8px;
-				dt {
-					font-family: cursive;
-					font-size: 2em;
-					color: @flv-default-color;
-				}
-				dd {
-					margin-top: 24px;
-					font-size: 1.2em;
-				}
-			}
-		}
-		.home-user-desc {
-			p {
-				line-height: 1.5;
-				text-align: justify;
-				text-indent: 2em;
-				color: #999;
-			}
-		}
-	}
-	.home-from-info {
-		li {
-			padding: 8px;
-			border-bottom: 1px solid #efefef;
-		}
-	}
-	.home-reward {
-		.home-reward-box {
-			height: 80px;
-		}
-		.home-reward-img {
-      position: relative;
-			width: 60px;
-			height: 80px;
-			margin-right: 12px;
-			border-radius: 8px;
-			overflow: hidden;
-      border: 2px solid @flv-warn-color;
-      box-shadow: 0 1px 1px rgba(0,0,0,.2);
-			img {
-				width: 100%;
-				height: 100%;
-				vertical-align: middle;
+  .home-user {
+    .home-user-base {
+      > div {
+        margin-right: 32px;
       }
-      .demo-upload-list-cover{
+      .home-user-base-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid @flv-default-color;
+        img {
+          width: 100%;
+          height: 100%;
+          vertical-align: middle;
+        }
+      }
+      .home-user-base-info {
+        padding: 8px;
+        dt {
+          font-family: cursive;
+          font-size: 2em;
+          color: @flv-default-color;
+        }
+        dd {
+          margin-top: 24px;
+          font-size: 1.2em;
+        }
+      }
+    }
+    .home-user-desc {
+      p {
+        line-height: 1.5;
+        text-align: justify;
+        text-indent: 2em;
+        color: #999;
+      }
+    }
+  }
+  .home-from-info {
+    li {
+      padding: 8px;
+      border-bottom: 1px solid #efefef;
+    }
+  }
+  .home-reward {
+    .home-reward-box {
+      height: 80px;
+    }
+    .home-reward-img {
+      position: relative;
+      width: 60px;
+      height: 80px;
+      margin-right: 12px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid @flv-warn-color;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+      img {
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+      }
+      .demo-upload-list-cover {
         display: none;
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(0,0,0,.6);
+        background: rgba(0, 0, 0, .6);
         text-align: center;
         line-height: 80px;
       }
-      &:hover .demo-upload-list-cover{
+      &:hover .demo-upload-list-cover {
         display: block;
       }
-      .demo-upload-list-cover i{
+      .demo-upload-list-cover i {
         color: #fff;
         font-size: 20px;
         cursor: pointer;
         margin: 0 auto;
         vertical-align: middle;
       }
-		}
-		.home-reward-num {
-			font-size: 16px;
-			font-weight: 600;
-			line-height: 40px;
-		}
-	}
+    }
+    .home-reward-num {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 40px;
+    }
+  }
 }
 </style>
 

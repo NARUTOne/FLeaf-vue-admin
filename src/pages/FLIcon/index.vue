@@ -13,7 +13,7 @@
 				</p>
 			</template>
 			<div class="flicon-search">
-				<Input v-model="search" icon="ios-search" placeholder="根据icon-name查询" style="width: 500px"></Input>
+				<Input v-model="search" icon="ios-search" placeholder="根据icon-name查询" style="width: 500px;"></Input>
 			</div>
 			<div class="flicon-list">
 				<Row :gutter="16">
@@ -55,23 +55,23 @@ export default {
 </script>
 
 <style lang="less" scoped>
-	.flv-flicon {
-		.flicon-search {
-			margin: 32px 0;
-			text-align: center;
-			input {
-				margin: 0 auto;
-			}
-		}
-		.flicon-list {
-			text-align: center;
-			i {
-				font-size: 32px;
-			}
-			.ivu-col {
-				margin: 16px 0;
-			}
-		}
-	}
+  .flv-flicon {
+    .flicon-search {
+      margin: 32px 0;
+      text-align: center;
+      input {
+        margin: 0 auto;
+      }
+    }
+    .flicon-list {
+      text-align: center;
+      i {
+        font-size: 32px;
+      }
+      .ivu-col {
+        margin: 16px 0;
+      }
+    }
+  }
 </style>
 

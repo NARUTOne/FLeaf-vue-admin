@@ -9,8 +9,3 @@ export default {
   name: 'Doc'
 };
 </script>
-
-<style lang="less" scoped>
-  
-</style>
-

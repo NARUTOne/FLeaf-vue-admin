@@ -159,7 +159,7 @@ export default {
     display: flex;
     width: 100%;
     overflow: hidden;
-    animation: wrapper--fade .25s cubic-bezier(.455,.03,.515,.955);
+    animation: wrapper--fade .25s cubic-bezier(.455, .03, .515, .955);
     .app-layout {
       flex: 1;
     }
@@ -189,32 +189,32 @@ export default {
   // }
   .sider-logo {
     overflow: hidden;
-	}
-	.sider-dark {
-		background-color: @flv-dark;
-		color: #fff;
-	}
-	.sider-light {
-		position: relative;
-		background-color: #fff !important;
-		color: #333 ;
-		&::after {
-			content: '';
-			height: calc(~'100% - @{flv-header-height}');
-			width: 1px;
-			position: absolute;
-			top: @flv-header-height;
-			right: 0;
-			background: #dddee1;
-		}
-	}
-	.body-content {
+  }
+  .sider-dark {
+    background-color: @flv-dark;
+    color: #fff;
+  }
+  .sider-light {
+    position: relative;
+    background-color: #fff !important;
+    color: #333;
+    &::after {
+      content: '';
+      height: calc(~'100% - @{flv-header-height}');
+      width: 1px;
+      position: absolute;
+      top: @flv-header-height;
+      right: 0;
+      background: #dddee1;
+    }
+  }
+  .body-content {
     padding: 8px;
-		> div {
-			padding: 8px;
-			border-radius: 6px;
-			border: 1px solid #efefef;
-			background-color: #fff;			
-		}
-	}
+    > div {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #efefef;
+      background-color: #fff;
+    }
+  }
 </style>

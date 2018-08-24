@@ -149,7 +149,7 @@ export default {
 .fl-message {
   padding: 8px 0;
   text-align: center;
-  transition: height .3s ease-in-out,padding .3s ease-in-out;
+  transition: height .3s ease-in-out, padding .3s ease-in-out;
   .fl-message-body {
     display: inline-block;
     padding: 8px 16px;
@@ -180,7 +180,7 @@ export default {
   }
 }
 
-.fl-message-success{
+.fl-message-success {
   border: 2px solid @flv-success-color;
   .fl-message-icon-success {
     color: @flv-success-color;

@@ -7,9 +7,3 @@ export default {
   name: 'Iview'
 };
 </script>
-
-<style lang="less" scoped>
-
-</style>
-
-

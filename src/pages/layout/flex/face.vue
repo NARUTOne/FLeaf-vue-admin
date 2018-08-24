@@ -58,18 +58,18 @@ export default {
 
 <style lang="less" scoped>
 .flex {
-	display: flex;
-	display: -webkit-flex;
+  display: flex;
+  display: -webkit-flex;
 }
 
 .box {
-	padding: 8px 16px;
-	border-radius: 6px;
-	justify-content: space-around;
+  padding: 8px 16px;
+  border-radius: 6px;
+  justify-content: space-around;
 }
 
 .face {
-	margin: 16px;
+  margin: 16px;
   padding: 4px;
   background-color: #e7e7e7;
   width: 104px;
@@ -81,7 +81,7 @@ export default {
 }
 
 .pip {
-	display: inline-block;
+  display: inline-block;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -91,25 +91,24 @@ export default {
 }
 
 .first-pip {
-	justify-content: center;
-	align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .second-pip {
-	justify-content: space-between;
+  justify-content: space-between;
 }
 
 .second-pip > .pip:nth-child(2) {
-	align-self: flex-end;
+  align-self: flex-end;
 }
 
 .three-pip > .pip:nth-child(2) {
-	align-self: center;
+  align-self: center;
 }
 
 .three-pip > .pip:nth-child(3) {
-	align-self: flex-end;
+  align-self: flex-end;
 }
 
 .four-pip {
@@ -127,17 +126,17 @@ export default {
   align-content: space-between;
 }
 .five-pip > .column:nth-child(2) {
-	justify-content: center;
+  justify-content: center;
 }
 
-.six-pip {	
-	justify-content: space-between;
+.six-pip {
+  justify-content: space-between;
 }
 
 .six-pip > .column {
-	flex-basis: auto;
-	flex-direction: column;
-	justify-content: space-between;
+  flex-basis: auto;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
 

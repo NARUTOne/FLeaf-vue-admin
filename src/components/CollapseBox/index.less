@@ -1,65 +1,64 @@
 @import '../base/style/common.less';
 @collapse-prefix-cls: ~"@{css-prefix}collapse-box";
 
-.@{collapse-prefix-cls}{
-    background-color: @background-color-base;
-    border-radius: 3px;
-    border: 1px solid @border-color-base;
-    border-top: none;
-    &-simple{
-        border-left: none;
-        border-right: none;        
-        background-color: #fff;
-        border-radius: 0;
-    }
-    & > &-part{
-        
-        &:first-child {
-            border-top: 0;
-        }
-
-        > .@{collapse-prefix-cls}-part-header{
-            height: 38px;
-            line-height: 38px;
-            padding-left: 24px;
-            color: #666;
-            cursor: pointer;
-            position: relative;
-            border-top: 1px solid @border-color-base;
-
-            > i{
-                transition: transform @transition-time @ease-in-out;
-            }
-        }
-    }
-    &-simple > &-part&-part-active > &-part-header{
-        border-bottom: 1px solid transparent;
-    }
-    &  > &-part&-part-active > &-part-header > i{
-        transform: rotate(90deg);
+.@{collapse-prefix-cls} {
+  background-color: @background-color-base;
+  border-radius: 3px;
+  border: 1px solid @border-color-base;
+  border-top: none;
+  &-simple {
+    border-left: none;
+    border-right: none;
+    background-color: #fff;
+    border-radius: 0;
+  }
+  & > &-part {
+    &:first-child {
+      border-top: 0;
     }
 
-    &-part-content{
-        //display: none;
-        //overflow: hidden;
-        color: @text-color;
-        padding: 0 16px;
-        background-color: #fff;
+    > .@{collapse-prefix-cls}-part-header {
+      height: 38px;
+      line-height: 38px;
+      padding-left: 24px;
+      color: #666;
+      cursor: pointer;
+      position: relative;
+      border-top: 1px solid @border-color-base;
 
-        & > &-box {
-            padding-top: 16px;
-            padding-bottom: 16px;
-        }
+      > i {
+        transition: transform @transition-time @ease-in-out;
+      }
     }
-    &-simple > &-part > &-part-content > &-part-content-box{
-        padding-top: 0;
+  }
+  &-simple > &-part&-part-active > &-part-header {
+    border-bottom: 1px solid transparent;
+  }
+  & > &-part&-part-active > &-part-header > i {
+    transform: rotate(90deg);
+  }
+
+  &-part-content {
+    //display: none;
+    //overflow: hidden;
+    color: @text-color;
+    padding: 0 16px;
+    background-color: #fff;
+
+    & > &-box {
+      padding-top: 16px;
+      padding-bottom: 16px;
     }
-    &-part-active > &-part-content{
-        //display: block;
+  }
+  &-simple > &-part > &-part-content > &-part-content-box {
+    padding-top: 0;
+  }
+  &-part-active > &-part-content {
+    //display: block;
+  }
+  &-part:last-child {
+    > .@{collapse-prefix-cls}-content {
+      border-radius: 0 0 3px 3px;
     }
-    &-part:last-child {
-        > .@{collapse-prefix-cls}-content {
-            border-radius: 0 0 3px 3px;
-        }
-    }
+  }
 }

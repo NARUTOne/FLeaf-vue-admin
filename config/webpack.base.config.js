@@ -8,7 +8,7 @@ var webpack = require('webpack');
 var path = require('path');
 var MiniCssExtractPlugin  = require('mini-css-extract-plugin'); 
 var eslintFF = require('eslint-friendly-formatter');
-// var StyleLintPlugin = require('stylelint-webpack-plugin');
+var StyleLintPlugin = require('stylelint-webpack-plugin');
 
 var utils = require('./utils');
 const vueLoaderConfig = require('./vue-loader.conf'); // 升级 15.x 支持webpack4.x
@@ -112,10 +112,12 @@ var baseConfig = {
     }),
     // 升级vue-loader ，支持webpack4.x
     new VueLoaderPlugin(),
-    // new StyleLintPlugin({
-    //   // 正则匹配想要lint监测的文件
-    //   files: ['src/**/*.vue', 'src/**/*.l?(e|c)ss'] 
-    // })
+    new StyleLintPlugin({
+      // 正则匹配想要lint监测的文件
+      files: ['src/**/*.vue', 'src/**/*.l?(e|c)ss'],
+      cache: true,
+      fix: true
+    })
   ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue

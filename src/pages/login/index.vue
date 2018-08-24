@@ -112,8 +112,8 @@ export default {
   .login {
     display: flex;
     flex-direction: column;
-    -webkit-flex-grow:1;
-    flex-grow:1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
     background-image: url('~static/img/login_bg.svg');
     background-repeat: no-repeat;
     background-position: center 110px;
@@ -134,7 +134,7 @@ export default {
         background-size: 50px 50px;
       }
       .login-form {
-        padding:30px;   
+        padding: 30px;
         padding-bottom: 0;
       }
       .login-example {

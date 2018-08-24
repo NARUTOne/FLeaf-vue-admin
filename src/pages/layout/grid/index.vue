@@ -50,37 +50,37 @@ export default {
 
 <style lang="less" scoped>
 @import '~utils/style/variables.less';
-  .layout-grid {
-    .css-grid {
-      display: grid;
-      grid-template-rows: repeat(4, 1fr); 
-      grid-auto-columns: calc((600px - 3em) / 4);
-      grid-auto-flow: column;
-      grid-gap: 1em;
-      height: 600px;
-    }
-    .grid-column {
-      display: grid;
-      grid-template-columns: 2fr 3fr 5fr;
-      grid-column-gap: 16px;
-      background-color: #ddd;
-      text-align: center;
-      font-size: 18px;
-      font-weight: 600;
-      line-height: calc((600px - 3em) / 4);
-      span {
-        grid-column: 2;
-      }
-    }
-
-    .grid-column:nth-child(3n) {
-      background-color: @flv-default-color;
-    }
-
-    .grid-column:nth-child(3n + 2) {
-      background-color: @flv-success-color;
+.layout-grid {
+  .css-grid {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-auto-columns: calc((600px - 3em) / 4);
+    grid-auto-flow: column;
+    grid-gap: 1em;
+    height: 600px;
+  }
+  .grid-column {
+    display: grid;
+    grid-template-columns: 2fr 3fr 5fr;
+    grid-column-gap: 16px;
+    background-color: #ddd;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: calc((600px - 3em) / 4);
+    span {
+      grid-column: 2;
     }
   }
+
+  .grid-column:nth-child(3n) {
+    background-color: @flv-default-color;
+  }
+
+  .grid-column:nth-child(3n + 2) {
+    background-color: @flv-success-color;
+  }
+}
 </style>
 
 
