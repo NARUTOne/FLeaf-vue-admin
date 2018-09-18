@@ -8,6 +8,7 @@ import {Doc, DocLine} from './doc-line/';
 import Message from './Message/';
 import {CollapseBox, PartBox} from './CollapseBox/';
 import CFlowChart from './flow-chart/';
+import MceEditor from './mce-editor/';
 
 const FLVMessage = Message;
 
@@ -22,5 +23,6 @@ export {
   DocLine,
   FLVMessage,
   CFlowChart,
-  CollapseBox, PartBox
+  CollapseBox, PartBox,
+  MceEditor
 };

@@ -13,6 +13,9 @@ const Vue = () => import('@/pages/vue/');
 // icons
 const FLIcon = () => import('@/pages/FLIcon/');
 
+// editor
+const EditorText = () => import('@/pages/EditorText/');
+
 // layout
 import layout from './layout';
 
@@ -70,6 +73,14 @@ export default [
         component: FLIcon,
         meta: {
           title: 'FLIcons'
+        }
+      },
+      {
+        path: 'editorText',
+        name: 'editorText',
+        component: EditorText,
+        meta: {
+          title: '富文本'
         }
       },
       { 

@@ -32,7 +32,7 @@ export default {
     }
   }
   .flv-page-desc {
-    line-height: 1.2;
+    line-height: 1.6;
     margin: 8px;
     p {
       text-align: justify;

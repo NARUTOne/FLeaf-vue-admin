@@ -9,6 +9,24 @@ const NAV_LIST = [{
   icon: 'home',
   isFLIcon: false
 }, {
+  title: 'vue',
+  name: 'vue',
+  url: '/vue',
+  icon: 'play',
+  isFLIcon: false
+}, {
+  title: 'FLicons',
+  name: 'flicons',
+  url: '/flicons',
+  icon: 'travel',
+  isFLIcon: true
+}, {
+  title: '富文本',
+  name: 'editorText',
+  url: '/editorText',
+  icon: 'edit',
+  isFLIcon: false
+}, {
   title: '布局',
   name: 'layout',
   url: '/layout',
@@ -105,18 +123,6 @@ const NAV_LIST = [{
       isFLIcon: false,
     }]
   }]
-}, {
-  title: 'vue',
-  name: 'vue',
-  url: '/vue',
-  icon: 'play',
-  isFLIcon: false
-}, {
-  title: 'FLicons',
-  name: 'flicons',
-  url: '/flicons',
-  icon: 'travel',
-  isFLIcon: true
 }];
 
 const LAYOUT_VAR = {
