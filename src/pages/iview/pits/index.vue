@@ -83,7 +83,7 @@
           <div slot="footer">
             <Doc>
               <DocLine type="bug"><code>v-if</code>进行选择渲染 <code>select</code> 在同 <code>v-model</code>下，出现选中文本错乱显示</DocLine>
-              <DocLine>解决：改为<code>v-show</code> 或 采用 <code>data</code> 循环渲染</DocLine>
+              <DocLine>解决：改为<code>v-show</code> 或 采用 <code>data</code> 循环渲染(不同key)</DocLine>
             </Doc>
           </div>
         </Demo>
