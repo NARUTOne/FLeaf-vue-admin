@@ -1,6 +1,6 @@
 import  * as d3 from 'd3';
 import $ from 'jquery';
-import ContextMenu from '@/components/ContextMenu/';
+import ContextMenu from '@/components/ContextMenu/ContextMenu';
 
 const EXEC_STATUS = [{
   code: -1,
@@ -42,8 +42,8 @@ class ChartDrag {
 
     const defaultOption = {
       zoom: {
-        scale: 1.0, 
-        x: 0, 
+        scale: 1.0,
+        x: 0,
         y: 0
       },
       isDragNode: false,
@@ -55,7 +55,7 @@ class ChartDrag {
 
     this.init();
   }
- 
+
   init () {
     const chartData = this.orgData;
     this.chart(chartData);
@@ -82,12 +82,12 @@ class ChartDrag {
     }
     return typeName;
   }
-  
+
   getSize (type) {
     const typeName = this.getTypeName(type);
     let w = 60;
     const h = 36;
-    
+
     switch(typeName) {
     case 'task':
       w = 120;
@@ -147,7 +147,7 @@ class ChartDrag {
         p[0] =  sourceX + "," + sourceY;
         p[3] = targetX + "," + targetY;
 
-        if(sourceY >= (targetY - 30) && sourceY <= (targetY + 30)) { 
+        if(sourceY >= (targetY - 30) && sourceY <= (targetY + 30)) {
           return "M" + p[0] + "L" + p[2] + "L" + p[3];
         }
         else {
@@ -187,7 +187,7 @@ class ChartDrag {
         .attr("marker-end", "url(#circlePoint)");
     };
 
-    // zoom 
+    // zoom
     function zoom () {
       if(_this.options.isLock) return;
       _this.options.zoom.x = d3.event.transform.x;
@@ -201,7 +201,7 @@ class ChartDrag {
 
     const zoomListener = d3.zoom()
       .scaleExtent([0.2, 3])
-      .on("zoom", zoom);     
+      .on("zoom", zoom);
 
     // 拖拽 drag
     const dragEvent = d3.drag()
@@ -228,8 +228,8 @@ class ChartDrag {
             dragingLinkObj.target = {posX: sPoint.x, posY: sPoint.y, tId: sNode.id, tAnchor: 0};
           }
 
-          else if(targetElement.classed('point-right')) { 
-            const sPoint = _this.getPointPath(sNode, 1);   
+          else if(targetElement.classed('point-right')) {
+            const sPoint = _this.getPointPath(sNode, 1);
 
             dragingLinkObj.source = {posX: sPoint.x, posY: sPoint.y, sId: sNode.id, sAnchor: 1};
             dragingLinkObj.target = {posX: sPoint.x, posY: sPoint.y, tId: sNode.id, tAnchor: 1};
@@ -295,7 +295,7 @@ class ChartDrag {
             obj.sourceId = dragingLinkObj.source.sId;
             obj.targetId = tNode.id;
             obj.sAnchor = dragingLinkObj.source.sAnchor;
-            
+
             if(targetElement.classed('point-top')) {
               obj.tAnchor = 0;
             }
@@ -310,7 +310,7 @@ class ChartDrag {
             }
 
             let isRepeat = false;
-            
+
             edges.forEach((item) => {
               if(item.sourceId == obj.sourceId && item.targetId == obj.targetId) {
                 isRepeat = true;
@@ -342,8 +342,8 @@ class ChartDrag {
         _this.options.isDragLink = false;
         _this.options.isDragNode = false;
       });
-    
-   
+
+
     // 绘制svg
     const svg = d3.select(this.container)
       .append("svg")
@@ -352,8 +352,8 @@ class ChartDrag {
       .attr("id", "force-svg")
       .attr('viewBox', `0,0,${W},${H}`)
       .call(zoomListener)
-      .on('dblclick.zoom', null);   
-      
+      .on('dblclick.zoom', null);
+
       // 自定义提示框
     const tip = d3.select(this.container)
       .append("div")
@@ -386,12 +386,12 @@ class ChartDrag {
       .attr("refX", "6")
       .attr("refY", "6")
       .attr("orient", "auto");
-    
+
     circleMarker.append('circle')
       .attr('r', '2')
       .attr('cx', '6')
       .attr('cy', '6')
-      .attr('fill', '#33a9dd');    
+      .attr('fill', '#33a9dd');
 
     const svgCenter = svg.append("g")
       .attr('id', 'svg-center')
@@ -408,8 +408,8 @@ class ChartDrag {
     //   .call(zoomListener)
     //   .on('dblclick.zoom', null);
 
-    zoomListener.transform( svg, t); 
-    
+    zoomListener.transform( svg, t);
+
     // 绘制 图例
     const svgLegend = svg.append('g')
       .attr('class', 'svg-legend')
@@ -426,14 +426,14 @@ class ChartDrag {
         const y = 30 + i * 20;
         return `translate(${x},${y})`;
       });
-    
+
     gLegend.append('circle')
       .attr('class', 'node-status node_breath')
       .attr('r', 8)
       .attr('cx', 0)
       .attr('cy', 0)
       .attr("fill", d => d.color);
-    
+
     gLegend.append("text")
       .attr("font-size", '1em')
       .attr("font-family", "simsun")
@@ -461,7 +461,7 @@ class ChartDrag {
       .call(dragEvent)
       .on("contextmenu", function (d) {
         if(_this.options.isLock) return;
-        
+
         const e = d3.event;
         e.preventDefault();
         e.stopPropagation();
@@ -502,10 +502,10 @@ class ChartDrag {
         else {
           return 'transparent';
         }
-        
+
       })
       .attr("stroke-width", 2);
-    
+
     // gNode.append('circle')
     //   .attr('class', 'node-status node_breath')
     //   .classed('hide', d => d.type < 0)
@@ -535,14 +535,14 @@ class ChartDrag {
       .text(function (d){
         return  _this.textShow(d, d.label);
       });
-    
+
     // 连线吸附区域
 
     function addPoint (direction) {
       const gPoint = gNode.append('g')
         .attr('class', 'g-point')
         .attr('data-index', d => d.id);
-      
+
       gPoint.append('path')
         .attr('class', 'point-adsorb')
         .attr('fill', 'transparent')
@@ -551,7 +551,7 @@ class ChartDrag {
           const path = _this.getPath(d, direction);
           return path;
         });
-      
+
       gPoint.append('path')
         .attr('class', 'point point-'+ direction)
         .attr('fill', 'transparent')
@@ -565,15 +565,15 @@ class ChartDrag {
     // top   0
     addPoint('top');
 
-    // right  1 
+    // right  1
     addPoint('right');
 
-    // bottom  2 
+    // bottom  2
     addPoint('bottom');
 
     // left   3
     addPoint('left');
-    
+
     // 绘制连线
     const gLink = svgCenter
       .insert("g")
@@ -599,13 +599,13 @@ class ChartDrag {
             const e = d3.event;
             e.preventDefault();
             e.stopPropagation();
-            
+
             _this.addContextMenu('.draw_path', e, d, 'line');
           });
-      }        
+      }
     };
 
-    drawLink(edges); 
+    drawLink(edges);
   }
 
   // 获取点坐标
@@ -639,7 +639,7 @@ class ChartDrag {
       x,
       y
     };
-  } 
+  }
 
   // 吸附区path
   getPath (d, direction) {

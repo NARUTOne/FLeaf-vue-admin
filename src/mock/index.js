@@ -1,5 +1,5 @@
 import Mock from 'mockjs';
-// import loginAPI from './login';
+import loginAPI from './login';
 
 /**
  * api拦截 Mock.mock( rurl?, rtype?, template|function( options ) )
@@ -7,8 +7,8 @@ import Mock from 'mockjs';
  */
 
 // login
-// Mock.mock(/\/api\/login/, 'post', loginAPI.toLogin);
-// Mock.mock(/\/api\/logout/, 'get', loginAPI.toLogout);
+Mock.mock(/\/api\/login/, 'post', loginAPI.toLogin);
+Mock.mock(/\/api\/logout/, 'get', loginAPI.toLogout);
 
 
 export default Mock;

@@ -42,7 +42,8 @@ var baseConfig = {
   },
   externals: {
     echarts: 'echarts',
-    d3: 'd3'
+    d3: 'd3',
+    jquery: 'jquery'
   },
   module: {
     rules: [
