@@ -95,7 +95,7 @@ const webpackConfig = merge(baseConfig, {
         },
         charts: { // key 为entry中定义的 入口名称
           chunks: "all",
-          test: /d3|echarts|@antv\/g6/, // 正则规则验证，如果符合就提取 chunk
+          test: /@antv\/g6/, // 正则规则验证，如果符合就提取 chunk
           name: "charts", // 要缓存的 分隔出来的 chunk 名称
           minSize: 0,
           minChunks: 1,
@@ -107,7 +107,7 @@ const webpackConfig = merge(baseConfig, {
         },
         tools: { // key 为entry中定义的 入口名称
           chunks: "all",
-          test: /lodash|jquery|moment/, // 正则规则验证，如果符合就提取 chunk
+          test: /lodash|moment/, // 正则规则验证，如果符合就提取 chunk
           name: "tools", // 要缓存的 分隔出来的 chunk 名称
           minSize: 0,
           minChunks: 1,
