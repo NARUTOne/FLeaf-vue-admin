@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[20],{364:function(e,t,n){"use strict";n.r(t);var s={name:"Charts"},i=n(0),a=Object(i.a)(s,function(){var e=this.$createElement,t=this._self._c||e;return t("div",{staticClass:"charts-view"},[t("router-view")],1)},[],!1,null,null,null);a.options.__file="index.vue";t.default=a.exports}}]);

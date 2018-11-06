@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[16],{360:function(e,n,t){"use strict";t.r(n);var i={name:"ComponentsView"},s=t(0),o=Object(s.a)(i,function(){var e=this.$createElement,n=this._self._c||e;return n("div",{staticClass:"components-view"},[n("router-view")],1)},[],!1,null,null,null);o.options.__file="index.vue";n.default=o.exports}}]);
