@@ -165,7 +165,7 @@ export default {
     },
     handleShowImg (src) {
       this.visible = true;
-      this.imgLarge = src;
+      this.imgLarge = resourcePath + src;
     }
   }
 };
