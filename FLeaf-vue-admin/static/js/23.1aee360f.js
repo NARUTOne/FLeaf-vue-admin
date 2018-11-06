@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[23],{365:function(t,e,n){"use strict";n.r(e);var i={name:"CAntv"},s=n(0),a=Object(s.a)(i,function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"chart-antv"},[e("router-view")],1)},[],!1,null,null,null);a.options.__file="index.vue";e.default=a.exports}}]);
