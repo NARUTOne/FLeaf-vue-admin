@@ -51,6 +51,7 @@ export default {
   methods: {
     renderChart () {
       const {data, options, zoomChange, nodesChange, deleteNode, linksChange, editNode, deleteLink} = this;
+      console.log(data);
       const newData = this.EditData(data);
       new ChartDrag({
         container: this.$refs['dragChart'],
@@ -72,7 +73,7 @@ export default {
       obj.nodes.forEach((item, i) => {
         item.id = item.id || i + 'node' + new Date().getTime();
       });
-      
+
       return obj;
     }
   }

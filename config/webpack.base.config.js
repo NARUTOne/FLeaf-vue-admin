@@ -43,7 +43,7 @@ var baseConfig = {
   externals: {
     echarts: 'echarts',
     d3: 'd3',
-    jquery: 'jquery'
+    jquery: 'jQuery'
   },
   module: {
     rules: [
@@ -119,11 +119,6 @@ var baseConfig = {
         ignore: ['.*']
       }
     ]),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    }),
     // 升级vue-loader ，支持webpack4.x
     new VueLoaderPlugin(),
     new StyleLintPlugin({

@@ -8,7 +8,7 @@
       <template slot="page-desc">
         使用拖拽节点组件，进行流程图绘制
       </template>
-      <div class="chart-body"> 
+      <div class="chart-body">
         <div class="chart-icons-box">
           <span class="hover-bg pointer" @click="handleLock">
             <Icon type='locked' title="锁定" v-if="isLock"></Icon>
@@ -28,20 +28,20 @@
                 <p class='chart-nodes-type-title'><b>流程任务节点</b></p>
                 <ul class='chart-nodes-type-list'>
                   <li class='success-bg' draggable='true' @dragstart="handleIconDrag" data-key='0'>任务A</li>
-                </ul> 
+                </ul>
               </div>
               <div>
                 <p class='chart-nodes-type-title'><b>脚本节点</b></p>
                 <ul class='chart-nodes-type-list'>
                   <li class='default-bg' draggable='true' @dragstart="handleIconDrag" data-key='1'>脚本A</li>
-                </ul> 
+                </ul>
               </div>
               <div>
                 <p class='chart-nodes-type-title'><b>虚节点</b></p>
                 <ul class='chart-nodes-type-list'>
                   <li class='warn-bg' draggable='true' @dragstart="handleIconDrag" data-key='start'>start</li>
                   <li class='warn-bg' draggable='true' @dragstart="handleIconDrag" data-key='end'>end</li>
-                </ul> 
+                </ul>
               </div>
             </div>
           </Card>
@@ -50,12 +50,12 @@
           <CFlowChart
             :data="dragData"
             :options="chartOptions"
-            @zoomChange="handleZoomChange"
-            @nodesChange="handleNodesChange"
-            @linksChange="handleLinksChange"
-            @editNode="handleEditNode"
-            @deleteNode="handleDeleteNode"
-            @deleteLink="handleDeleteLink"
+            :zoomChange="handleZoomChange"
+            :nodesChange="handleNodesChange"
+            :linksChange="handleLinksChange"
+            :editNode="handleEditNode"
+            :deleteNode="handleDeleteNode"
+            :deleteLink="handleDeleteLink"
           ></CFlowChart>
         </div>
       </div>
@@ -142,7 +142,7 @@ export default {
         posX: (e.pageX - svgEle.getBoundingClientRect().left - chartOptions.zoom.x)/chartOptions.zoom.scale,
         posY: (e.pageY - svgEle.getBoundingClientRect().top - chartOptions.zoom.y - 30)/chartOptions.zoom.scale
       };
-    
+
       if(key == 'start') {
         node.label = key;
         node.type = '-1';
@@ -230,8 +230,12 @@ export default {
       const arrNodes = newDragData.nodes.filter(item => item.id != d.id);
       const arrLinks = newDragData.edges.filter(item => item.sourceId !== d.id || item.targetId !== d.id);
 
-      this.dragData.nodes = [...arrNodes];
-      this.dragData.edges = [...arrLinks];
+      const newData = {
+        nodes: arrNodes,
+        edges: arrLinks
+      };
+
+      this.dragData = Object.assign({}, newData);
       this.handleChartChange();
     },
     handleEditNode (d) {
@@ -241,11 +245,17 @@ export default {
     handleDeleteLink (d) {
       if(this.checkLock()) return;
       const newDragData = Object.assign({}, this.dragData);
-      const arr = newDragData.edges.filter(item => {
+      const arrLinks = newDragData.edges.filter(item => {
         const bol = (item.sourceId != d.sourceId) || (item.targetId != d.targetId);
         return bol;
       });
-      this.dragData.edges = [...arr];
+
+      const newData = {
+        nodes: newDragData.nodes,
+        edges: arrLinks
+      };
+
+      this.dragData = Object.assign({}, newData);
       this.handleChartChange();
     },
     handleChartChange () {
@@ -271,6 +281,7 @@ export default {
 
         function add () {
           newDragData.nodes.push(obj);
+          console.log(newDragData);
           _this.dragData = {...newDragData};
         }
         add();
