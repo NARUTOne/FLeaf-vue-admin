@@ -6,7 +6,7 @@
 					<Col class-name='margin-b-1 home-user'>
 						<Card>
 							<div slot="title" class='clear-float home-user-base'>
-								<div class="left home-user-base-img"><img :src="PName + '/static/img/avtor/lufei.jpg'" alt=""></div>
+								<div class="left home-user-base-img"><img src='~static/img/avtor/lufei.jpg' alt=""></div>
 								<div class="left home-user-base-info">
 									<dl>
 										<dt>蒙奇·D·路飞</dt>
@@ -29,7 +29,7 @@
 								<li v-for="(item, index) in fromInfoList" :key="'info-'+index">
 									<Row :gutter="16">
 										<Col span="4">
-											<Avatar style="background-color: #87d068;" size="large" icon="person" :src="PName + item.src"></Avatar>
+											<Avatar style="background-color: #87d068;" size="large" icon="person" :src="resourcePath + item.src"></Avatar>
 										</Col>
 										<Col span="20">
 											<dl>
@@ -54,7 +54,7 @@
 										<div class="left">
 											<Poptip trigger="hover" :title="item.career" :content="item.info">
 												<div class="home-reward-img" @click="handleShowImg(item.src)">
-                          <img :src="PName + item.src" alt="">
+                          <img :src="resourcePath + item.src" alt="">
                           <div class="demo-upload-list-cover">
                             <Icon type="ios-eye-outline"></Icon>
                           </div>
@@ -107,7 +107,7 @@ import {VRecharts, BubbleRelation} from 'components';
 import NumCountup from '@/pages/main-components/num-countup/';
 import {FROM_INFO, REWARDS, ONEPIECE_CHAPTERS} from '@/mock/home';
 import {chaptesChart} from './chart';
-import {PName} from 'utils/config';
+import {resourcePath} from 'utils/config';
 
 export default {
   name: "Home",
@@ -116,7 +116,7 @@ export default {
   },
   data () {
     return {
-      PName,
+      resourcePath,
       now: new Date(),
       isBubbleLoading: true,
       fromInfoList: FROM_INFO,

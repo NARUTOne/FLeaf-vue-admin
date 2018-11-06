@@ -74,7 +74,7 @@
           <Col span='12'>
             <div class=" header-user ">
               <Dropdown :class='dropdownClass'>
-                <div><Avatar class="default-bg" :src='PName + "/static/img/avtor/lufei.jpg"' />&nbsp; {{user ? user.userName : ''}}</div>
+                <div><Avatar class="success-bg" icon="person" />&nbsp; {{user ? user.userName : ''}}</div>
                 <DropdownMenu slot="list">
                   <DropdownItem>
                     <template  v-if="isLogin">
@@ -102,7 +102,6 @@ import {Layout, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, Ra
 import Logo from '../logo/';
 import NavMenu from '../nav/';
 import screenfull from 'screenfull';
-import {PName} from 'utils/config';
 
 const Header = Layout.Header;
 
@@ -110,7 +109,6 @@ export default {
   name: 'FLHeader',
   data () {
     return {
-      PName
     };
   },
   components: {
