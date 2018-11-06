@@ -1,6 +1,6 @@
 'use strict';
 // ? https://vue-loader.vuejs.org/zh/
-// ! vue-loader  14.x 
+// ! vue-loader  14.x
 // const utils = require('./utils');
 // const PATHS = require('../script/PATHS');
 // const isProduction = process.env.NODE_ENV === 'production';

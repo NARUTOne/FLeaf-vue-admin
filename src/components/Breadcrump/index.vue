@@ -50,6 +50,7 @@ export default {
 <style scoped>
 .p-breadcrump {
   padding: 12px;
+  padding-bottom: 0;
   font-size: 14px;
 }
 

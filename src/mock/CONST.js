@@ -1,4 +1,4 @@
-/** 
+/**
  * mock 静态数据
 */
 
@@ -74,6 +74,12 @@ const NAV_LIST = [{
     title: '折叠CollapseBox',
     name: 'CCollapseBox',
     url: '/componentsview/CollapseBox',
+    icon: 'chatbox-working',
+    isFLIcon: false
+  }, {
+    title: '右键ContextMenu',
+    name: 'CContextMenu',
+    url: '/componentsview/ContextMenu',
     icon: 'chatbox-working',
     isFLIcon: false
   }]

@@ -11,7 +11,7 @@
               @on-search="handleSearch1"
               clearable
               placeholder="input here"
-              style="width:200px">
+              style="width:200px;">
             </AutoComplete>
           </div>
           <div slot="footer">
@@ -68,12 +68,12 @@
         <Demo>
           <div slot="header">Select-if</div>
           <div slot="body">
-            <Select v-model="statisMode" style="width: 300px" placeholder="请选择统计方式" v-if="switch1">
+            <Select v-model="statisMode" style="width: 300px;" placeholder="请选择统计方式" v-if="switch1">
               <Option value="1">32</Option>
               <Option value="2">汇总同评分不区分版本</Option>
               <Option value="3">区分评分和版本</Option>
             </Select>
-            <Select v-model="statisMode" style="width: 300px" placeholder="请选择统计方式" v-else>
+            <Select v-model="statisMode" style="width: 300px;" placeholder="请选择统计方式" v-else>
               <Option value="4">122</Option>
               <Option value="5">汇总本</Option>
               <Option value="6">区分版本</Option>

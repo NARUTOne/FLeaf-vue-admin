@@ -9,6 +9,7 @@ import Message from './Message/';
 import {CollapseBox, PartBox} from './CollapseBox/';
 import CFlowChart from './flow-chart/';
 import MceEditor from './mce-editor/';
+import VueContextMenu from './ContextMenu/';
 
 const FLVMessage = Message;
 
@@ -19,10 +20,11 @@ export {
   VRecharts,
   BubbleRelation,
   Demo,
-  Doc, 
+  Doc,
   DocLine,
   FLVMessage,
   CFlowChart,
   CollapseBox, PartBox,
-  MceEditor
+  MceEditor,
+  VueContextMenu
 };

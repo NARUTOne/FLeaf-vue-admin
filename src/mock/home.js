@@ -4,32 +4,32 @@
 
 const FROM_INFO = [
   {
-    src: 'https://i.loli.net/2018/05/17/5afc5bb536576.jpg',
+    src: '/static/img/avtor/naruto.jpg',
     name: '鸣人',
     info: '我的忍道，一直都是有话就说，说到做到（嘴遁😀），然后成为大家认可的火影🔥'
   },
   {
-    src: 'https://i.loli.net/2018/05/17/5afd9803b5959.png',
+    src: '/static/img/avtor/wukong.png',
     name: '孙悟空',
     info: '哇，好兴奋啊 😠 , 龟 .. 派 .. 气 .. 功 .. 啊......'
   },
   {
-    src: 'https://i.loli.net/2018/05/17/5afc5bb4f4230.jpg',
+    src: '/static/img/avtor/naci.jpg',
     name: '纳兹',
     info: '你准备好成为妖精的尾巴的敌人了吗？🔥 🐲'
   },
   {
-    src: 'https://i.loli.net/2018/05/17/5afd96c8bf7aa.jpg',
+    src: '/static/img/avtor/270.jpg',
     name: '纲吉',
     info: '指环上铭刻着我们的光阴 💍，黑手党什么的，我要亲手毁灭'
   },
   {
-    src: 'https://i.loli.net/2018/05/17/5afc5bb51ee12.jpg',
+    src: '/static/img/avtor/reborn.jpg',
     name: 'reborn',
     info: '对我以貌取人可是会受伤的唷, reborn 🍵 '
   },
   {
-    src: 'https://i.loli.net/2018/05/17/5afc5bb52b0dd.jpg',
+    src: '/static/img/avtor/baobao.jpg',
     name: '宝宝',
     info: '没得事，交给我，我弄死他们，不要叫宝儿姐，要叫主人 😉'
   }
@@ -37,7 +37,7 @@ const FROM_INFO = [
 
 const REWARDS = [
   {
-    src: 'https://i.loli.net/2018/05/16/5afc4eb0ad1c7.jpg',
+    src: '/static/img/onepiece/15billion.jpg',
     reward: 1500000000,
     auth: 100,
     name: '“草帽”蒙奇·D·路飞',
@@ -45,7 +45,7 @@ const REWARDS = [
     info: '海贼王'
   },
   {
-    src: 'https://i.loli.net/2018/05/16/5afc4eb0a3dc1.jpg',
+    src: '/static/img/onepiece/chopper.jpg',
     reward: 100,
     auth: 60,
     name: '“驯鹿”托尼托尼·乔巴',
@@ -53,7 +53,7 @@ const REWARDS = [
     info: '【宠物】成为万能药（不管什么病都能治的医生）'
   },
   {
-    src: 'https://i.loli.net/2018/05/16/5afc4eb0a5748.jpg',
+    src: '/static/img/onepiece/franky.jpg',
     reward: 94000000,
     auth: 78,
     name: '“改造人”弗兰奇',
@@ -61,7 +61,7 @@ const REWARDS = [
     info: '制造出梦想之船'
   },
   {
-    src: 'https://i.loli.net/2018/05/16/5afc4eb0b1fdf.jpg',
+    src: '/static/img/onepiece/nami.jpg',
     reward: 66000000,
     auth: 70,
     name: '“小贼猫”娜美',
@@ -69,7 +69,7 @@ const REWARDS = [
     info: '绘制出自己的世界地图、绘制全世界的航海图'
   },
   {
-    src: 'https://i.loli.net/2018/05/16/5afc4eb0b4ee1.jpg',
+    src: '/static/img/onepiece/robin.jpg',
     reward: 130000000,
     auth: 76,
     name: '“恶魔之子”妮可·罗宾',
@@ -77,7 +77,7 @@ const REWARDS = [
     info: '寻找真正的“历史正文”，并且在历史正文碑的指引下，到达伟大航道的尽头“拉夫德鲁”'
   },
   {
-    src: 'https://i.loli.net/2018/05/16/5afc4eb0b9a2a.jpg',
+    src: '/static/img/onepiece/sanji.jpg',
     reward: 177000000,
     auth: 86,
     name: '“黑足”山治',
@@ -85,7 +85,7 @@ const REWARDS = [
     info: '寻找传说中的奇迹之海－ALL BLUE'
   },
   {
-    src: 'https://i.loli.net/2018/05/16/5afc4eb092c17.jpg',
+    src: '/static/img/onepiece/skbrook.jpg',
     reward: 83000000,
     auth: 78,
     name: '“灵魂之王”布鲁克',
@@ -93,7 +93,7 @@ const REWARDS = [
     info: '环绕世界一周到伟大航道双子岬跟伙伴鲸鱼“拉布”重逢。'
   },
   {
-    src: 'https://i.loli.net/2018/05/16/5afc4eb0bcea2.jpg',
+    src: '/static/img/onepiece/usopp.jpg',
     reward: 200000000,
     auth: 80,
     name: '“GOD”▪乌索普',
@@ -101,7 +101,7 @@ const REWARDS = [
     info: '成为勇敢的海上战士'
   },
   {
-    src: 'https://i.loli.net/2018/05/16/5afc4eb0bb460.jpg',
+    src: '/static/img/onepiece/zoro.jpg',
     reward: 320000000,
     auth: 92,
     name: '“海贼猎人”罗罗诺亚·索隆',
@@ -109,7 +109,7 @@ const REWARDS = [
     info: '世界第一大剑豪'
   },
   {
-    src: 'https://i.loli.net/2018/05/16/5afc53ebe9802.jpg',
+    src: '/static/img/onepiece/jinbei.jpg',
     reward: 250000000,
     auth: 90,
     name: '“海侠”甚平',
@@ -126,7 +126,7 @@ const ONEPIECE_CHAPTERS = [
   {
     title: '索隆上船篇',
     value: 8
-  }, 
+  },
   {
     title: '巴基篇',
     value: 10

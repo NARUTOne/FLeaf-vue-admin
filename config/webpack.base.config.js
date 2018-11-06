@@ -6,9 +6,10 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var MiniCssExtractPlugin  = require('mini-css-extract-plugin'); 
+var MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 var eslintFF = require('eslint-friendly-formatter');
 var StyleLintPlugin = require('stylelint-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var utils = require('./utils');
 const vueLoaderConfig = require('./vue-loader.conf'); // 升级 15.x 支持webpack4.x
@@ -28,7 +29,7 @@ const createLintingRule = () => ({
 });
 
 var baseConfig = {
-  target: 'web', 
+  target: 'web',
   entry: {
     app: [path.resolve(__dirname, '../src/index.js')]
   },
@@ -38,6 +39,10 @@ var baseConfig = {
       ? PATHS.build.assetsPublicPath
       : PATHS.dev.assetsPublicPath,  // 外部资源 url
     chunkFilename: pnamePath +'static/js/[id].[chunkhash:8].js' // chunk生成的文件名,按需加载
+  },
+  externals: {
+    echarts: 'echarts',
+    d3: 'd3'
   },
   module: {
     rules: [
@@ -60,7 +65,7 @@ var baseConfig = {
               prefix: false
             }
           }
-        ]        
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -105,6 +110,14 @@ var baseConfig = {
       filename: pnamePath +'static/css/[name].[contenthash].css',
       chunkFilename: pnamePath +'static/css/[id].[contenthash].css',
     }),
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: pnamePath + PATHS.build.assetsSubDirectory,
+        ignore: ['.*']
+      }
+    ]),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',

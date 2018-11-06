@@ -6,7 +6,7 @@
 					<Col class-name='margin-b-1 home-user'>
 						<Card>
 							<div slot="title" class='clear-float home-user-base'>
-								<div class="left home-user-base-img"><img src="https://i.loli.net/2018/05/12/5af662c33a177.jpg" alt=""></div>
+								<div class="left home-user-base-img"><img :src="PName + '/static/img/avtor/lufei.jpg'" alt=""></div>
 								<div class="left home-user-base-info">
 									<dl>
 										<dt>蒙奇·D·路飞</dt>
@@ -29,7 +29,7 @@
 								<li v-for="(item, index) in fromInfoList" :key="'info-'+index">
 									<Row :gutter="16">
 										<Col span="4">
-											<Avatar style="background-color: #87d068;" size="large" icon="person" :src="item.src"></Avatar>
+											<Avatar style="background-color: #87d068;" size="large" icon="person" :src="PName + item.src"></Avatar>
 										</Col>
 										<Col span="20">
 											<dl>
@@ -54,18 +54,18 @@
 										<div class="left">
 											<Poptip trigger="hover" :title="item.career" :content="item.info">
 												<div class="home-reward-img" @click="handleShowImg(item.src)">
-                          <img :src="item.src" alt="">
+                          <img :src="PName + item.src" alt="">
                           <div class="demo-upload-list-cover">
                             <Icon type="ios-eye-outline"></Icon>
                           </div>
                         </div>
 											</Poptip>
-										</div>										
+										</div>
 										<div class="left home-reward-num">
 											<p>{{item.name}}</p>
 											<NumCountup :number="item.reward"></NumCountup>&nbsp;$
 										</div>
-									</div>									
+									</div>
 								</Card>
 							</Col>
 						</Row>
@@ -77,7 +77,7 @@
 							</p>
 							<div class="chart-box">
 								<VRecharts :options="chaptesOption"></VRecharts>
-							</div>        
+							</div>
 						</Card>
 					</Col>
 				</Row>
@@ -107,6 +107,7 @@ import {VRecharts, BubbleRelation} from 'components';
 import NumCountup from '@/pages/main-components/num-countup/';
 import {FROM_INFO, REWARDS, ONEPIECE_CHAPTERS} from '@/mock/home';
 import {chaptesChart} from './chart';
+import {PName} from 'utils/config';
 
 export default {
   name: "Home",
@@ -115,6 +116,7 @@ export default {
   },
   data () {
     return {
+      PName,
       now: new Date(),
       isBubbleLoading: true,
       fromInfoList: FROM_INFO,

@@ -1,3 +1,3 @@
-import ContextMenu from './ContextMenu';
+import VueContextMenu from './VueContextMenu';
 
-export default ContextMenu;
+export default VueContextMenu;

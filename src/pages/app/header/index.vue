@@ -5,10 +5,10 @@
         <Logo v-if="isLogo"></Logo>
         <Icon
           v-else
-          @click.native="collapsedSider" 
-          :class="rotateIcon" 
-          :style="{margin: '20px 20px 0'}" 
-          type="navicon-round" 
+          @click.native="collapsedSider"
+          :class="rotateIcon"
+          :style="{margin: '20px 20px 0'}"
+          type="navicon-round"
           size="24"></Icon>
       </Col>
       <Col :xs="0" :sm="0" :md="14" :lg="14">
@@ -67,14 +67,14 @@
                     </dd>
                   </dl>
                 </DropdownItem>
-                <DropdownItem divided>系统配置</DropdownItem>                  
+                <DropdownItem divided>系统配置</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </Col>
           <Col span='12'>
             <div class=" header-user ">
               <Dropdown :class='dropdownClass'>
-                <div><Avatar class="default-bg" src='https://i.loli.net/2018/05/12/5af662c33a177.jpg' />&nbsp; {{user ? user.userName : ''}}</div>
+                <div><Avatar class="default-bg" :src='PName + "/static/img/avtor/lufei.jpg"' />&nbsp; {{user ? user.userName : ''}}</div>
                 <DropdownMenu slot="list">
                   <DropdownItem>
                     <template  v-if="isLogin">
@@ -83,14 +83,14 @@
                     <template v-else>
                       <div @click="handleLogin">
                         <Icon type='log-in'  class='header-log-icon' title='登录' />&nbsp;登录
-                      </div>                      
+                      </div>
                     </template>
-                  </DropdownItem>                
+                  </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-            </div>          
+            </div>
           </Col>
-        </Row>            
+        </Row>
       </Col>
     </Row>
   </Header>
@@ -102,6 +102,7 @@ import {Layout, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, Ra
 import Logo from '../logo/';
 import NavMenu from '../nav/';
 import screenfull from 'screenfull';
+import {PName} from 'utils/config';
 
 const Header = Layout.Header;
 
@@ -109,12 +110,12 @@ export default {
   name: 'FLHeader',
   data () {
     return {
-		
+      PName
     };
   },
-  components: { 
-    Header, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Logo, NavMenu, 
-    'iSwitch': Switch 
+  components: {
+    Header, Row, Col, Avatar, Icon, Dropdown, DropdownMenu, DropdownItem, RadioGroup, Radio, Logo, NavMenu,
+    'iSwitch': Switch
   },
   computed: {
     ...mapGetters('login', {
@@ -158,7 +159,7 @@ export default {
       const obj = {
         layout: value
       };
-      
+
       this.$Loading.start();
       this.handleLayoutChange(obj).then(() => {
         this.$Loading.finish();
