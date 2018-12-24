@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import '@/utils/zh_CN.js';
+  import './zh_CN.js';
   import defaultConfig from './defaultConfig.js';
   export default {
     name: 'MceEditor',
