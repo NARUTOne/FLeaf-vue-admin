@@ -1,9 +1,8 @@
 /**
  * 图表数据处理
  */
-import tools from 'utils/tools';
-
-const {isObject, isArray} = tools;
+import isArray from 'flo-utils/lib/basic/isArray';
+import isObject from 'flo-utils/lib/basic/isObject';
 
 const simpleBarsCfg = (obj) => {
   const {data} = obj;

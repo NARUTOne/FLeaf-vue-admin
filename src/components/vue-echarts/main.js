@@ -3,7 +3,7 @@
 */
 import echarts from 'echarts';
 import elementResizeEvent from 'element-resize-event';
-import tools from 'utils/tools';
+import emptyObj from 'flo-utils/lib/object/emptyObj';
 
 const COLORS = ['#48a9ee', '#8996e5', '#4ecda5', '#eb4456', '#ffd96e', '#f4857a',  '#98d97d', '#bda29a', '#6e7074', '#546570', '#c4ccd3'];
 
@@ -43,7 +43,7 @@ class Chart {
     myChart.clear();
     this.myChart = myChart;
    
-    if(this.config.options && !tools.emptyObj(this.config.options)) {
+    if(this.config.options && !emptyObj(this.config.options)) {
       this.config.options.color = this.config.options.color || COLORS;
       myChart.setOption(this.config.options);
     }

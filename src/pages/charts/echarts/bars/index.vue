@@ -56,7 +56,7 @@ import {Row, Col, Card} from 'iview';
 import {VRecharts} from 'components';
 import {simpleBarsCfg, pireBarsCfg, fallBarsCfg, pireRightBarsCfg} from './config';
 import {SIMPLE_BARS, PIRE_BARS} from '@/mock/bars';
-import tools from 'utils/tools';
+import deepCopy from 'flo-utils/lib/collection/deepCopy';
 
 export default {
   name: 'EchartsBars',
@@ -84,12 +84,12 @@ export default {
       this.simpleOption = {...simpleOption};
     },
     handlePire () {
-      const param = tools.deepCopy(PIRE_BARS);
+      const param = deepCopy(PIRE_BARS);
       const pireOption = pireBarsCfg(param);
       this.pireOption = {...pireOption};
     },
     handlePireRight () {
-      const param = tools.deepCopy(PIRE_BARS);
+      const param = deepCopy(PIRE_BARS);
       const pireRightOption = pireRightBarsCfg(param);
       this.pireRightOption = {...pireRightOption};
     },

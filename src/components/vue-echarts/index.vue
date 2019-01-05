@@ -4,7 +4,7 @@
 
 <script>
 import Chart from './main';
-import tools from 'utils/tools';
+import emptyObj from 'flo-utils/lib/object/emptyObj';
 export default {
   name: 'VEcharts',
   props: {
@@ -41,7 +41,7 @@ export default {
   },
   mounted () {
     this.container = this.$refs.echarts;
-    if(this.options && !tools.emptyObj(this.options)) {
+    if(this.options && !emptyObj(this.options)) {
       this.stateOptions = {...this.options};
       const props = {
         options: this.stateOptions,
